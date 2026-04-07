@@ -1,27 +1,27 @@
 import { useEffect, useState } from "react";
 
 const slides = [
-  {
-    image:
-      "https://images.unsplash.com/photo-1539185441755-769473a23570?q=80&w=1742&auto=format&fit=crop",
-    title: "Pro Sports Shoes",
-    subtitle:
-      "Push your limits with lightweight, high-performance footwear designed for speed, endurance, and ultimate comfort. Perfect for runners and athletes who demand more from every step.",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1572026174154-97194f1e3567?q=80&w=1740&auto=format&fit=crop",
-    title: "Casual Everyday Wear",
-    subtitle:
-      "Step into effortless style with versatile sneakers crafted for daily comfort. Whether you're heading out or staying relaxed, these shoes blend fashion with all-day ease.",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1563434649554-58f91d22ec2c?q=80&w=1758&auto=format&fit=crop",
-    title: "Elegant Formal Shoes",
-    subtitle:
-      "Refine your look with premium formal footwear designed for elegance and confidence. Ideal for office wear, events, and moments where style truly matters.",
-  },
+    {
+        image:
+            "https://images.unsplash.com/photo-1539185441755-769473a23570?q=80&w=1742&auto=format&fit=crop",
+        title: "Pro Sports Shoes",
+        subtitle:
+            "Push your limits with lightweight, high-performance footwear designed for speed, endurance, and ultimate comfort. Perfect for runners and athletes who demand more from every step.",
+    },
+    {
+        image:
+            "https://images.unsplash.com/photo-1572026174154-97194f1e3567?q=80&w=1740&auto=format&fit=crop",
+        title: "Casual Everyday Wear",
+        subtitle:
+            "Step into effortless style with versatile sneakers crafted for daily comfort. Whether you're heading out or staying relaxed, these shoes blend fashion with all-day ease.",
+    },
+    {
+        image:
+            "https://images.unsplash.com/photo-1563434649554-58f91d22ec2c?q=80&w=1758&auto=format&fit=crop",
+        title: "Elegant Formal Shoes",
+        subtitle:
+            "Refine your look with premium formal footwear designed for elegance and confidence. Ideal for office wear, events, and moments where style truly matters.",
+    },
 ];
 
 export default function HeroCarousel() {
@@ -63,16 +63,18 @@ export default function HeroCarousel() {
             ))}
 
             {/* Indicators */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                {slides.map((_, i) => (
-                    <div
-                        key={i}
-                        className={`w-2 h-1 rounded-full ${i === current ? "bg-white w-6 " : "bg-white/50"
-                            }`}
-                    >
-                        <span className={`h-1 w-0 bg-[#303030] block rounded-full ${i === current ? "w-full transition-all duration-4000 ease" : ""}`}></span>
-                    </div>
-                ))}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 ">
+                <div className="bg-[#ffffff51] flex gap-1 py-1 px-2 rounded-full">
+                    {slides.map((_, i) => (
+                        <div
+                            key={i}
+                            className={`w-2 h-1 rounded-full ${i === current ? "bg-white w-6 " : "bg-white/85"
+                                }`}
+                        >
+                            <span className={`h-1 w-0 bg-black block rounded-full ${i === current ? "w-full transition-all duration-4000 ease" : ""}`}></span>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );

@@ -35,6 +35,7 @@ import HelpSupport from "../components/profileComponents/HelpSupport";
 import ReviewRating from "../components/profileComponents/ReviewRating";
 import CouponOffers from "../components/profileComponents/CouponOffers";
 import Notification from "../components/profileComponents/Notification";
+import Wishlist from "../components/profileComponents/Wishlist";
 
 export default function AppRoutes() {
   return (
@@ -71,7 +72,7 @@ export default function AppRoutes() {
               <Route path="reviews" element={<ReviewRating />} />
               <Route path="coupons" element={<CouponOffers />} />
               <Route path="notifications" element={<Notification />} />
-
+              <Route path="wishlist" element={<Wishlist />} />
             </Route>
             <Route path="/cart" element={<Cart />} />
             {/* <Route path="/orders" element={<Orders />} /> */}

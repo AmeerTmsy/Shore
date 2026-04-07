@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import { useSideBar } from '../../pages/constext/ProfileSideBarContext';
 
 export default function SavedCards() {
-
+    const { showSideBar, setShowSideBar, sideBarAble } = useSideBar()
     const [showCardForm, setShowCardForm] = useState(false);
     const isValidCard = (num) => /^\d{16}$/.test(num);
     const savedCards = {
@@ -29,20 +30,31 @@ export default function SavedCards() {
     return (
         <>
             <div className=" rounded-xl space-y-5">
-
                 {/* Header */}
                 <div className="flex justify-between items-center text-xl font-semibold shadow-[0_10px_10px_-5px_rgba(0,0,0,0.07)] p-4 border-b border-gray-300">
                     <h3 className="font-semibold">Saved Cards</h3>
-                    <button
+                    {sideBarAble && <button className={`cursor-pointer border p-2 rounded border-gray-400 ${showSideBar ? '' : 'rotate-180'}`} onClick={() => setShowSideBar(!showSideBar)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 5h12M4 12h16M4 19h8" /></svg></button>}
+                    {!sideBarAble && <button
                         onClick={() => setShowCardForm(true)}
                         className="text-blue-600 text-sm"
                     >
                         + Add Card
-                    </button>
+                    </button>}
                 </div>
 
                 {/* Cards */}
                 <div className="space-y-3 p-4 pt-0">
+                    {sideBarAble &&
+                        <div className='text-end'>
+                            <button
+                                onClick={() => setShowCardForm(true)}
+                                className="text-blue-600 text-sm mb-2 me-1 hover:underline cursor-pointer"
+                            >
+                                + Add Card
+                            </button>
+                        </div>
+                    }
+
                     {savedCards.cards.map((card) => (
                         <div
                             key={card.id}

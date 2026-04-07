@@ -336,8 +336,7 @@ export default function Home() {
           </div>
           <div className="relative h-75 shadow-2xl hover:shadow-gray-600 transition-shadow duration-500 ease-in-out rounded-lg overflow-hidden">
             {offers.map((offer, index) => (
-
-              <div key={offer.id} className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${index === count ? "opacity-100 z-10" : "opacity-0 z-0"}`} key={index}>
+              <div key={offer.id} className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${index === count ? "opacity-100 z-10" : "opacity-0 z-0"}`}>
                 <div
                   to={`/product/${offer.id}`}
                   className="flex flex-col justify-end gap-2 h-75 border-gray-300 transition-all duration-500 ease-in-out rounded-lg p-2 bg-cover bg-center"
@@ -357,7 +356,7 @@ export default function Home() {
             ))}
           </div>
           <div className="flex md:hidden justify-center items-center gap-1 mt-2">
-            {offers.map((offer, index) => <span key={index} className={`inline-block h-1 bg-[#b5b3b3] rounded-full ${index === count ? "w-10" : "w-2"}`} key={index}>
+            {offers.map((offer, index) => <span key={index} className={`inline-block h-1 bg-[#b5b3b3] rounded-full ${index === count ? "w-10" : "w-2"}`}>
               <span className={`block h-1 w-0 rounded-full bg-black ${index === count ? "w-full transition-all duration-3000 ease-in-out" : ""}`}></span>
             </span>)}
           </div>

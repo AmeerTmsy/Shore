@@ -1,8 +1,10 @@
 import { select } from 'framer-motion/client';
 import React from 'react'
+import { useSideBar } from '../../pages/constext/ProfileSideBarContext';
 
 export default function MyPorfile() {
 
+    const { showSideBar, setShowSideBar, sideBarAble } = useSideBar()
     const profile = {
         user: {
             name: "Ameer Suhail",
@@ -50,15 +52,20 @@ export default function MyPorfile() {
         <div className=" rounded-xl shadow-sm">
 
             {/* HEADER */}
-            <div className="flex px-6 pt-6 pb-6 rounded-t-sm items-center gap-4 bg-gray-100">
-                <div className="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center text-xl font-bold">
-                    {profile.user.name[0]}
+            <div className='flex justify-between px-6 bg-gray-100'>
+                <div className="flex pt-6 pb-6 rounded-t-sm items-center gap-4">
+                    <div className="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center text-xl font-bold">
+                        {profile.user.name[0]}
+                    </div>
+                    <div>
+                        <h2 className="text-lg font-semibold">{profile.user.name}</h2>
+                        <p className="text-sm text-gray-500">
+                            Member since {profile.user.memberSince}
+                        </p>
+                    </div>
                 </div>
-                <div>
-                    <h2 className="text-lg font-semibold">{profile.user.name}</h2>
-                    <p className="text-sm text-gray-500">
-                        Member since {profile.user.memberSince}
-                    </p>
+                <div className='flex items-center'>
+                    {sideBarAble && <button className={`cursor-pointer border p-2 rounded border-gray-400 ${showSideBar ? '' : 'rotate-180'}`} onClick={() => setShowSideBar(!showSideBar)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 5h12M4 12h16M4 19h8" /></svg></button>}
                 </div>
             </div>
 
@@ -83,7 +90,7 @@ export default function MyPorfile() {
                     </div>
                     <div className="bg-gray-100 p-3 rounded  border border-gray-200">
                         <p className="font-bold">{profile.stats.wishlist}</p>
-                        <p className="text-xs text-blue-400 flex items-center gap-2 justify-center "><svg className='inline-block' xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeDasharray="30" strokeLinecap="round" strokeLinejoin="round" stroke-width="1.3" d="M12 8c0 0 0 0 -0.76 -1c-0.88 -1.16 -2.18 -2 -3.74 -2c-2.49 0 -4.5 2.01 -4.5 4.5c0 0.93 0.28 1.79 0.76 2.5c0.81 1.21 8.24 9 8.24 9M12 8c0 0 0 0 0.76 -1c0.88 -1.16 2.18 -2 3.74 -2c2.49 0 4.5 2.01 4.5 4.5c0 0.93 -0.28 1.79 -0.76 2.5c-0.81 1.21 -8.24 9 -8.24 9"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="30;0" /></path></svg> <span>Wishlist</span></p>
+                        <p className="text-xs text-blue-400 flex items-center gap-2 justify-center "><svg className='inline-block' xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeDasharray="30" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.3" d="M12 8c0 0 0 0 -0.76 -1c-0.88 -1.16 -2.18 -2 -3.74 -2c-2.49 0 -4.5 2.01 -4.5 4.5c0 0.93 0.28 1.79 0.76 2.5c0.81 1.21 8.24 9 8.24 9M12 8c0 0 0 0 0.76 -1c0.88 -1.16 2.18 -2 3.74 -2c2.49 0 4.5 2.01 4.5 4.5c0 0.93 -0.28 1.79 -0.76 2.5c-0.81 1.21 -8.24 9 -8.24 9"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="30;0" /></path></svg> <span>Wishlist</span></p>
                     </div>
                     <div className="bg-gray-100 p-3 rounded  border border-gray-200">
                         <p className="font-bold">{profile.stats.reviews}</p>

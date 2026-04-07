@@ -13,8 +13,7 @@ export default function Header() {
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -2000]);
 
   const location = window.location.pathname;
-
-  // console.log("Current location:", location);
+  const isProfile = location.startsWith("/profile");
 
   return (
     <>
@@ -33,7 +32,7 @@ export default function Header() {
             <input
               type="text"
               placeholder="Search..."
-              className="flex-1 px-3 py-1 outline-none text-sm"
+              className="flex-1 px-3 py-1.5 outline-none text-sm"
             />
             <button className="bg-orange-500 text-white px-3 flex items-center">
               <Search size={16} />
@@ -43,7 +42,9 @@ export default function Header() {
           <div className="hidden md:flex items-center justify-end flex-1">
             {token ? (
               <div className="flex items-center gap-2 md:gap-4">
-                <Heart className="cursor-pointer" strokeWidth={1.5} size={20} />
+                <Link to='/profile/wishlist'>
+                  <Heart className="cursor-pointer" strokeWidth={1.5} size={20} />
+                </Link>
                 <Link to="/cart">
                   <ShoppingCart className="cursor-pointer" strokeWidth={1.5} size={20} />
                 </Link>
@@ -122,7 +123,8 @@ export default function Header() {
         </div>
       </header>
       {/* 🔽 DESKTOP NAV */}
-      {(location !== '/products' && location !== '/profile') &&
+      {/* {(location !== '/products' && location !== '/profile') && */}
+      {(!isProfile) &&
         <motion.div style={{ y: y1 }}>
           <div className="p-2 pt-0 z-50">
             <div className="hidden md:flex justify-center gap-6 px-4 py-1 text-sm text-black bg-gray-200 rounded-lg">
@@ -132,14 +134,14 @@ export default function Header() {
                   <span>|</span>
                 </>
               }
-              <span onClick={() => navigate('/new-arrivals')} className="relative cursor-pointer">New Arrivals<svg className="absolute -top-1 -right-2 text-[#cfb910]" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="m17 1.208l1.32 2.473L20.792 5L18.32 6.319L17 8.792l-1.318-2.473l-2.473-1.32l2.473-1.318zM8 4.333l2.667 5l5 2.667l-5 2.667l-2.666 5l-2.667-5l-5-2.667l5-2.667zm11.667 12l-1.666-3.125l-1.667 3.125L13.209 18l3.125 1.667l1.667 3.125l1.666-3.125L22.792 18z" /></svg></span>
-              <span onClick={() => navigate('/casual')} className="cursor-pointer">Casual</span>
-              <span onClick={() => navigate('/formal')} className="cursor-pointer">Formal</span>
-              <span onClick={() => navigate('/sports')} className="cursor-pointer">Sports</span>
+              <span onClick={() => navigate('/products')} className="relative cursor-pointer">New Arrivals<svg className="absolute -top-1 -right-2 text-[#cfb910]" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="m17 1.208l1.32 2.473L20.792 5L18.32 6.319L17 8.792l-1.318-2.473l-2.473-1.32l2.473-1.318zM8 4.333l2.667 5l5 2.667l-5 2.667l-2.666 5l-2.667-5l-5-2.667l5-2.667zm11.667 12l-1.666-3.125l-1.667 3.125L13.209 18l3.125 1.667l1.667 3.125l1.666-3.125L22.792 18z" /></svg></span>
+              <span onClick={() => navigate('/products')} className="cursor-pointer">Casual</span>
+              <span onClick={() => navigate('/products')} className="cursor-pointer">Formal</span>
+              <span onClick={() => navigate('/products')} className="cursor-pointer">Sports</span>
               <span>|</span>
-              <span onClick={() => navigate('/offers')} className="cursor-pointer">Offers</span>
-              <span onClick={() => navigate('/gift')} className="cursor-pointer">Gift</span>
-              <span onClick={() => navigate('/trend')} className="cursor-pointer">Trend</span>
+              <span onClick={() => navigate('/products')} className="cursor-pointer">Offers</span>
+              <span onClick={() => navigate('/products')} className="cursor-pointer">Gift</span>
+              <span onClick={() => navigate('/products')} className="cursor-pointer">Trend</span>
               <span>|</span>
               <span onClick={() => navigate('/products')} className="cursor-pointer">Products</span>
             </div>

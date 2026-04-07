@@ -1,7 +1,8 @@
+import { useSideBar } from "../../pages/constext/ProfileSideBarContext";
 
 
 export default function MyOrders() {
-
+  const { showSideBar, setShowSideBar, sideBarAble } = useSideBar()
   const orders = [
     {
       id: "ORD123456",
@@ -75,7 +76,10 @@ export default function MyOrders() {
     <>
       <div>
 
-        <h2 className="text-xl font-semibold shadow-[0_10px_10px_-5px_rgba(0,0,0,0.07)] p-4 border-b border-gray-300">My Orders</h2>
+        <div className='flex justify-between items-center shadow-[0_10px_10px_-5px_rgba(0,0,0,0.07)] p-4 border-b border-gray-300'>
+          <h2 className="text-xl font-semibold">My Orders</h2>
+          {sideBarAble && <button className={`cursor-pointer border p-2 rounded border-gray-400 ${showSideBar ? '' : 'rotate-180'}`} onClick={() => setShowSideBar(!showSideBar)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 5h12M4 12h16M4 19h8" /></svg></button>}
+        </div>
         <div className="space-y-4 p-4">
           {orders.map((order) => (
             <div key={order.id} className="border border-gray-200 rounded-xl p-4 bg-white ">

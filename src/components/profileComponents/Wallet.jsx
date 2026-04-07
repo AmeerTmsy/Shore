@@ -1,12 +1,15 @@
 import React from 'react'
+import { useSideBar } from '../../pages/constext/ProfileSideBarContext';
 
 export default function Wallet() {
+    const { showSideBar, setShowSideBar, sideBarAble } = useSideBar()
     return (
         <>
             <div className="space-y-6">
-
-                <h2 className="text-xl font-semibold p-4  shadow-[0_10px_10px_-5px_rgba(0,0,0,0.07)]">My Wallet</h2>
-
+                <div className='flex justify-between items-center shadow-[0_10px_10px_-5px_rgba(0,0,0,0.07)] p-4 border-b border-gray-300'>
+                    <h2 className="text-xl font-semibold">My Wallet</h2>
+                    {sideBarAble && <button className={`cursor-pointer border p-2 rounded border-gray-400 ${showSideBar ? '' : 'rotate-180'}`} onClick={() => setShowSideBar(!showSideBar)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 5h12M4 12h16M4 19h8" /></svg></button>}
+                </div>
                 <div className='p-4 pt-0 space-y-4'>
                     {/* Balance Card */}
                     <div className="bg-black text-white rounded-xl p-5">
