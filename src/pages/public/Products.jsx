@@ -167,126 +167,133 @@ export default function Products() {
           </div>
         </div>
       </div>
-      {
-        showFilters &&
-        <div className="fixed inset-0 z-50">
-          {/* BACKDROP */}
-          <div
-            onClick={() => setShowFilters(false)}
-            className={`absolute inset-0`}
-          />
-          {/* MODAL */}
-          <div className="absolute bottom-0 md:bottom-auto top-0 right-0 left-0 md:top-10 md:left-10 md:right-10 bg-white md:rounded-t-3xl md:rounded-3xl p-4 md:p-8 overflow-y-auto border border-gray-400">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-lg font-semibold">
-                Filter and Sort
-              </h2>
-              <button onClick={() => setShowFilters(false)}>
-                <X />
-              </button>
-            </div>
+      <AnimatePresence>
+        {
+          showFilters &&
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="fixed inset-0 z-50">
+            {/* BACKDROP */}
+            <div
+              onClick={() => setShowFilters(false)}
+              className={`absolute inset-0`}
+            />
+            {/* MODAL */}
+            <div className="absolute bottom-0 md:bottom-auto top-0 right-0 left-0 md:top-10 md:left-10 md:right-10 bg-white md:rounded-t-3xl md:rounded-3xl p-4 md:p-8 overflow-y-auto border border-gray-400">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-lg font-semibold">
+                  Filter and Sort
+                </h2>
+                <button onClick={() => setShowFilters(false)}>
+                  <X />
+                </button>
+              </div>
 
-            <div className="space-y-4 grid md:grid-cols-2 lg:grid-cols-5 gap-3">
-              <div className="inline-block md:hidden">
-                <FilterSection title="SORT BY">
-                  {[
-                    "Featured",
-                    "Best Selling",
-                    "Alphabetically, A-Z",
-                    "Alphabetically, Z-A",
-                    "Price, Low To High",
-                    "Price, High To Low",
-                  ].map((item, i) => (
-                    <label key={i} className="flex items-center gap-2 text-sm">
-                      <input type="radio" name="sort" />
-                      {item}
-                    </label>
-                  ))}
-                </FilterSection>
-              </div>
-              <FilterSection title="SIZE">
-                <p className="text-xs text-gray-500 mb-2">
-                  Most shoes come in full sizes.
-                </p>
-                <div className="grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                  {[8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5].map((size) => (
-                    <button
-                      key={size}
-                      className="border py-2 text-sm rounded hover:bg-gray-100 text-center"
-                    >
-                      {size}
-                    </button>
-                  ))}
+              <div className="space-y-4 grid md:grid-cols-2 lg:grid-cols-5 gap-3">
+                <div className="inline-block md:hidden">
+                  <FilterSection title="SORT BY">
+                    {[
+                      "Featured",
+                      "Best Selling",
+                      "Alphabetically, A-Z",
+                      "Alphabetically, Z-A",
+                      "Price, Low To High",
+                      "Price, High To Low",
+                    ].map((item, i) => (
+                      <label key={i} className="flex items-center gap-2 text-sm">
+                        <input type="radio" name="sort" />
+                        {item}
+                      </label>
+                    ))}
+                  </FilterSection>
                 </div>
-              </FilterSection>
-              <FilterSection title="COLOR">
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { name: "Black", code: "#000" },
-                    { name: "Grey", code: "#6b7280" },
-                    { name: "White", code: "#fff" },
-                    { name: "Red", code: "#ef4444" },
-                  ].map((c) => (
-                    <div key={c.name} className="flex items-center gap-2">
-                      <div
-                        className="w-5 h-5 rounded-full border"
-                        style={{ backgroundColor: c.code }}
-                      />
-                      <span className="text-sm">{c.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </FilterSection>
-              <FilterSection title="PRICE">
-                {["Under ₹500", "₹500-₹1000", "₹1000-₹2000", "₹2000-₹5000"].map((p, i) => (
-                  <label key={i} className="flex gap-2 text-sm">
-                    <input type="checkbox" />
-                    {p}
-                  </label>
-                ))}
-              </FilterSection>
-              <FilterSection title="PRODUCT TYPE">
-                {["Sneakers", "Running", "Slip-ons"].map((p, i) => (
-                  <label key={i} className="flex gap-2 text-sm">
-                    <input type="checkbox" />
-                    {p}
-                  </label>
-                ))}
-              </FilterSection>
-              <div className='md:hidden inline-block'>
-                <FilterSection title="PRODUCT TYPE">
-                  {[
-                    "5 ★ Products",
-                    "4 ★ & Above",
-                    "3 ★ & Above",
-                    "2 ★ & Above",
-                    "All Rating",
-                  ].map((item, i) => (
-                    <label key={i} className="flex items-center gap-2 text-sm">
-                      <input type="radio" name="sort" />
-                      {item}
-                    </label>
-                  ))}
+                <FilterSection title="SIZE">
+                  <p className="text-xs text-gray-500 mb-2">
+                    Most shoes come in full sizes.
+                  </p>
+                  <div className="grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                    {[8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5].map((size) => (
+                      <button
+                        key={size}
+                        className="border py-2 text-sm rounded hover:bg-gray-100 text-center"
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
                 </FilterSection>
-              </div>
-              <div className='md:hidden inline-block'>
-                <FilterSection title="PRODUCT TYPE">
-                  {["Nike", "Adidas", "Puma", "Reebok"].map((p, i) => (
+                <FilterSection title="COLOR">
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { name: "Black", code: "#000" },
+                      { name: "Grey", code: "#6b7280" },
+                      { name: "White", code: "#fff" },
+                      { name: "Red", code: "#ef4444" },
+                    ].map((c) => (
+                      <div key={c.name} className="flex items-center gap-2">
+                        <div
+                          className="w-5 h-5 rounded-full border"
+                          style={{ backgroundColor: c.code }}
+                        />
+                        <span className="text-sm">{c.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </FilterSection>
+                <FilterSection title="PRICE">
+                  {["Under ₹500", "₹500-₹1000", "₹1000-₹2000", "₹2000-₹5000"].map((p, i) => (
                     <label key={i} className="flex gap-2 text-sm">
                       <input type="checkbox" />
                       {p}
                     </label>
                   ))}
                 </FilterSection>
+                <FilterSection title="PRODUCT TYPE">
+                  {["Sneakers", "Running", "Slip-ons"].map((p, i) => (
+                    <label key={i} className="flex gap-2 text-sm">
+                      <input type="checkbox" />
+                      {p}
+                    </label>
+                  ))}
+                </FilterSection>
+                <div className='md:hidden inline-block'>
+                  <FilterSection title="PRODUCT TYPE">
+                    {[
+                      "5 ★ Products",
+                      "4 ★ & Above",
+                      "3 ★ & Above",
+                      "2 ★ & Above",
+                      "All Rating",
+                    ].map((item, i) => (
+                      <label key={i} className="flex items-center gap-2 text-sm">
+                        <input type="radio" name="sort" />
+                        {item}
+                      </label>
+                    ))}
+                  </FilterSection>
+                </div>
+                <div className='md:hidden inline-block'>
+                  <FilterSection title="PRODUCT TYPE">
+                    {["Nike", "Adidas", "Puma", "Reebok"].map((p, i) => (
+                      <label key={i} className="flex gap-2 text-sm">
+                        <input type="checkbox" />
+                        {p}
+                      </label>
+                    ))}
+                  </FilterSection>
+                </div>
+              </div>
+              <div className="mt-6 md:hidden flex gap-2">
+                <button className="flex-1 border py-2 rounded">Clear</button>
+                <button className="flex-1 bg-black text-white py-2 rounded">Apply Filters</button>
               </div>
             </div>
-            <div className="mt-6 md:hidden flex gap-2">
-              <button className="flex-1 border py-2 rounded">Clear</button>
-              <button className="flex-1 bg-black text-white py-2 rounded">Apply Filters</button>
-            </div>
-          </div>
-        </div>
-      }
+          </motion.div>
+        }
+      </AnimatePresence>
     </div >
   );
 }

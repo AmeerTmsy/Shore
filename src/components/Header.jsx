@@ -17,10 +17,10 @@ export default function Header() {
 
   return (
     <>
-      <header className="p-2 sticky top-0 z-50">
+      <header className={`sticky top-0 z-50 ${location === '/offers' ? 'h-0 p-0' : ''}`}>
 
         {/* 🔝 TOP BAR */}
-        <div className="flex items-center justify-between px-3 py-2 gap-2 md:gap-3 rounded-lg bg-gray-200 shadow-sm">
+        <div className="flex items-center justify-between px-3 py-2 gap-2 md:gap-3 rounded-lg bg-gray-200 shadow-sm m-2">
           <button
             className="md:hidden"
             onClick={() => setIsOpen(true)}
@@ -32,7 +32,7 @@ export default function Header() {
             <input
               type="text"
               placeholder="Search..."
-              className="flex-1 px-3 py-1.5 outline-none text-sm"
+              className="flex-1 ps-1 sm:ps-3 pe-0 sm:pe-3 py-1.5 outline-none text-sm"
             />
             <button className="bg-orange-500 text-white px-3 flex items-center">
               <Search size={16} />
@@ -104,7 +104,7 @@ export default function Header() {
                 <Link to="/cart" className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => setIsOpen(false)}>Cart</Link>
               </div>
             ) : (
-              <Link to="/login" className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => setIsOpen(false)}>
+              <Link to="/onboarding" className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => setIsOpen(false)}>
                 Sign in
               </Link>
             )}
@@ -126,7 +126,7 @@ export default function Header() {
       {/* {(location !== '/products' && location !== '/profile') && */}
       {(!isProfile) &&
         <motion.div style={{ y: y1 }}>
-          <div className="p-2 pt-0 z-50">
+          <div className={`pt-0 z-50  ${location === '/offers' ? 'h-0 p-0' : 'p-2'}`}>
             <div className="hidden md:flex justify-center gap-6 px-4 py-1 text-sm text-black bg-gray-200 rounded-lg">
               {(location !== '/') &&
                 <>
@@ -139,7 +139,7 @@ export default function Header() {
               <span onClick={() => navigate('/products')} className="cursor-pointer">Formal</span>
               <span onClick={() => navigate('/products')} className="cursor-pointer">Sports</span>
               <span>|</span>
-              <span onClick={() => navigate('/products')} className="cursor-pointer">Offers</span>
+              <span onClick={() => navigate('/offers')} className={`cursor-pointer ${location == '/offers' ? 'font-semibold' : ''}`}>Offers</span>
               <span onClick={() => navigate('/products')} className="cursor-pointer">Gift</span>
               <span onClick={() => navigate('/products')} className="cursor-pointer">Trend</span>
               <span>|</span>

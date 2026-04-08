@@ -36,6 +36,7 @@ import ReviewRating from "../components/profileComponents/ReviewRating";
 import CouponOffers from "../components/profileComponents/CouponOffers";
 import Notification from "../components/profileComponents/Notification";
 import Wishlist from "../components/profileComponents/Wishlist";
+import Offers from "../pages/public/Offers";
 
 export default function AppRoutes() {
   return (
@@ -75,7 +76,7 @@ export default function AppRoutes() {
               <Route path="wishlist" element={<Wishlist />} />
             </Route>
             <Route path="/cart" element={<Cart />} />
-            {/* <Route path="/orders" element={<Orders />} /> */}
+            <Route path="/offers" element={<Offers />} />
             <Route path="/orders/:id" element={<OrderDetails />} />
             <Route path="/order-success" element={<OrderSuccess />} />
           </Route>
