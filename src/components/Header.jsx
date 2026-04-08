@@ -63,7 +63,7 @@ export default function Header() {
                 </Link>
               </div>
             ) : (
-              <Link to="/login">Sign in</Link>
+              <Link to="/onboarding">Sign in</Link>
             )}
           </div>
         </div>
