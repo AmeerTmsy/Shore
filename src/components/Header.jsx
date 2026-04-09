@@ -116,7 +116,7 @@ export default function Header() {
               <Link className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => navigate('/formal')}>Formal</Link>
               <Link className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => navigate('/sports')}>Sports</Link>
               <Link className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => navigate('/offers')}>Offers</Link>
-              <Link className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => navigate('/gift')}>Gift</Link>
+              <Link className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => navigate('/gifts')}>Gift</Link>
               <Link className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => navigate('/trend')}>Trend</Link>
             </div>
           </div>
@@ -140,7 +140,7 @@ export default function Header() {
               <span onClick={() => navigate('/products')} className="cursor-pointer">Sports</span>
               <span>|</span>
               <span onClick={() => navigate('/offers')} className={`cursor-pointer ${location == '/offers' ? 'font-semibold' : ''}`}>Offers</span>
-              <span onClick={() => navigate('/products')} className="cursor-pointer">Gift</span>
+              <span onClick={() => navigate('/gifts')} className="cursor-pointer">Gift</span>
               <span onClick={() => navigate('/products')} className="cursor-pointer">Trend</span>
               <span>|</span>
               <span onClick={() => navigate('/products')} className="cursor-pointer">Products</span>
