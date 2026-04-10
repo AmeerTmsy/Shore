@@ -1,3 +1,4 @@
+import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 
 export default function Login() {
@@ -7,9 +8,12 @@ export default function Login() {
   const [confirmePassword, setConfirmePassword] = useState("");
   const [userType, setUserType] = useState("buyer");
   const [isLogin, setIsLogin] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
-    localStorage.setItem("token", "test123");
+    console.log('email: ', email, 'password: ', password)
+    localStorage.setItem("token", email + password);
+    window.location.href = '/';
   };
 
   return (
@@ -74,13 +78,20 @@ export default function Login() {
           />
 
           {/* Password */}
-          <input
-            className={`border-b border-gray-300 focus:border-black outline-none w-full mb-1 p-2 transition`}
-            placeholder="Password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className="flex relative">
+            <input
+              className={`border-b border-gray-300 focus:border-black outline-none w-full mb-1 p-2 transition flex-1 pe-10`}
+              placeholder="Password"
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <span onClick={()=> setShowPassword(prev => !prev)} className="absolute right-2 bottom-3 ">{showPassword ?
+              <Eye  size={20} strokeWidth={1.1} />
+              :
+              <EyeOff size={20} strokeWidth={1.1} />
+            }</span>
+          </div>
 
           {/* Confirme Password */}
           {!isLogin && <input

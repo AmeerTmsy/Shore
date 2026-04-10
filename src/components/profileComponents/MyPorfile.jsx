@@ -5,48 +5,11 @@ import { useSideBar } from '../../pages/constext/ProfileSideBarContext';
 export default function MyPorfile() {
 
     const { showSideBar, setShowSideBar, sideBarAble } = useSideBar()
-    const profile = {
-        user: {
-            name: "Ameer Suhail",
-            email: "ameer@gmail.com",
-            phone: "+91 9876543210",
-            gender: "Male",
-            dob: "2003-06-12",
-            memberSince: "2024",
-        },
 
-        stats: {
-            orders: 12,
-            wishlist: 8,
-            reviews: 5,
-        },
-
-        addresses: [
-            {
-                id: 1,
-                type: "Home",
-                name: "Ameer Suhail",
-                address: "Kozhikode, Kerala - 673001",
-                phone: "+91 9876543210",
-                selected: true,
-                default: true,
-            },
-            {
-                id: 2,
-                type: "Work",
-                name: "Ameer",
-                address: "Cyber Park, Calicut",
-                phone: "+91 9876543210",
-                selected: false,
-                default: false,
-            },
-        ],
-
-        preferences: {
-            language: "English",
-            currency: "INR",
-        },
-    };
+    const handleLogout = () => {
+        localStorage.removeItem('token')
+        window.location.href = "/"
+    }
 
     return (
         <div className=" rounded-xl shadow-sm">
@@ -140,7 +103,7 @@ export default function MyPorfile() {
             {/* ACTIONS */}
             <div className="px-6 pb-6 ">
                 <div className='flex justify- rounded-md gap-3 '>
-                    <button className="border border-red-300 bg-red-100 text-red-700 hover:text-white hover:bg-red-500 transition duration-300 px-1.5 py-0.5 rounded cursor-pointer">
+                    <button onClick={handleLogout} className="border border-red-300 bg-red-100 text-red-700 hover:text-white hover:bg-red-500 transition duration-300 px-1.5 py-0.5 rounded cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32"><path fill="currentColor" d="M15 4v12h2V4zm-3 .688C7.346 6.338 4 10.788 4 16c0 6.617 5.383 12 12 12s12-5.383 12-12c0-5.213-3.346-9.662-8-11.313v2.157C23.526 8.39 26 11.91 26 16c0 5.514-4.486 10-10 10S6 21.514 6 16c0-4.09 2.474-7.61 6-9.156z" /></svg>
                     </button>
                     <button className="border border-blue-300 bg-blue-100 text-blue-600 hover:text-white hover:bg-blue-500 transition duration-300 px-4 py-0.5 rounded cursor-pointer">
@@ -152,3 +115,47 @@ export default function MyPorfile() {
         </div>
     );
 }
+
+
+const profile = {
+        user: {
+            name: "Ameer Suhail",
+            email: "ameer@gmail.com",
+            phone: "+91 9876543210",
+            gender: "Male",
+            dob: "2003-06-12",
+            memberSince: "2024",
+        },
+
+        stats: {
+            orders: 12,
+            wishlist: 8,
+            reviews: 5,
+        },
+
+        addresses: [
+            {
+                id: 1,
+                type: "Home",
+                name: "Ameer Suhail",
+                address: "Kozhikode, Kerala - 673001",
+                phone: "+91 9876543210",
+                selected: true,
+                default: true,
+            },
+            {
+                id: 2,
+                type: "Work",
+                name: "Ameer",
+                address: "Cyber Park, Calicut",
+                phone: "+91 9876543210",
+                selected: false,
+                default: false,
+            },
+        ],
+
+        preferences: {
+            language: "English",
+            currency: "INR",
+        },
+    };

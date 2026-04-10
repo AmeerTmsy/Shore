@@ -100,26 +100,28 @@ export default function Header() {
             </div>
 
             {/* 🔐 Auth */}
-            {token ? (
-              <div className="flex flex-col border-t pt-4 font-medium border-b ">
-                <Link to="/products" className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => setIsOpen(false)}>Products</Link>
-                <Link to="/cart" className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => setIsOpen(false)}>Cart</Link>
-              </div>
-            ) : (
-              <Link to="/onboarding" className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => setIsOpen(false)}>
-                Sign in
-              </Link>
-            )}
+            <div className="flex flex-col border-t py-2 font-medium border-b ">
+              {token ? (
+                <>
+                  <Link to="/products" className="px-2 py-2 rounded hover:bg-orange-100 cursor-pointer" onClick={() => setIsOpen(false)}>Products</Link>
+                  <Link to="/cart" className="px-2 py-2 rounded hover:bg-orange-100 cursor-pointer " onClick={() => setIsOpen(false)}>Cart</Link>
+                </>
+              ) : (
+                <Link to="/onboarding" className="px-2 py-2 rounded hover:bg-orange-100 cursor-pointer" onClick={() => setIsOpen(false)}>
+                  Sign in
+                </Link>
+              )}
+            </div>
 
             {/* 📂 Categories */}
             <div className={` ${token ? "" : "border-t"} text-black flex flex-col`}>
-              <Link className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => navigate('/new-arrivals')}><span className="relative">New Arrivals <svg className="absolute -top-1 -right-3 text-[#cfb910]" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="m17 1.208l1.32 2.473L20.792 5L18.32 6.319L17 8.792l-1.318-2.473l-2.473-1.32l2.473-1.318zM8 4.333l2.667 5l5 2.667l-5 2.667l-2.666 5l-2.667-5l-5-2.667l5-2.667zm11.667 12l-1.666-3.125l-1.667 3.125L13.209 18l3.125 1.667l1.667 3.125l1.666-3.125L22.792 18z" /></svg></span></Link>
-              <Link className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => navigate('/casual')}>Casual</Link>
-              <Link className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => navigate('/formal')}>Formal</Link>
-              <Link className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => navigate('/sports')}>Sports</Link>
-              <Link className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => navigate('/offers')}>Offers</Link>
-              <Link className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => navigate('/gifts')}>Gift</Link>
-              <Link className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => navigate('/trend')}>Trend</Link>
+              <Link to={'/new-arrivals'} className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => setIsOpen(false)}><span className="relative">New Arrivals <svg className="absolute -top-1 -right-3 text-[#cfb910]" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="m17 1.208l1.32 2.473L20.792 5L18.32 6.319L17 8.792l-1.318-2.473l-2.473-1.32l2.473-1.318zM8 4.333l2.667 5l5 2.667l-5 2.667l-2.666 5l-2.667-5l-5-2.667l5-2.667zm11.667 12l-1.666-3.125l-1.667 3.125L13.209 18l3.125 1.667l1.667 3.125l1.666-3.125L22.792 18z" /></svg></span></Link>
+              <Link to={'/casual'} className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => setIsOpen(false)}>Casual</Link>
+              <Link to={'/formal'} className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => setIsOpen(false)}>Formal</Link>
+              <Link to={'/sports'} className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => setIsOpen(false)}>Sports</Link>
+              <Link to={'/offers'} className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => setIsOpen(false)}>Offers</Link>
+              <Link to={'/gifts'} className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => setIsOpen(false)}>Gift</Link>
+              <Link to={'/trend'} className="px-2 py-2  rounded hover:bg-orange-100 cursor-pointer" onClick={() => setIsOpen(false)}>Trend</Link>
             </div>
           </div>
         </div>
