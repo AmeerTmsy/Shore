@@ -45,7 +45,14 @@ export default function OfferHeroSection() {
     useEffect(() => {
         if (videoRef.current) {
             videoRef.current.load();
-            videoRef.current.play();
+            const playPromise = videoRef.current.play();
+            if (playPromise !== undefined) {
+                playPromise.catch((error) => {
+                    if (error.name !== 'AbortError') {
+                        console.error('Video play error:', error);
+                    }
+                });
+            }
         }
     }, [currentIndex]);
 
@@ -84,7 +91,7 @@ export default function OfferHeroSection() {
                     Shop Now <svg className="inline-block rotate-45 ml-2 mb-1 group-hover:rotate-y-180 transition duration-1000" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><path fill="currentColor" d="M390.624 150.625L256 16L121.376 150.625l22.628 22.627l95.997-95.998v417.982h32V77.257l95.995 95.995z" /></svg>
                 </button>
             </div>
-            <div className=" border-2 text-gray-300  rounded-full px-4  absolute top-18 right-2 flex gap-2 z-20">
+            <div className=" border-2 text-gray-300  rounded-full px-4  absolute bottom-3 right-2 flex gap-2 z-20">
                 <div>{audioPlaing ?
                     <span><svg className="inline-block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="18" cy="12" r="0" fill="currentColor"><animate attributeName="r" begin=".67" calcMode="spline" dur="1.5s" keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite" values="0;2;0;0" /></circle><circle cx="12" cy="12" r="0" fill="currentColor"><animate attributeName="r" begin=".33" calcMode="spline" dur="1.5s" keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite" values="0;2;0;0" /></circle><circle cx="6" cy="12" r="0" fill="currentColor"><animate attributeName="r" begin="0" calcMode="spline" dur="1.5s" keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8" repeatCount="indefinite" values="0;2;0;0" /></circle></svg></span>
                     :

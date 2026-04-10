@@ -17,22 +17,24 @@ export default function Header() {
 
   return (
     <>
-      <header className={`sticky top-0 z-50 ${location === '/offers' ? 'h-0 p-0' : ''}`}>
+      <header className={`sticky top-0 z-50`}>
+        {/* <header className={`sticky top-0 z-50 ${(location === '/offers' || location === '/gifts') ? 'h-0 p-0' : ''}`}> */}
 
         {/* 🔝 TOP BAR */}
-        <div className="flex items-center justify-between px-3 py-2 gap-2 md:gap-3 rounded-lg bg-gray-200 shadow-sm m-2">
+        <div className={`flex items-center justify-between px-2 sm:px-3 py-2 gap-2 md:gap-3 rounded-lg  shadow-sm m-2
+          ${(location === '/offers' || location === '/gifts') ? 'bg-[#ffffffd3]' : 'bg-gray-200'}`}>
           <button
-            className="md:hidden"
+            className="md:hidden scale-x-75 sm:scale-100"
             onClick={() => setIsOpen(true)}
           ><Menu size={22} /></button>
           <div className="flex-1">
-            <Link to="/" className="text-2xl font-bold text-orange-500">Shore</Link>
+            <Link to="/" className="text-2xl font-normal sm:font-bold text-orange-500">Shore</Link>
           </div>
           <div className="flex md:flex-1 max-w-xl border border-gray-500 rounded-full overflow-hidden">
             <input
               type="text"
               placeholder="Search..."
-              className="flex-1 ps-1 sm:ps-3 pe-0 sm:pe-3 py-1.5 outline-none text-sm"
+              className="flex-1 ps-2 sm:ps-3 pe-0 sm:pe-3 py-1.5 outline-none text-sm"
             />
             <button className="bg-orange-500 text-white px-3 flex items-center">
               <Search size={16} />
@@ -125,9 +127,11 @@ export default function Header() {
       {/* 🔽 DESKTOP NAV */}
       {/* {(location !== '/products' && location !== '/profile') && */}
       {(!isProfile) &&
-        <motion.div style={{ y: y1 }}>
-          <div className={`pt-0 z-50  ${location === '/offers' ? 'h-0 p-0' : 'p-2'}`}>
-            <div className="hidden md:flex justify-center gap-6 px-4 py-1 text-sm text-black bg-gray-200 rounded-lg">
+        <motion.div style={{ y: y1 }} className="z-40">
+          {/* <div className={`pt-0 z-50  ${(location === '/offers' || location === '/gifts') ? 'h-0 p-0' : 'p-2'}`}> */}
+          <div className={`pt-0 z-50 p-2`}>
+            <div className={`hidden md:flex justify-center gap-6 px-4 py-1 text-sm text-black rounded-lg
+               ${(location === '/offers' || location === '/gifts') ? 'bg-[#ffffffd3]' : 'bg-gray-200'}`}>
               {(location !== '/') &&
                 <>
                   <span onClick={() => navigate('/')} className="relative cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"><path d="M6.133 21C4.955 21 4 20.02 4 18.81v-8.802c0-.665.295-1.295.8-1.71l5.867-4.818a2.09 2.09 0 0 1 2.666 0l5.866 4.818c.506.415.801 1.045.801 1.71v8.802c0 1.21-.955 2.19-2.133 2.19z" /><path d="M9.5 21v-5.5a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2V21" /></g></svg></span>
@@ -139,8 +143,8 @@ export default function Header() {
               <span onClick={() => navigate('/products')} className="cursor-pointer">Formal</span>
               <span onClick={() => navigate('/products')} className="cursor-pointer">Sports</span>
               <span>|</span>
-              <span onClick={() => navigate('/offers')} className={`cursor-pointer ${location == '/offers' ? 'font-semibold' : ''}`}>Offers</span>
-              <span onClick={() => navigate('/gifts')} className="cursor-pointer">Gift</span>
+              <span onClick={() => navigate('/offers')} className={`cursor-pointer transition-all ${location == '/offers' ? 'font-semibold' : ''}`}>Offers</span>
+              <span onClick={() => navigate('/gifts')} className={`cursor-pointer transition-all ${location == '/gifts' ? 'font-semibold' : ''}`}>Gift</span>
               <span onClick={() => navigate('/products')} className="cursor-pointer">Trend</span>
               <span>|</span>
               <span onClick={() => navigate('/products')} className="cursor-pointer">Products</span>
