@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Toast } from "../../utils/alert";
+// import { Alert, Toast } from "../../utils/Alert";
 
 export default function ProductDetails() {
   const { id } = useParams();
-
+  const navigate = useNavigate();
   const [SelectedImage, setSelectedImage] = useState(0);
   const [addedWishlist, setAddedWishlist] = useState(false);
   const [selectedColor, setSelectedColor] = useState(null);
@@ -13,8 +15,36 @@ export default function ProductDetails() {
   const [showHighlights, setShowHighlights] = useState(false);
   const [showHDeliveryPickup, setShowHDeliveryPickup] = useState(false);
 
+  const validateToBuy = () => {
+    console.log(selectedColor, selectedSize)
+    if(!selectedColor && !selectedSize) {
+      Toast.warning("Select your preferred color and size")
+      return false
+    }
+    if(!selectedColor){
+      Toast.warning("Select your preferred color")
+      return false
+    }
+    if(!selectedSize){
+      Toast.warning("Select your preferred size")
+      return false
+    }
+    return true
+  }
+
+  const handlePurchase = () => {
+    if(!validateToBuy()) return
+    navigate('/ordering')
+    console.log("Purchaing the product")
+    // Toast.success("Your order is confirmed")
+  };
+  const handleAddToCart = () => {
+    console.log("Added to cart 🛒")
+    Toast.success("Item added to cart 🛒")
+  };
+
   return (
-    <div className="w-full max-w-6xl mx-auto">
+    <div className="w-full max-w-6xl mx-auto font-">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 m-4 border-b border-gray-100">
         <div className="relative mb-2">
           <div className="w-full sticky top-18">
@@ -66,7 +96,7 @@ export default function ProductDetails() {
             <div className="flex gap-1">
               {productDetails.colors.map((color, index) => {
                 return (
-                  <div onClick={() => color.availability && setSelectedColor(color.code)} key={index} className={`flex items-center justify-between cursor-pointer p-2 rounded-md`} style={{ background: selectedColor === color.code ? "#d6d6d6" : "" }}>
+                  <div onClick={() => color.availability && setSelectedColor(color.code)} key={index} className={`flex items-center justify-between cursor-pointer p-2 rounded-md transition duration-500`} style={{ background: selectedColor === color.code ? "#d6d6d6" : "" }}>
                     <div className="flex items-center gap-3">
                       {/* <div
                         className={`p-0.5 border rounded-full cursor-pointer ${selectedColor === color.code ? "border-black" : "border-gray-300"}`}
@@ -104,9 +134,9 @@ export default function ProductDetails() {
           {/* Main actions > Buy & Cart buttons */}
           <div className="flex flex-col gap-2 my-4">
             <div className="flex gap-3">
-              <button className="flex-1 rounded-full bg-black text-white px-4 py-2">Add to Cart</button>
+              <button onClick={handleAddToCart} className="flex-1 rounded-full bg-gray-700 text-white px-4 py-2 cursor-pointer">Add to Cart</button>
             </div>
-            <button className="rounded-full w-full bg-orange-500 text-white px-4 py-2">Buy Now</button>
+            <button onClick={handlePurchase} className="rounded-full w-full bg-orange-500 text-white px-4 py-2 cursor-pointer">Buy Now</button>
           </div>
 
           <div>
@@ -284,7 +314,7 @@ export default function ProductDetails() {
                         {i < review.rating ?
                           <svg className="text-yellow-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fillOpacity="0" stroke="currentColor" strokeDasharray="66" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3l2.35 5.76l6.21 0.46l-4.76 4.02l1.49 6.04l-5.29 -3.28l-5.29 3.28l1.49 -6.04l-4.76 -4.02l6.21 -0.46Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="66;0" /><animate fill="freeze" attributeName="fill-opacity" begin="0.6s" dur="0.4s" to="1" /></path></svg>
                           :
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-opacity="0" d="M12 3l2.35 5.76l6.21 0.46l-4.76 4.02l1.49 6.04l-5.29 -3.28l-5.29 3.28l1.49 -6.04l-4.76 -4.02l6.21 -0.46Z"><animate fill="freeze" attributeName="fill-opacity" begin="0.5s" dur="0.15s" to="0.3" /></path><path fill="none" stroke="currentColor" stroke-dasharray="34" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.4" d="M12 3l-2.35 5.76l-6.21 0.46l4.76 4.02l-1.49 6.04l5.29 -3.28M12 3l2.35 5.76l6.21 0.46l-4.76 4.02l1.49 6.04l-5.29 -3.28"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="34;0" /></path></svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fillOpacity="0" d="M12 3l2.35 5.76l6.21 0.46l-4.76 4.02l1.49 6.04l-5.29 -3.28l-5.29 3.28l1.49 -6.04l-4.76 -4.02l6.21 -0.46Z"><animate fill="freeze" attributeName="fill-opacity" begin="0.5s" dur="0.15s" to="0.3" /></path><path fill="none" stroke="currentColor" strokeDasharray="34" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.4" d="M12 3l-2.35 5.76l-6.21 0.46l4.76 4.02l-1.49 6.04l5.29 -3.28M12 3l2.35 5.76l6.21 0.46l-4.76 4.02l1.49 6.04l-5.29 -3.28"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="34;0" /></path></svg>
                         }
                       </span>
                     ))}
@@ -305,7 +335,7 @@ export default function ProductDetails() {
             <p className="text-sm text-gray-500 mb-2">"{nikeBrand.tagline}"</p>
           </div>
           <div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.243 8.375c-1.168 1.334-2.785 2.828-3.173 4.692c-.612 2.938 2.962 2.858 4.697 2.141c5.105-2.11 10.155-4.353 15.233-6.53c-4.937 1.315-9.857 2.699-14.812 3.945c-3.545.892-2.855-2.272-1.945-4.248" clip-rule="evenodd" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24"><path fill="currentColor" fillRule="evenodd" d="M5.243 8.375c-1.168 1.334-2.785 2.828-3.173 4.692c-.612 2.938 2.962 2.858 4.697 2.141c5.105-2.11 10.155-4.353 15.233-6.53c-4.937 1.315-9.857 2.699-14.812 3.945c-3.545.892-2.855-2.272-1.945-4.248" clipRule="evenodd" /></svg>
           </div>
         </div>
         <p className="text-gray-700 text-sm leading-relaxed mt-3">{nikeBrand.description}</p>

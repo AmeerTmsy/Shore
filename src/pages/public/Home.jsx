@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import HeroCarousel from "../../components/HeroCarousel";
-import ProductCard from "../../components/ProductCard";
+import HeroCarousel from "../../components/public/HeroCarousel";
+import ProductCard from "../../components/public/ProductCard";
 import { Link } from "react-router-dom";
 import { SquareArrowOutUpLeft, Star } from "lucide-react";
 

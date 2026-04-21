@@ -1,11 +1,11 @@
 import React from 'react'
-import GiftHero from '../../components/gift/GiftHero';
-import RecipientSection from '../../components/gift/RecipientSection';
-import OccasionSection from '../../components/gift/OccasionSection';
-import BudgetSection from '../../components/gift/BudgetSection';
-import BundleSection from '../../components/gift/BundleSection';
-import ProductGrid from '../../components/gift/ProductGrid';
-import TrustSection from '../../components/gift/TrustSection';
+import GiftHero from '../../components/public/gift/GiftHero';
+import RecipientSection from '../../components/public/gift/RecipientSection';
+import OccasionSection from '../../components/public/gift/OccasionSection';
+import BudgetSection from '../../components/public/gift/BudgetSection';
+import BundleSection from '../../components/public/gift/BundleSection';
+import ProductGrid from '../../components/public/gift/ProductGrid';
+import TrustSection from '../../components/public/gift/TrustSection';
 
 
 export default function Gifts() {

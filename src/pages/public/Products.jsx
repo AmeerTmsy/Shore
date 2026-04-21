@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ChevronDown, SlidersHorizontal, X } from "lucide-react";
 import { useState } from "react";
-import FilterSection from "../../components/FilterSection";
+import FilterSection from "../../components/public/FilterSection";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function Products() {
