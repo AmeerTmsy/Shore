@@ -1,5 +1,5 @@
 import { Heart, Search, ShoppingCart, Sparkles, Menu, X, User } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { jwtDecode } from "jwt-decode";
@@ -8,11 +8,12 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const [isSellerDashboard, setIsSellerDashboard] = useState(false);
 
   const { scrollYProgress } = useScroll();
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -2000]);
 
-  const location = window.location.pathname;
+  const location = useLocation().pathname
   const isProfile = location.startsWith("/profile") || location.startsWith('/seller-dashboard') || location.startsWith('/admin-dashboard');
 
   useEffect(() => {
@@ -24,6 +25,11 @@ export default function Header() {
     }
   }, [])
 
+  useEffect(() => {
+    if (location.includes("seller-dashboard")) setIsSellerDashboard(true)
+    else setIsSellerDashboard(false);
+  }, [location]);
+
   return (
     <>
       <header className={`sticky top-0 z-50`}>
@@ -31,7 +37,7 @@ export default function Header() {
 
         {/* 🔝 TOP BAR */}
         <div className={`flex items-center justify-between px-2 sm:px-3 py-2 gap-2 md:gap-3 rounded-lg  shadow-sm m-2
-          ${(location === '/offers' || location === '/gifts') ? 'bg-[#ffffffd3]' : 'bg-gray-200'}`}>
+          ${(location === '/offers' || location === '/gifts') ? 'bg-[#ffffffd3]' : isSellerDashboard ? 'bg-white' : 'bg-gray-200'}`}>
           <button
             className="md:hidden scale-x-75 sm:scale-100"
             onClick={() => setIsOpen(true)}

@@ -1,13 +1,13 @@
 import Swal from "sweetalert2";
 
-const baseToast = (icon, title) =>
+const baseToast = (icon, title, duration) =>
   Swal.fire({
     toast: true,
     position: "top-end",
     icon,
     title,
     showConfirmButton: false,
-    timer: 2000,
+    timer: duration,
 
     customClass: {
       popup: "!px-2 !py-2",
@@ -17,7 +17,7 @@ const baseToast = (icon, title) =>
   });
 
 export const Toast = {
-  success: (title) => baseToast("success", title),
-  error: (title) => baseToast("error", title),
-  warning: (title) => baseToast("warning", title),
+  success: (title, duration = 2000) => baseToast("success", title, duration),
+  error: (title, duration = 2000) => baseToast("error", title, duration),
+  warning: (title, duration = 2000) => baseToast("warning", title, duration),
 };

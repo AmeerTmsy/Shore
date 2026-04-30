@@ -54,6 +54,10 @@ import AdminDashboard from "../pages/private/admin/Profile";
 import AdminPorfile from "../components/private/admin/dashBoardComponent/AdminPorfile";
 import AdminSecurity from "../components/private/admin/dashBoardComponent/AdminSecurity";
 import AuthorizationProtect from "../components/authGuards/AuthorizationProtect";
+import NewProduct from "../components/private/seller/NewProduct";
+import SellerProducts from "../components/private/seller/dashBoardComponent/SellerProducts";
+import SellerInventory from "../components/private/seller/dashBoardComponent/SellerInventory";
+import Support from "../components/private/seller/Support";
 
 export default function AppRoutes() {
 
@@ -105,6 +109,10 @@ export default function AppRoutes() {
               <Route path="/seller-dashboard" element={<SellerDashboard />}>
                 <Route index element={<SellerPorfile />} />
                 <Route path="security" element={<SellerSecurity />} />
+                <Route path="products-new" element={<NewProduct />} />
+                <Route path="my-products" element={<SellerProducts />} />
+                <Route path="my-inventory" element={<SellerInventory />} />
+                <Route path="support" element={<Support />} />
               </Route>
             </Route>
             <Route element={<AuthorizationProtect userRole={'admin'} />}>

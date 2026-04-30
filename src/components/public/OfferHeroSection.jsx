@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-// import v1 from '../../assets/homeRowVideo/coverr-woman-entering-a-shoe-store-5203-1080p.mp4'
+import v1 from '../../assets/homeRowVideo/coverr-woman-entering-a-shoe-store-5203-1080p.mp4'
 import v2 from '../../assets/homeRowVideo/coverr-woman-looking-at-boots-7257-1080p.mp4'
 import v3 from '../../assets/homeRowVideo/coverr-trying-on-reptile-print-ankle-boots-4246-1080p.mp4'
 import v4 from '../../assets/homeRowVideo/coverr-looking-in-the-mirror-2261-1080p.mp4'
