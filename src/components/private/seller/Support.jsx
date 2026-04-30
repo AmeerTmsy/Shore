@@ -1,8 +1,25 @@
 import { div } from "framer-motion/client"
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion";
 
 const Support = () => {
+    const [files, setFiles] = useState([])
+    const fileInputRef = useRef(null)
+
+    const handleFileChange = (e) => {
+        const selectedFiles = Array.from(e.target.files)
+        setFiles(selectedFiles)
+    }
+
+    const removeFile = (index) => {
+        const updatedFiles = [...files]
+        updatedFiles.splice(index, 1)
+        setFiles(updatedFiles)
+    }
+
+    const handleClick = () => {
+        fileInputRef.current.click()
+    }
 
     const statusColor = (status) => {
         if (status === "Resolved") return "bg-green-100 text-green-600"
@@ -42,7 +59,7 @@ const Support = () => {
             {/* QUICK ACTIONS */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {quickActions.map((item, i) => (
-                    <div key={i} className="p-6 bg-white border border-gray-300 rounded-xl text-center hover:shadow cursor-pointer flex flex-col items-center">
+                    <div key={i} className="p-6 bg-white border border-gray-200 rounded-xl text-center hover:shadow cursor-pointer flex flex-col items-center">
                         <span>{item.icon}</span>
                         <p className="text-sm mt-2">{item.title}</p>
                     </div>
@@ -57,7 +74,7 @@ const Support = () => {
                         <h2 className="text-xl font-semibold mb-4">Issue Categories</h2>
                         <div className="grid md:grid-cols-3 gap-4">
                             {categories.map((c, i) => (
-                                <div key={i} className=" bg-white shadow border border-gray-300 p-4 rounded-xl">
+                                <div key={i} className=" bg-white hover:shadow border border-gray-200 p-4 rounded-xl">
                                     <p className="font-medium">{c.title}</p>
                                     <p className="text-sm font-light text-gray-500">{c.desc}</p>
                                 </div>
@@ -74,8 +91,8 @@ const Support = () => {
                         <div className="space-y-3">
                             <AnimatePresence>
                                 {faqs.map((q, i) => (
-                                    <div key={i} className={`border p-3 rounded-lg text-sm bg-white border-gray-300 hover:border-gray-500 transition-colors ${showAnswer === i ? "border-orange-300 shadow" : ""}`}>
-                                        <div onClick={() => showAnswer === i ? setShowAnswer(null) : setShowAnswer(i)} className="flex justify-between items-center cursor-pointer">
+                                    <div key={i} className={`border rounded-lg text-sm bg-white border-gray-300 hover:border-gray-500 transition-colors ${showAnswer === i ? "border-orange-300 shadow" : ""}`}>
+                                        <div onClick={() => showAnswer === i ? setShowAnswer(null) : setShowAnswer(i)} className="flex justify-between items-center cursor-pointer  p-3 ">
                                             <p className="font-medium">{q.Q}</p>
                                             <svg className={`transform transition-transform duration-300 ${showAnswer === i ? "rotate-180" : ""}`} xmlns="http://www.w3.org/2000/svg" width={12} height={12} viewBox="0 0 32 32"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M30 12L16 24L2 12"></path></svg>
                                         </div>
@@ -85,7 +102,7 @@ const Support = () => {
                                                 animate={{ height: "auto", opacity: 1 }}
                                                 exit={{ height: 0, opacity: 0 }}
                                                 transition={{ duration: 0.3 }}
-                                                className="overflow-hidden"
+                                                className="overflow-hidden  p-3 pt-0"
                                             >
                                                 <p className="text-gray-500 mt-1">{q.A}</p>
                                             </motion.div>
@@ -113,46 +130,88 @@ const Support = () => {
                         </div>
                     </div>
                     <div className="bg-[#ffffffea] border border-gray-200 shadow-md rounded-xl overflow-hidden">
-                        <div className="grid grid-cols-5 px-6 py-3 text-sm font-medium text-gray-500 border-b-2 border-gray-300 bg-gray-50">
-                            <p>TICKET ID</p>
-                            <p className="col-span-2">TITLE</p>
-                            <p>STATUS</p>
-                            <p>LAST UPDATED</p>
-                        </div>
-                        {tickets.map((t, i) => (
-                            <div
-                                key={i}
-                                className="grid grid-cols-5 px-6 py-3 items-center border-b border-gray-200 last:border-none hover:bg-gray-50 transition text-sm font-light"
-                            >
-                                <p className="text-gray-600">{t.id}</p>
-                                <p className="col-span-2 font-light text-gray-800">{t.title}</p>
-                                <div>
-                                    <span
-                                        className={`px-3 py-1 text-xs rounded-full font-medium ${statusStyles[t.status]}`}
-                                    >{t.status.toUpperCase()}</span>
+                        <div className="overflow-x-auto">
+                            <div className="min-w-175 flex flex-col">
+                                <div className="grid grid-cols-5 gap-2 px-6 py-2 text-sm font-medium text-gray-500 border-b-2 border-gray-300 bg-gray-50">
+                                    <p>TICKET ID</p>
+                                    <p className="col-span-2">TITLE</p>
+                                    <p className="text-center">STATUS</p>
+                                    <p>LAST UPDATED</p>
                                 </div>
-                                <div className="flex justify-between items-center">
-                                    <p className="text-gray-500 text-sm">{t.time}</p>
-                                    <span className="text-gray-400 cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width={18} height={18} viewBox="0 0 24 24"><g fill="none" fillRule="evenodd"><path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"></path><path fill="currentColor" d="M16.06 10.94a1.5 1.5 0 0 1 0 2.12l-5.656 5.658a1.5 1.5 0 1 1-2.121-2.122L12.879 12L8.283 7.404a1.5 1.5 0 0 1 2.12-2.122l5.658 5.657Z"></path></g></svg></span>
-                                </div>
+                                {tickets.map((t, i) => (
+                                    <div
+                                        key={i}
+                                        className="grid grid-cols-5 px-6 py-3 items-center border-b border-gray-200 last:border-none hover:bg-gray-50 transition text-sm font-light gap-2"
+                                    >
+                                        <p className="text-gray-600 text-nowrap">{t.id}</p>
+                                        <p className="col-span-2 font-light text-gray-800">{t.title}</p>
+                                        <div className="text-center">
+                                            <span
+                                                className={`px-3 py-0.5 text-xs rounded-full font-medium ${statusStyles[t.status]}`}
+                                            >{t.status.toUpperCase()}</span>
+                                        </div>
+                                        <div className="flex justify-between items-center">
+                                            <p className="text-gray-500 text-sm text-nowrap">{t.time}</p>
+                                            <span className="text-gray-400 cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width={18} height={18} viewBox="0 0 24 24"><g fill="none" fillRule="evenodd"><path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"></path><path fill="currentColor" d="M16.06 10.94a1.5 1.5 0 0 1 0 2.12l-5.656 5.658a1.5 1.5 0 1 1-2.121-2.122L12.879 12L8.283 7.404a1.5 1.5 0 0 1 2.12-2.122l5.658 5.657Z"></path></g></svg></span>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
-                        ))}
+                        </div>
                     </div>
                 </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                    <div className="bg-white border rounded-xl p-8 shadow-sm">
-                        <h3 className="text-2xl font-semibold mb-3">Need direct help?</h3>
-                        <p className="text-gray-500 mb-6">Our support specialists are available 24/7 to assist with complex merchant issues.</p>
-                        <div className="flex gap-4">
-                            <button className="flex items-center gap-2 bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition">💬 Start Live Chat</button>
-                            <button className="flex items-center gap-2 border border-orange-500 text-orange-500 px-6 py-3 rounded-lg hover:bg-orange-50 transition">✉️ Email Support</button>
+                <div className="grid lg:grid-cols-2 gap-6">
+                    <div className="bg-white border border-gray-300 rounded-xl p-8 shadow-sm flex flex-col">
+                        <h3 className="text-2xl font-normal mb-3">Need direct help?</h3>
+                        <p className="text-gray-500 mb-6 text-sm">Our support specialists are available 24/7 to assist with complex merchant issues.</p>
+                        <div className="flex gap-4 justify-center items-center flex-1">
+                            <button className="flex flex-col items-center gap-2 bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none"><path d="M2 3h17v12H5.5L2 17.5z" /><path stroke="currentColor" stroke-linecap="square" stroke-width="2" d="M22.5 5.5V21L19 18.5H8.5" /><path stroke="currentColor" stroke-linecap="square" stroke-width="2" d="M2 3h17v12H5.5L2 17.5z" /></g></svg>
+                                Start Live Cha
+                            </button>
+                            <button className="flex flex-col items-center gap-2 border border-orange-500 bg-orange-50 text-orange-500 px-6 py-3 rounded-lg hover:bg-orange-50 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 20q-.825 0-1.412-.587T2 18V6q0-.825.588-1.412T4 4h16q.825 0 1.413.588T22 6v12q0 .825-.587 1.413T20 20zm8-7L4 8v10h16V8zm0-2l8-5H4zM4 8V6v12z" /></svg>
+                                Email Support
+                            </button>
                         </div>
                     </div>
-                    <div className="border-2 border-dashed rounded-xl p-8 text-center bg-white">
-                        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center text-orange-500 text-xl">⬆</div>
+                    <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-white">
+                        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center text-orange-500 text-xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8zm4 18H6V4h7v5h5zM8 15.01l1.41 1.41L11 14.84V19h2v-4.16l1.59 1.59L16 15.01L12.01 11z" />
+                            </svg>
+                        </div>
                         <h3 className="text-lg font-semibold mb-2">Report a Defective Product</h3>
                         <p className="text-gray-500 mb-6 text-sm">Upload images showing production defects to expedite your claim process.</p>
-                        <button className="px-6 py-3 border rounded-lg hover:bg-gray-50 transition">Choose Files</button>
+                        <input
+                            type="file"
+                            multiple
+                            accept="image/png, image/jpeg"
+                            ref={fileInputRef}
+                            onChange={handleFileChange}
+                            className="hidden"
+                        />
+                        <button
+                            onClick={handleClick}
+                            className="px-6 py-3 border rounded-lg hover:bg-gray-50 transition"
+                        >Choose Files</button>
+                        {files?.length > 0 && (
+                            <div className="mt-4 text-sm text-gray-600 text-left max-w-xs mx-auto">
+                                {files?.map((file, i) => (
+                                    <p key={i} className=" bg-gray-100 border border-gray-200 rounded-full px-2 flex items-center gap-2">
+                                        <div className="flex items-center gap-1 w-full overflow-hidden">
+                                            <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm4 18H6V4h7v5h5z" /></svg>
+                                            </span>
+                                            <span className="truncate">{file.name}</span>
+                                        </div>
+                                        <span className="text-gray-400 cursor-pointer" onClick={() => removeFile(i)}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16.066 8.995a.75.75 0 1 0-1.06-1.061L12 10.939L8.995 7.934a.75.75 0 1 0-1.06 1.06L10.938 12l-3.005 3.005a.75.75 0 0 0 1.06 1.06L12 13.06l3.005 3.006a.75.75 0 0 0 1.06-1.06L13.062 12z" /></svg>
+                                        </span>
+                                    </p>
+                                ))}
+                            </div>
+                        )}
                         <p className="text-xs text-gray-400 mt-4">MAX 10MB PER FILE. JPG, PNG SUPPORTED.</p>
                     </div>
                 </div>

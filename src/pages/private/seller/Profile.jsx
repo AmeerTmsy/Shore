@@ -243,7 +243,7 @@ const sellerSidebarData = [
     key: "account",
     icon: "👤",
     items: [
-      { title: "Profile", icon: "👤", path: "/seller-dashboard/profile" },
+      { title: "Profile", icon: "👤", path: "/seller-dashboard/account" },
       { title: "Security", icon: "🔐", path: "/seller-dashboard/security" },
     ],
   },

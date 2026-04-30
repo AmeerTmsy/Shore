@@ -2,7 +2,7 @@ import { select } from 'framer-motion/client';
 import React from 'react'
 import { useSideBar } from '../../../../context/ProfileSideBarContext';
 
-export default function SellerPorfile() {
+export default function SellerProfile() {
 
     const { showSideBar, setShowSideBar, sideBarAble } = useSideBar()
 

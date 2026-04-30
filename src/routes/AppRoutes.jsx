@@ -47,17 +47,18 @@ import ProtectedRoute from "../components/authGuards/ProtectedRoute";
 import ProtectedLogin from "../components/authGuards/ProtectedLogin";
 
 import SellerDashboard from "../pages/private/seller/Profile";
-import SellerPorfile from "../components/private/seller/dashBoardComponent/SellerPorfile";
+import SellerProfile from "../components/private/seller/dashBoardComponent/SellerProfile";
 import SellerSecurity from "../components/private/seller/dashBoardComponent/SellerSecurity";
+import NewProduct from "../components/private/seller/NewProduct";
+import SellerProducts from "../components/private/seller/dashBoardComponent/SellerProducts";
+import SellerInventory from "../components/private/seller/dashBoardComponent/SellerInventory";
+import Support from "../components/private/seller/Support";
 
 import AdminDashboard from "../pages/private/admin/Profile";
 import AdminPorfile from "../components/private/admin/dashBoardComponent/AdminPorfile";
 import AdminSecurity from "../components/private/admin/dashBoardComponent/AdminSecurity";
 import AuthorizationProtect from "../components/authGuards/AuthorizationProtect";
-import NewProduct from "../components/private/seller/NewProduct";
-import SellerProducts from "../components/private/seller/dashBoardComponent/SellerProducts";
-import SellerInventory from "../components/private/seller/dashBoardComponent/SellerInventory";
-import Support from "../components/private/seller/Support";
+import SellerAccount from "../components/private/seller/dashBoardComponent/SellerAccount";
 
 export default function AppRoutes() {
 
@@ -107,7 +108,9 @@ export default function AppRoutes() {
             </Route>
             <Route element={<AuthorizationProtect userRole={'seller'} />}>
               <Route path="/seller-dashboard" element={<SellerDashboard />}>
-                <Route index element={<SellerPorfile />} />
+                <Route index element={<SellerProfile />} />
+                <Route path="security" element={<SellerSecurity />} />
+                <Route path="account" element={<SellerAccount />} />
                 <Route path="security" element={<SellerSecurity />} />
                 <Route path="products-new" element={<NewProduct />} />
                 <Route path="my-products" element={<SellerProducts />} />
