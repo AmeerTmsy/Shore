@@ -59,6 +59,13 @@ import AdminPorfile from "../components/private/admin/dashBoardComponent/AdminPo
 import AdminSecurity from "../components/private/admin/dashBoardComponent/AdminSecurity";
 import AuthorizationProtect from "../components/authGuards/AuthorizationProtect";
 import SellerAccount from "../components/private/seller/dashBoardComponent/SellerAccount";
+import SellerStore from "../components/private/seller/dashBoardComponent/StoreProfile";
+import BrandDetails from "../components/private/seller/dashBoardComponent/BrandDetails";
+import SalesOverview from "../components/private/seller/dashBoardComponent/SalesOverview";
+import ProductPerformance from "../components/private/seller/dashBoardComponent/ProductPerformance";
+import SellerEarnings from "../components/private/seller/dashBoardComponent/SellerEarnings";
+import Transactions from "../components/private/seller/dashBoardComponent/Transactions";
+import SellerPayouts from "../components/private/seller/dashBoardComponent/SellerPayouts";
 
 export default function AppRoutes() {
 
@@ -112,6 +119,13 @@ export default function AppRoutes() {
                 <Route path="security" element={<SellerSecurity />} />
                 <Route path="account" element={<SellerAccount />} />
                 <Route path="security" element={<SellerSecurity />} />
+                <Route path="store" element={<SellerStore />} />
+                <Route path="earnings" element={<SellerEarnings />} />
+                <Route path="transactions" element={<Transactions />} />
+                <Route path="payouts" element={<SellerPayouts />} />
+                <Route path="store/branding" element={<BrandDetails />} />
+                <Route path="analytics/sales" element={<SalesOverview />} />
+                <Route path="analytics/products" element={<ProductPerformance />} />
                 <Route path="products-new" element={<NewProduct />} />
                 <Route path="my-products" element={<SellerProducts />} />
                 <Route path="my-inventory" element={<SellerInventory />} />

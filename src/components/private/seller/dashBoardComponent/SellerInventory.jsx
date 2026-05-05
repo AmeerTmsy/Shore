@@ -466,7 +466,7 @@ export default function () {
                         </div>
                         <div>
                             <div className='flex justify-between gap-1 items-end mb-1 mt-3 px-2 mx-1'>
-                                <h4 className='text-sm font-normal '>My Prfits</h4>
+                                <h4 className='text-sm font-normal '>My Profits</h4>
                             </div>
                             <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
                                 <div className='grid gap-2'>

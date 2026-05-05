@@ -140,9 +140,7 @@ export default function SellerSecurity() {
                 <div className="bg-linear-to-br from-orange-500 to-orange-600 text-white rounded-xl p-6">
                     <p className="text-sm">SECURITY SCORE</p>
                     <div className=" mt-2"><span className='text-4xl font-semibold'>92 </span><span className='text-2xl font-normal'>/ 100</span></div>
-                    <p className="text-sm mt-4 opacity-90">Your account security is strong, but adding a hardware key could make it bulletproof.
-
-</p>
+                    <p className="text-sm mt-4 opacity-90">Your account security is strong, but adding a hardware key could make it bulletproof.</p>
                 </div>
             </div>
         </div>
@@ -153,11 +151,9 @@ const securityData = {
     password: {
         lastChanged: "2026-03-20",
     },
-
     twoFactorAuth: {
         enabled: false,
     },
-
     loginActivity: [
         {
             id: 1,
@@ -174,7 +170,6 @@ const securityData = {
             current: false,
         },
     ],
-
     recovery: {
         email: "ameer@gmail.com",
         phone: "+91 9876543210",
