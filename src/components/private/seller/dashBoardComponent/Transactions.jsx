@@ -26,7 +26,7 @@ export default function Transactions() {
             {/* TOP METRICS */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {/* Gross Sales */}
-                <div className="bg-white border border-gray-300 rounded-xl p-5 flex justify-between items-start">
+                <div className="bg-[#fff] border border-gray-200 shadow rounded-xl p-5 flex justify-between items-start">
                     <div>
                         <p className="text-sm text-gray-500">GROSS SALES</p>
                         <h2 className="text-2xl font-semibold mt-1">$14,290.45</h2>
@@ -38,7 +38,7 @@ export default function Transactions() {
                 </div>
 
                 {/* Total Fees */}
-                <div className="bg-white border border-gray-300 rounded-xl p-5 flex justify-between items-start">
+                <div className="bg-[#fff] border border-gray-200 shadow rounded-xl p-5 flex justify-between items-start">
                     <div>
                         <p className="text-sm text-gray-500">TOTAL FEES</p>
                         <h2 className="text-2xl font-semibold mt-1">$892.12</h2>
@@ -49,7 +49,7 @@ export default function Transactions() {
                     </div>
                 </div>
                 {/* Net Payouts */}
-                <div className="bg-white border border-gray-300 rounded-xl p-5 flex justify-between items-start">
+                <div className="bg-[#fff] border border-gray-200 shadow rounded-xl p-5 flex justify-between items-start">
                     <div>
                         <p className="text-sm text-gray-500">NET PAYOUTS</p>
                         <h2 className="text-2xl font-semibold text-orange-500 mt-1">$13,398.33</h2>
@@ -72,7 +72,7 @@ export default function Transactions() {
             <div className="bg-white border border-gray-200 rounded-xl p-3 flex flex-wrap gap-3 items-center shadow">
                 <input
                     placeholder="Search ID or Order ID..."
-                    className="flex-1 min-w-[200px] border border-gray-200 px-3 py-2 rounded-lg text-sm"
+                    className="flex-1 min-w-[200px] border border-gray-300 px-3 py-2 rounded-lg text-sm"
                 />
 
                 <div className="flex gap-2 p-1 bg-indigo-50 rounded-lg">
@@ -94,14 +94,14 @@ export default function Transactions() {
                     </button>
                 </div>
 
-                <select className="border border-gray-200 px-3 py-2 rounded-lg text-sm">
+                <select className="border border-gray-300 px-3 py-2 rounded-lg text-sm">
                     <option>All Types</option>
                     <option>Sale</option>
                     <option>Refund</option>
                     <option>Payout</option>
                 </select>
 
-                <select className="border border-gray-200 px-3 py-2 rounded-lg text-sm">
+                <select className="border border-gray-300 px-3 py-2 rounded-lg text-sm">
                     <option>All Status</option>
                     <option>Completed</option>
                     <option>Pending</option>
@@ -322,6 +322,39 @@ const transactionsData = [
         gross: -180,
         fees: 0,
         net: -180,
+        status: "completed",
+    },
+    {
+        id: "TXN-78218567",
+        order: "#SH-4380",
+        type: "Sale",
+        date: "Oct 23, 2023",
+        time: "16:20",
+        gross: 560,
+        fees: -28,
+        net: 532,
+        status: "completed",
+    },
+    {
+        id: "TXN-78218345",
+        order: "#SH-4350",
+        type: "Sale",
+        date: "Oct 22, 2023",
+        time: "11:05",
+        gross: 320,
+        fees: -16,
+        net: 304,
+        status: "failed",
+    },
+    {
+        id: "TXN-78218234",
+        order: "#SH-4320",
+        type: "Sale",
+        date: "Oct 22, 2023",
+        time: "09:30",
+        gross: 890,
+        fees: -44.5,
+        net: 845.5,
         status: "completed",
     },
 ];

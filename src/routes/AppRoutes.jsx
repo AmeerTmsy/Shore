@@ -66,6 +66,9 @@ import ProductPerformance from "../components/private/seller/dashBoardComponent/
 import SellerEarnings from "../components/private/seller/dashBoardComponent/SellerEarnings";
 import Transactions from "../components/private/seller/dashBoardComponent/Transactions";
 import SellerPayouts from "../components/private/seller/dashBoardComponent/SellerPayouts";
+import SellerOrders from "../components/private/seller/dashBoardComponent/SellerOrders";
+// import SellerOrders from "../components/private/seller/dashBoardComponent/SellerOrders";
+
 
 export default function AppRoutes() {
 
@@ -123,6 +126,7 @@ export default function AppRoutes() {
                 <Route path="earnings" element={<SellerEarnings />} />
                 <Route path="transactions" element={<Transactions />} />
                 <Route path="payouts" element={<SellerPayouts />} />
+                <Route path="orders" element={<SellerOrders />} />
                 <Route path="store/branding" element={<BrandDetails />} />
                 <Route path="analytics/sales" element={<SalesOverview />} />
                 <Route path="analytics/products" element={<ProductPerformance />} />

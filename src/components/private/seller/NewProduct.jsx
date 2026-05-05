@@ -100,7 +100,7 @@ export default function NewProduct() {
               </div>
             </div>
           </div>
-          <div className="rounded-2xl   p-4 hidden md:flex justify-between items-center mb-8">
+          <div className="rounded-2xl bg-white shadow-[1px_2px_5px_2px_rgba(0,0,0,0.1)] p-4 hidden md:flex justify-between items-center mb-8">
             {["Basic Info", "Media", "Variants"].map((label, index) => {
               const current = index + 1;
               return (

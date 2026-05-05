@@ -251,7 +251,7 @@ export default function SellerProfile() {
                 {profile.addresses.map((addr) => (
                     <div
                         key={addr.id}
-                        className={`cursor-pointer shadow-md hover:shadow-lg transition rounded-lg p-3 mb-2 text-sm bg-gray-100  border border-blue-100`}
+                        className={`cursor-pointer shadow-md hover:shadow-lg transition rounded-lg p-3 mb-2 text-sm bg-white  border border-blue-100`}
                     >
                         <div className="flex justify-between">
                             <p className="font-medium">{addr.type}</p>

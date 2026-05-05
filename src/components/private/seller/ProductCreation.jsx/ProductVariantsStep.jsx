@@ -5,6 +5,7 @@ export default function ProductVariantsStep({ variants, setVariants, setStep, he
     const addNewProduct = async () => {
         console.log('New Product Added ')
         setProductAddedSuccess(true)
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function generateSKU(brand, name, size, color) {
