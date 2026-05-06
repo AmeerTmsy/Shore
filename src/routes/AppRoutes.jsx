@@ -54,8 +54,7 @@ import SellerProducts from "../components/private/seller/dashBoardComponent/Sell
 import SellerInventory from "../components/private/seller/dashBoardComponent/SellerInventory";
 import Support from "../components/private/seller/Support";
 
-import AdminDashboard from "../pages/private/admin/Profile";
-import AdminPorfile from "../components/private/admin/dashBoardComponent/AdminPorfile";
+import AdminProfile from "../pages/private/admin/Profile";
 import AdminSecurity from "../components/private/admin/dashBoardComponent/AdminSecurity";
 import AuthorizationProtect from "../components/authGuards/AuthorizationProtect";
 import SellerAccount from "../components/private/seller/dashBoardComponent/SellerAccount";
@@ -67,6 +66,8 @@ import SellerEarnings from "../components/private/seller/dashBoardComponent/Sell
 import Transactions from "../components/private/seller/dashBoardComponent/Transactions";
 import SellerPayouts from "../components/private/seller/dashBoardComponent/SellerPayouts";
 import SellerOrders from "../components/private/seller/dashBoardComponent/SellerOrders";
+import AdminDashboard from "../components/private/admin/AdminDashboard";
+import AllOrders from "../components/private/admin/dashBoardComponent/AllOrders";
 // import SellerOrders from "../components/private/seller/dashBoardComponent/SellerOrders";
 
 
@@ -137,8 +138,10 @@ export default function AppRoutes() {
               </Route>
             </Route>
             <Route element={<AuthorizationProtect userRole={'admin'} />}>
-              <Route path="/admin-dashboard" element={<AdminDashboard />}>
-                <Route index element={<AdminPorfile />} />
+              <Route path="/admin-dashboard" element={<AdminProfile />}>
+                {/* <Route index element={<AdminPorfile />} /> */}
+                <Route index element={<AdminDashboard />} />
+                <Route path="orders" element={<AllOrders />} />
                 <Route path="security" element={<AdminSecurity />} />
               </Route>
             </Route>
