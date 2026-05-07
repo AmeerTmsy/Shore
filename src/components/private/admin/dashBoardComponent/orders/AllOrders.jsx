@@ -1,6 +1,28 @@
-import { ChevronDown, ChevronLeft, ChevronRight, Clock3, Download, EllipsisVertical, Filter, PackageCheck, Plus, Search, ShoppingCart, Truck, XCircle, } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, Circle, CircleCheck, Clock3, Download, EllipsisVertical, Filter, PackageCheck, Plus, Search, ShoppingCart, Truck, XCircle, } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function AllOrders() {
+
+    const [orders, setOrders] = useState(dummyOrders)
+    const [selectedOrders, setSelectedOrders] = useState([])
+    
+    const isAllSelected = () => orders.every(order => selectedOrders.includes(order.id))
+    
+    const orderSelection = (all = false, orderId) => {
+        if (all) {
+            setSelectedOrders(isAllSelected() ? [] : orders.map((order) => order.id));
+        } else {
+            setSelectedOrders((prev) =>
+                prev.includes(orderId)
+                    ? prev.filter((itemId) => itemId !== orderId)
+                    : [...prev, orderId]
+            );
+        }
+    };
+
+    // useEffect(() => {
+    //     console.log(selectedOrders)
+    // }, [selectedOrders])
 
     return (
         <div className="min-h-screen bg-[#f7f8fa] p-4 md:p-6">
@@ -84,7 +106,13 @@ export default function AllOrders() {
                         <thead className="border-b border-orange-100 bg-[#fcfcfc]">
                             <tr>
                                 <th className="px-6 py-5 text-left">
-                                    <div className="h-5 w-5 rounded-full border border-orange-300" />
+                                    <div onClick={() => orderSelection(true)} className=" text-green-500" >
+                                        {isAllSelected() ?
+                                            <CircleCheck className="text-green-400" />
+                                            :
+                                            <Circle className="text-gray-400" />
+                                        }
+                                    </div>
                                 </th>
                                 {[
                                     "ORDER ID",
@@ -111,7 +139,13 @@ export default function AllOrders() {
                                     className="border-b border-orange-50 transition hover:bg-orange-50/30"
                                 >
                                     <td className="ps-6 px-2 py-1">
-                                        <div className="h-5 w-5 rounded-full border border-orange-300" />
+                                        <div onClick={() => orderSelection(false, order.id)}>
+                                            {selectedOrders.includes(order.id) ?
+                                                <CircleCheck className="text-green-300" />
+                                                :
+                                                <Circle className="text-gray-400" />
+                                            }
+                                        </div>
                                     </td>
                                     <td className="px-2 py-1">
                                         <p className="font-bold text-orange-700">{order.id}</p>
@@ -252,7 +286,7 @@ export default function AllOrders() {
 }
 
 
-const orders = [
+const dummyOrders = [
     {
         id: "#SA-88210",
         customer: "Jordan Smith",

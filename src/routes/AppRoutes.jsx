@@ -67,7 +67,7 @@ import Transactions from "../components/private/seller/dashBoardComponent/Transa
 import SellerPayouts from "../components/private/seller/dashBoardComponent/SellerPayouts";
 import SellerOrders from "../components/private/seller/dashBoardComponent/SellerOrders";
 import AdminDashboard from "../components/private/admin/AdminDashboard";
-import AllOrders from "../components/private/admin/dashBoardComponent/AllOrders";
+import AllOrders from "../components/private/admin/dashBoardComponent/orders/AllOrders";
 // import SellerOrders from "../components/private/seller/dashBoardComponent/SellerOrders";
 
 

@@ -10,7 +10,7 @@ import {
 } from "recharts";
 
 export default function AdminDashboard() {
-  const [activeFilter, setActiveFilter] = useState("30");
+  const [activeFilter, setActiveFilter] = useState("7");
 
   const data = useMemo(() => {
     return chartData[activeFilter];
@@ -360,7 +360,7 @@ const chartData = {
     { name: "Jan", revenue: 24000, orders: 1200 },
     { name: "Feb", revenue: 32000, orders: 1600 },
     { name: "Mar", revenue: 28000, orders: 1400 },
-    { name: "Apr", revenue: 41000, orders: 2200 },
+    { name: "Apr", revenue: 41000, orders: 22200 },
     { name: "May", revenue: 52000, orders: 2600 },
     { name: "Jun", revenue: 47000, orders: 2300 },
     { name: "Jul", revenue: 58000, orders: 2900 },
