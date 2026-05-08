@@ -68,6 +68,14 @@ import SellerPayouts from "../components/private/seller/dashBoardComponent/Selle
 import SellerOrders from "../components/private/seller/dashBoardComponent/SellerOrders";
 import AdminDashboard from "../components/private/admin/AdminDashboard";
 import AllOrders from "../components/private/admin/dashBoardComponent/orders/AllOrders";
+import ReturnsManagement from "../components/private/admin/dashBoardComponent/orders/ReturnsManagement";
+import RefundRequests from "../components/private/admin/dashBoardComponent/orders/RefundRequests";
+import DisputesPage from "../components/private/admin/dashBoardComponent/orders/DisputesPage";
+import ShippingIssuesPage from "../components/private/admin/dashBoardComponent/orders/ShippingIssuesPage";
+import AllProductsPage from "../components/private/admin/dashBoardComponent/products/AllProductsPage";
+import PendingProductsPage from "../components/private/admin/dashBoardComponent/products/PendingProductsPage";
+import CategoriesManagementPage from "../components/private/admin/dashBoardComponent/products/CategoriesManagementPage";
+import InventoryMonitoringPage from "../components/private/admin/dashBoardComponent/products/InventoryMonitoringPage";
 // import SellerOrders from "../components/private/seller/dashBoardComponent/SellerOrders";
 
 
@@ -142,6 +150,14 @@ export default function AppRoutes() {
                 {/* <Route index element={<AdminPorfile />} /> */}
                 <Route index element={<AdminDashboard />} />
                 <Route path="orders" element={<AllOrders />} />
+                <Route path="returns" element={<ReturnsManagement />} />
+                <Route path="refunds" element={<RefundRequests />} />
+                <Route path="disputes" element={<DisputesPage />} />
+                <Route path="shipping-issues" element={<ShippingIssuesPage />} />
+                <Route path="products" element={<AllProductsPage />} />
+                <Route path="products/pending" element={<PendingProductsPage />} />
+                <Route path="categories" element={<CategoriesManagementPage />} />
+                <Route path="inventory" element={<InventoryMonitoringPage />} />
                 <Route path="security" element={<AdminSecurity />} />
               </Route>
             </Route>

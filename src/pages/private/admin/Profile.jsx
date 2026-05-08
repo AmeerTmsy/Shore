@@ -37,7 +37,7 @@ export default function Profile() {
   };
 
   return (
-    <div className="w-full max-w-screen-2xl mx-auto">
+    <div className="w-full max-w-screen-4xl mx-auto">
       <div className="flex flex-col lg:flex-row gap-6 p-4">
         {/* ================================================= */}
         {/* SIDEBAR */}
