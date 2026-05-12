@@ -76,6 +76,13 @@ import AllProductsPage from "../components/private/admin/dashBoardComponent/prod
 import PendingProductsPage from "../components/private/admin/dashBoardComponent/products/PendingProductsPage";
 import CategoriesManagementPage from "../components/private/admin/dashBoardComponent/products/CategoriesManagementPage";
 import InventoryMonitoringPage from "../components/private/admin/dashBoardComponent/products/InventoryMonitoringPage";
+import AllUsers from "../components/private/admin/dashBoardComponent/users/AllUsers";
+import ManageSellers from "../components/private/admin/dashBoardComponent/users/ManageSellers";
+import VerificationRequests from "../components/private/admin/dashBoardComponent/users/VerificationRequests";
+import RolePermissionPage from "../components/private/admin/dashBoardComponent/users/RolePermissionPage";
+import SuspendedAccountsPage from "../components/private/admin/dashBoardComponent/users/SuspendedAccountsPage";
+import ReportsPage from "../components/private/admin/dashBoardComponent/ReportsPage";
+import AnalyticsPage from "../components/private/admin/dashBoardComponent/AnalyticsPage";
 // import SellerOrders from "../components/private/seller/dashBoardComponent/SellerOrders";
 
 
@@ -158,6 +165,13 @@ export default function AppRoutes() {
                 <Route path="products/pending" element={<PendingProductsPage />} />
                 <Route path="categories" element={<CategoriesManagementPage />} />
                 <Route path="inventory" element={<InventoryMonitoringPage />} />
+                <Route path="users" element={<AllUsers />} />
+                <Route path="sellers" element={<ManageSellers />} />
+                <Route path="verifications" element={<VerificationRequests />} />
+                <Route path="roles" element={<RolePermissionPage />} />
+                <Route path="suspended-users" element={<SuspendedAccountsPage />} />
+                <Route path="reports" element={<ReportsPage />} />
+                <Route path="analytics" element={<AnalyticsPage />} />
                 <Route path="security" element={<AdminSecurity />} />
               </Route>
             </Route>
