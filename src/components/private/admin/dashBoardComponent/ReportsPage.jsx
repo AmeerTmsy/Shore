@@ -1,3 +1,4 @@
+import { CalendarDays, Download, Sparkles } from "lucide-react"
 import { useMemo, useState } from "react"
 import {
     Area,
@@ -31,110 +32,111 @@ export default function ReportsPage() {
                 {/* HEADER */}
                 <section className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
                     <div>
-                        <h1 className="text-4xl font-black tracking-tight text-[#111111] md:text-5xl">
+                        <h1 className="text-2xl font-bold tracking-tight text-gray-900">
                             Reports
                         </h1>
 
-                        <p className="mt-2 text-base text-[#7d6759] md:text-lg">
+                        <p className="mt-1 text-sm sm:text-[1em] text-gray-500">
                             Platform-wide analytics and operational reporting for the
                             marketplace ecosystem.
                         </p>
                     </div>
-
-                    <div className="flex flex-wrap items-center gap-3">
-                        <button className="rounded-2xl border border-[#ecd3c4] bg-white px-5 py-3 font-semibold text-[#2a2a2a] shadow-sm transition-all hover:shadow-md">
-                            Oct 1, 2023 - Oct 31, 2023
+                </section>
+                <section>
+                    <div className="flex justify-start flex-wrap items-center gap-1.5">
+                        <button className="rounded-xl border border-[#ecd3c4] bg-white px-4 py-2 text-sm text-[#2a2a2a] shadow-sm transition-all hover:shadow-md">
+                            <span className="flex gap-2 items-start"><CalendarDays size={20} /> Oct 1, 2023 - Oct 31, 2023</span>
                         </button>
-
-                        <button className="rounded-2xl border border-[#ecd3c4] bg-white px-5 py-3 font-semibold transition-all hover:bg-[#faf6f3]">
-                            Export
+                        <button className="rounded-xl border border-[#ecd3c4] bg-white px-4 py-2 text-sm transition-all hover:bg-[#faf6f3]">
+                            <span className="flex gap-2 items-start"><Download size={20} /> Export</span>
                         </button>
-
-                        <button className="rounded-2xl bg-[#9c4700] px-5 py-3 font-bold text-white shadow-lg shadow-[#9c4700]/20 transition-all hover:scale-[1.02]">
+                        <button className="rounded-xl bg-[#9c4700] px-4 py-2 text-white text-sm font-medium shadow-lg shadow-[#9c4700]/20 transition-all hover:scale-[1.02]">
                             Generate Report
                         </button>
-
-                        <button className="rounded-2xl bg-[#ff6b00] px-5 py-3 font-bold text-white shadow-lg shadow-[#ff6b00]/20 transition-all hover:scale-[1.02]">
-                            ✦ AI Summary
+                        <button className="rounded-xl bg-[#ff6b00] px-4 py-2 text-white text-sm font-medium shadow-lg shadow-[#ff6b00]/20 transition-all hover:scale-[1.02]">
+                            <span className="flex gap-2 items-center"> <Sparkles size={16} /> AI Summary</span>
                         </button>
                     </div>
                 </section>
 
                 {/* KPI CARDS */}
                 <section className="grid grid-cols-2 gap-4 lg:grid-cols-3 2xl:grid-cols-6">
-                    {KPI_CARDS.map((item) => (
-                        <div
-                            key={item.title}
-                            className="rounded-[30px] border border-[#ece0d8] bg-white p-5 shadow-sm"
-                        >
-                            <div className="flex items-start justify-between">
-                                <p className="text-sm font-black uppercase tracking-wide text-[#6f5848]">
-                                    {item.title}
-                                </p>
-
-                                <span
-                                    className={`rounded-full px-3 py-1 text-xs font-black ${item.growthColor}`}
+                    {KPI_CARDS.map((item) => {
+                        const gradientId = `gradient-${item.title.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "")}`;
+                            return (
+                                <div
+                                    key={item.title}
+                                    className="rounded-2xl border border-[#ece0d8] bg-white p-5 shadow-sm"
                                 >
-                                    {item.growth}
-                                </span>
-                            </div>
+                                    <div className="flex items-start justify-between">
+                                        <p className="text-sm font-bold uppercase tracking-wide text-[#6f5848]">
+                                            {item.title}
+                                        </p>
 
-                            <h2 className="mt-5 text-3xl font-black text-[#171717]">
-                                {item.value}
-                            </h2>
+                                        <span
+                                            className={`rounded-full px-3 py-1 text-xs font-black ${item.growthColor}`}
+                                        >
+                                            {item.growth}
+                                        </span>
+                                    </div>
 
-                            <div className="mt-5 h-14 border rounded-md" style={{borderColor: item.lineColor}} >
-                                <ResponsiveContainer width="100%" height="100%">
-                                    <AreaChart data={item.data}>
-                                        <defs>
-                                            <linearGradient
-                                                id={`gradient-${item.title}`}
-                                                x1="0"
-                                                y1="0"
-                                                x2="0"
-                                                y2="1"
-                                            >
-                                                <stop offset="0%" stopColor={item.fillColor} stopOpacity={0.45} />
-                                                <stop offset="100%" stopColor={item.fillColor} stopOpacity={0.05} />
-                                            </linearGradient>
-                                        </defs>
+                                    <h2 className="mt-1 text-lg font-bold text-[#171717]">
+                                        {item.value}
+                                    </h2>
 
-                                        <Tooltip contentStyle={{ display: "none" }} />
+                                    <div className="mt-5 h-14  rounded-md" style={{ borderColor: item.lineColor }} >
+                                        <ResponsiveContainer width="100%" height="100%">
+                                            <AreaChart data={item.data}>
+                                                <defs>
+                                                    <linearGradient
+                                                        id={gradientId}
+                                                        x1="0"
+                                                        y1="0"
+                                                        x2="0"
+                                                        y2="1"
+                                                    >
+                                                        <stop offset="0%" stopColor={item.fillColor} stopOpacity={0.7} />
+                                                        <stop offset="100%" stopColor={item.fillColor} stopOpacity={0.2} />
+                                                    </linearGradient>
+                                                </defs>
 
-                                        <Area
-                                            type="monotone"
-                                            dataKey="value"
-                                            stroke={item.lineColor}
-                                            strokeWidth={0}
-                                            fill={`url(#gradient-${item.title})`}
-                                            isAnimationActive={false}
-                                        />
-                                    </AreaChart>
-                                </ResponsiveContainer>
-                            </div>
-                        </div>
-                    ))}
+                                                <Tooltip contentStyle={{ display: "none" }} />
+
+                                                <Area
+                                                    type="monotone"
+                                                    dataKey="value"
+                                                    stroke={item.lineColor}
+                                                    strokeWidth={1.5}
+                                                    fill={`url(#${gradientId})`}
+                                                    isAnimationActive={false}
+                                                />
+                                            </AreaChart>
+                                        </ResponsiveContainer>
+                                    </div>
+                                </div>
+                            )
+                    })}
                 </section>
 
                 {/* SALES PERFORMANCE */}
                 <section className="rounded-[36px] border border-[#ecd8cc] bg-white p-5 shadow-sm md:p-8">
                     <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                         <div>
-                            <h2 className="text-3xl font-black text-[#171717]">
+                            <h2 className="text-xl font-bold tracking-tight text-gray-900">
                                 Sales Performance
                             </h2>
 
-                            <p className="mt-2 text-[#7c6557]">
+                            <p className="text-sm font-light sm:text-[1em] text-gray-500">
                                 Revenue trends across the marketplace ecosystem.
                             </p>
                         </div>
 
-                        <div className="flex w-fit items-center gap-2 rounded-2xl bg-[#f5f5f5] p-2">
+                        <div className="flex w-fit items-center gap-1.5 rounded-2xl bg-[#f5f5f5] p-1.5">
                             {SALES_RANGES.map((item) => (
                                 <button
                                     key={item}
                                     onClick={() => handleRangeChange(item)}
-                                    className={`rounded-xl px-5 py-2 font-bold transition-all duration-300 ${activeRange === item
+                                    className={`rounded-xl px-5 py-1.5 font-semibold text-sm hover:bg-white transition-all duration-300 ${activeRange === item
                                         ? "bg-white text-[#9f4f09] shadow-sm"
                                         : "text-[#6d5d54] hover:bg-white/70"
                                         }`}
@@ -536,7 +538,7 @@ const KPI_CARDS = [
         growth: "+12%",
         growthColor: "text-green-600 bg-green-50",
         lineColor: "#e2bca6",
-        fillColor: "#e2bca6",
+        // fillColor: "#e2bca6",
         data: [
             { name: "1", value: 18 },
             { name: "2", value: 22 },

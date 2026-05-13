@@ -66,7 +66,7 @@ import SellerEarnings from "../components/private/seller/dashBoardComponent/Sell
 import Transactions from "../components/private/seller/dashBoardComponent/Transactions";
 import SellerPayouts from "../components/private/seller/dashBoardComponent/SellerPayouts";
 import SellerOrders from "../components/private/seller/dashBoardComponent/SellerOrders";
-import AdminDashboard from "../components/private/admin/AdminDashboard";
+import AdminDashboard from "../components/private/admin/dashBoardComponent/AdminDashboard";
 import AllOrders from "../components/private/admin/dashBoardComponent/orders/AllOrders";
 import ReturnsManagement from "../components/private/admin/dashBoardComponent/orders/ReturnsManagement";
 import RefundRequests from "../components/private/admin/dashBoardComponent/orders/RefundRequests";

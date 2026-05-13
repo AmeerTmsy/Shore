@@ -24,7 +24,7 @@ export default function AdminDashboard() {
       <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">Admin Overview</h1>
-          <p className="mt-1 text-sm text-gray-500">Platform-wide performance and operational summary</p>
+          <p className="mt-1 text-sm sm:text-[1em] text-gray-500">Platform-wide performance and operational summary</p>
         </div>
         <div className="flex items-center gap-3">
           <button className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-100">
