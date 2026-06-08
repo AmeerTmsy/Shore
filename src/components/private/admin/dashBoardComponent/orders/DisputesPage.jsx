@@ -167,10 +167,10 @@ export default function DisputesPage() {
 
         {/* MAIN */}
 
-        <div className="mt-8 grid grid-cols-1 gap-6 xl:grid-cols-[1fr_320px]">
+        <div className="mt-8 grid grid-cols-1 gap-6 xl:grid-cols-4">
           {/* LEFT */}
 
-          <div>
+          <div className="col-span-3">
             {/* FILTERS */}
 
             <div className="rounded-2xl border border-orange-200 bg-white p-4">
@@ -191,9 +191,9 @@ export default function DisputesPage() {
 
             {/* DESKTOP TABLE */}
 
-            <div className="overflow-x-auto">
-              <div className="w-full min-w-7xl">
-                <div className="mt-6 hidden overflow-hidden rounded-[30px] border border-orange-200 bg-white xl:block">
+            <div className="mt-6 hidden overflow-hidden rounded-2xl border border-orange-200 bg-white xl:block">
+              <div className="overflow-x-auto">
+                <div className="w-full min-w-[1200px]">
                   <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] border-b border-orange-100 bg-[#f3f4f6] px-6 py-6 font-semibold uppercase tracking-wide text-gray-500">
                     <p>Dispute ID</p>
                     <p>Buyer / Seller</p>
@@ -208,7 +208,7 @@ export default function DisputesPage() {
                     <div
                       key={dispute.id}
                       onClick={() => setSelectedDispute(dispute)}
-                      className="cursor-pointer grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] items-center border-b border-orange-100 px-6 py-7 transition hover:bg-orange-50/40"
+                      className="cursor-pointer grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] items-center border-b border-orange-100 px-6 py-2 transition hover:bg-orange-50/40"
                     >
                       <p className="text-[#b65400]">
                         {dispute.id}
@@ -264,33 +264,61 @@ export default function DisputesPage() {
                       </button> */}
                     </div>
                   ))}
-
-                  {/* PAGINATION */}
-
-                  <div className="flex items-center justify-between px-6 py-6">
-                    <p className="font-medium text-gray-500">
-                      Showing 1 to 10 of 1,284 results
-                    </p>
-                    <div className="flex items-center gap-3">
-                      <button className="flex h-10 w-10 items-center justify-center rounded-xl border border-orange-200">
-                        <ChevronLeft />
-                      </button>
-                      <button className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#b65400] font-bold text-white">
-                        1
-                      </button>
-                      <button className="flex h-10 w-10 items-center justify-center rounded-xl font-bold">
-                        2
-                      </button>
-                      <button className="flex h-10 w-10 items-center justify-center rounded-xl font-bold">
-                        3
-                      </button>
-                      <button className="flex h-10 w-10 items-center justify-center rounded-xl border border-orange-200">
-                        <ChevronRight />
-                      </button>
-                    </div>
-                  </div>
                 </div>
               </div>
+
+              {/* PAGINATION */}
+
+              <div className="flex items-center justify-between px-6 py-6">
+                <p className="font-medium text-gray-500">
+                  Showing 1 to 10 of 1,284 results
+                </p>
+                <div className="flex items-center gap-3">
+                  <button className="flex h-10 w-10 items-center justify-center rounded-xl border border-orange-200">
+                    <ChevronLeft />
+                  </button>
+                  <button className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#b65400] font-bold text-white">
+                    1
+                  </button>
+                  <button className="flex h-10 w-10 items-center justify-center rounded-xl font-bold">
+                    2
+                  </button>
+                  <button className="flex h-10 w-10 items-center justify-center rounded-xl font-bold">
+                    3
+                  </button>
+                  <button className="flex h-10 w-10 items-center justify-center rounded-xl border border-orange-200">
+                    <ChevronRight />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-[30px] border border-orange-200 bg-white p-8 mt-5">
+              <div className="flex items-center justify-between">
+                <h3 className="text-2xl font-bold text-gray-900">
+                  Fraud Alerts
+                </h3>
+
+                <span className="rounded-full bg-red-100 px-4 py-1 text-xs font-bold uppercase text-red-700">
+                  Live
+                </span>
+              </div>
+
+              <div className="mt-8 space-y-6">
+                <FraudAlert
+                  title="IP Anomaly Detected"
+                  text="Seller ID #9921 matched banned accounts."
+                />
+
+                <FraudAlert
+                  title="High Velocity Claims"
+                  text="User opened 5 disputes in 1h."
+                />
+              </div>
+
+              <button className="mt-10 text-sm cursor-pointer hover:underline text-[#b65400]">
+                View All Security Alerts
+              </button>
             </div>
 
             {/* MOBILE */}
@@ -363,9 +391,9 @@ export default function DisputesPage() {
 
           {/* RIGHT */}
 
-          <div className="space-y-6">
-            <div className="rounded-[30px] border border-orange-200 bg-white p-8">
-              <h3 className="text-4xl font-bold text-gray-900">
+          <div className="col-span-1 space-y-3">
+            <div className="rounded-2xl border border-orange-200 bg-white p-8">
+              <h3 className="text-xl font-bold text-gray-900">
                 Dispute Reasons
               </h3>
 
@@ -397,48 +425,20 @@ export default function DisputesPage() {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-[30px] bg-[#272c31]">
+            <div className="overflow-hidden rounded-2xl bg-[#272c31]">
               <div className="h-56 bg-gray-400" />
 
-              <div className="p-8 text-white">
-                <h3 className="text-4xl font-bold">Moderation AI v2.4</h3>
+              <div className="p-6 text-white">
+                <h3 className="text-xl font-bold">Moderation AI v2.4</h3>
 
-                <p className="mt-5 text-2xl leading-relaxed text-gray-300">
+                <p className="leading-relaxed text-gray-300">
                   Automate 60% of routine disputes with predictive analysis.
                 </p>
 
-                <button className="mt-8 w-full rounded-2xl bg-[#ff6a00] px-6 py-5 text-2xl font-bold text-white">
+                <button className="mt-5 w-full rounded-2xl bg-[#ff6a00] px-6 py-3 font-semibold text-white">
                   Enable AI Assist
                 </button>
               </div>
-            </div>
-
-            <div className="rounded-[30px] border border-orange-200 bg-white p-8">
-              <div className="flex items-center justify-between">
-                <h3 className="text-4xl font-bold text-gray-900">
-                  Fraud Alerts
-                </h3>
-
-                <span className="rounded-full bg-red-100 px-4 py-2 text-sm font-bold uppercase text-red-700">
-                  Live
-                </span>
-              </div>
-
-              <div className="mt-8 space-y-8">
-                <FraudAlert
-                  title="IP Anomaly Detected"
-                  text="Seller ID #9921 matched banned accounts."
-                />
-
-                <FraudAlert
-                  title="High Velocity Claims"
-                  text="User opened 5 disputes in 1h."
-                />
-              </div>
-
-              <button className="mt-10 text-2xl font-bold text-[#b65400]">
-                View All Security Alerts
-              </button>
             </div>
           </div>
         </div>
@@ -613,8 +613,10 @@ function StatCard({
         </div>
       </div>
 
-      <p className={`mt-4 bg-linear-to-r from-blue-100 via-orange-50 bg-indigo-100 rounded text-center  ${descriptionColor || "text-gray-600"}`}>
-        {description}
+      <p className={`mt-4 bg-linear-to-r from-blue-300 via-orange-300 bg-indigo-300 rounded text-center p-[1px] ${descriptionColor || "text-gray-600"}`}>
+        <p className="w-full h-full bg-white opacity-80 rounded">
+          {description}
+        </p>
       </p>
     </div>
   )
@@ -633,11 +635,11 @@ function ProgressRow({ label, value, width, light }) {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <p className="text-2xl font-semibold text-gray-900">{label}</p>
-        <p className="text-2xl font-bold text-gray-800">{value}</p>
+        <p className="font-medium text-gray-900">{label}</p>
+        <p className="font-bold text-gray-800">{value}</p>
       </div>
 
-      <div className="mt-4 h-4 overflow-hidden rounded-full bg-gray-100">
+      <div className="mt-1 h-2 overflow-hidden rounded-full bg-gray-100">
         <div
           className={`h-full rounded-full ${light ? "bg-orange-200" : "bg-[#ff6a00]"
             }`}
@@ -650,14 +652,14 @@ function ProgressRow({ label, value, width, light }) {
 
 function FraudAlert({ title, text }) {
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 items-center">
       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-orange-100 text-[#b65400]">
         <ShieldAlert className="h-7 w-7" />
       </div>
 
       <div>
-        <h4 className="text-2xl font-bold text-gray-900">{title}</h4>
-        <p className="mt-2 text-xl leading-relaxed text-gray-500">{text}</p>
+        <h4 className="font-semibold text-gray-900">{title}</h4>
+        <p className="leading-relaxed text-gray-500">{text}</p>
       </div>
     </div>
   )

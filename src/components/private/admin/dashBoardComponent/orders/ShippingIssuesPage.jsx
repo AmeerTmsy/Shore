@@ -148,16 +148,16 @@ export default function ShippingIssuesPage() {
         {/* Header */}
         <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
           <div>
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900">
+            <h1 className="text-2xl font-bold tracking-tight text-gray-900">
               Shipping Issues
             </h1>
 
-            <p className="mt-2 text-lg text-gray-500">
+            <p className="mt-1 text-sm sm:text-[1em] text-gray-500">
               Monitor and resolve real-time logistics exceptions.
             </p>
           </div>
 
-          <div className="hidden items-center gap-3 md:flex">
+          {/* <div className="hidden items-center gap-3 md:flex">
             <button className="flex items-center gap-2 rounded-2xl border border-orange-200 bg-white px-6 py-4 font-medium text-gray-600 transition hover:bg-orange-50">
               <Upload size={20} />
               Export CSV
@@ -172,10 +172,10 @@ export default function ShippingIssuesPage() {
               <ChevronDown size={20} />
               Advanced Filter
             </button>
-          </div>
+          </div> */}
 
           {/* Mobile Actions */}
-          <div className="flex items-center justify-end gap-3 md:hidden">
+          {/* <div className="flex items-center justify-end gap-3 md:hidden">
             <button className="rounded-xl bg-white p-3 shadow-sm">
               <Search />
             </button>
@@ -183,38 +183,41 @@ export default function ShippingIssuesPage() {
             <button className="rounded-xl bg-white p-3 shadow-sm">
               <ChevronDown />
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* Desktop Stats */}
-        <div className="mt-8 hidden grid-cols-2 gap-5 md:grid lg:grid-cols-6">
+        <div className="mt-8 hidden grid-cols-2 gap-5 md:grid lg:grid-cols-3">
           {stats.map((item, index) => {
             const Icon = item.icon;
 
             return (
               <div
                 key={index}
-                className="rounded-[28px] border border-orange-200 bg-white p-6"
+                className="rounded-2xl border border-orange-200 bg-white p-4"
               >
                 <div className="flex items-start justify-between">
                   <div className="rounded-2xl bg-gray-100 p-4">
-                    <Icon className="text-orange-700" size={24} />
+                    <Icon className="text-orange-700" size={20} />
                   </div>
 
-                  <span className={`text-lg font-semibold ${item.trendColor}`}>
-                    {item.trend}
-                  </span>
+                  <div className="text-end">
+                    <span className={`text-lg font-semibold ${item.trendColor}`}>
+                      {item.trend}
+                    </span>
+                    <div className="mt-2">
+                      <p className="text-sm font-semibold tracking-wide text-gray-500">
+                        {item.title}
+                      </p>
+
+                      <h2 className="text-xl font-bold text-gray-900">
+                        {item.value}
+                      </h2>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="mt-7">
-                  <p className="text-sm font-medium tracking-wide text-gray-500">
-                    {item.title}
-                  </p>
 
-                  <h2 className="mt-2 text-5xl font-bold text-gray-900">
-                    {item.value}
-                  </h2>
-                </div>
               </div>
             );
           })}
@@ -240,31 +243,31 @@ export default function ShippingIssuesPage() {
           ))}
         </div>
 
-        <div className="mt-8 grid gap-6 xl:grid-cols-[1fr_320px]">
+        <div className="mt-8 grid gap-6 xl:grid-cols-4">
           {/* Left */}
-          <div>
+          <div className="col-span-3">
             {/* Desktop Filters */}
-            <div className="hidden rounded-[30px] border border-orange-200 bg-white p-5 md:block">
-              <div className="flex flex-wrap gap-4">
-                <div className="flex h-16 flex-1 items-center gap-3 rounded-2xl border border-orange-200 px-5">
+            <div className="hidden rounded-2xl border border-orange-200 bg-white p-5 md:block">
+              <div className="flex flex-wrap gap-4 ">
+                <div className="flex h-10 flex-1 items-center gap-3 rounded-lg border border-orange-200 px-5">
                   <Search className="text-gray-400" />
                   <input
                     placeholder="Search ID..."
-                    className="w-full bg-transparent outline-none"
+                    className="w-full bg-transparent outline-none text-sm"
                   />
                 </div>
 
                 {["All Carriers", "Issue Type", "Status"].map((item) => (
                   <button
                     key={item}
-                    className="flex h-16 items-center gap-2 rounded-2xl border border-orange-200 bg-white px-6 text-lg font-medium text-gray-700"
+                    className="flex h-10 items-center gap-2 rounded-lg border border-orange-200 bg-white px-6 text-sm font-medium text-gray-700"
                   >
                     {item}
                     <ChevronDown size={18} />
                   </button>
                 ))}
 
-                <button className="flex h-16 items-center gap-2 rounded-2xl border border-orange-200 bg-white px-6 text-lg font-medium text-gray-700">
+                <button className="flex h-10 items-center gap-2 rounded-lg border border-orange-200 bg-white px-6 text-sm font-medium text-gray-700">
                   <Calendar size={20} />
                   Last 30 Days
                 </button>
@@ -273,80 +276,85 @@ export default function ShippingIssuesPage() {
 
             {/* Desktop Table */}
             <div className="mt-6 hidden overflow-hidden rounded-[30px] border border-orange-200 bg-white md:block">
-              <div className="grid grid-cols-6 border-b border-orange-100 bg-gray-50 px-8 py-6 text-lg font-semibold uppercase tracking-wide text-gray-500">
-                <p>Shipment ID</p>
-                <p>Customer</p>
-                <p>Carrier</p>
-                <p>Issue Type</p>
-                <p>Status</p>
-                <p>Delay</p>
+              <div className="overflow-x-auto">
+                <div className="w-full min-w-[900px]">
+                  <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_0.5fr] border-b border-orange-100 bg-gray-50 px-8 py-6 font-semibold uppercase tracking-wide text-gray-500">
+                    <p>Shipment ID</p>
+                    <p>Customer</p>
+                    <p>Carrier</p>
+                    <p>Issue Type</p>
+                    <p>Status</p>
+                    <p>Delay</p>
+                  </div>
+
+                  {shippingIssues.map((issue, index) => (
+                    <div
+                      key={index}
+                      onClick={() => setSelectedIssue(issue)}
+                      className="grid cursor-pointer grid-cols-[1fr_1fr_1fr_1fr_1fr_0.5fr] items-center border-b border-orange-100 px-8 py-3 transition hover:bg-orange-50/40"
+                    >
+                      <div className=" text-orange-700 px-1">{issue.id}</div>
+
+                      <div className="flex items-center gap-4 px-1">
+                        <div>
+                          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-sm font-semibold text-gray-600">
+                            {issue.initials}
+                          </div>
+                        </div>
+
+                        <p className="font-medium text-gray-800">
+                          {issue.customer}
+                        </p>
+                      </div>
+
+                      <p className="text-gray-700 px-1">{issue.carrier}</p>
+
+                      <div className="px-1">
+                        <span
+                          className={`font-semibold ${issue.severity === "critical"
+                            ? "text-red-600"
+                            : "text-gray-700"
+                            }`}
+                        >
+                          {issue.issue}
+                        </span>
+                      </div>
+
+                      <div className="px-1">
+                        <span className="rounded-full bg-gray-200 px-3 text-nowrap py-0.5 text-sm font-semibold text-gray-600">
+                          {issue.status}
+                        </span>
+                      </div>
+
+                      <p className="text-gray-700 px-1">{issue.delay}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              {shippingIssues.map((issue, index) => (
-                <div
-                  key={index}
-                  onClick={() => setSelectedIssue(issue)}
-                  className="grid cursor-pointer grid-cols-6 items-center border-b border-orange-100 px-8 py-7 transition hover:bg-orange-50/40"
-                >
-                  <div className="font-bold text-orange-700">{issue.id}</div>
-
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-sm font-semibold text-gray-600">
-                      {issue.initials}
-                    </div>
-
-                    <p className="text-lg font-medium text-gray-800">
-                      {issue.customer}
-                    </p>
-                  </div>
-
-                  <p className="text-lg text-gray-700">{issue.carrier}</p>
-
-                  <div>
-                    <span
-                      className={`font-semibold ${
-                        issue.severity === "critical"
-                          ? "text-red-600"
-                          : "text-gray-700"
-                      }`}
-                    >
-                      {issue.issue}
-                    </span>
-                  </div>
-
-                  <div>
-                    <span className="rounded-full bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-600">
-                      {issue.status}
-                    </span>
-                  </div>
-
-                  <p className="text-lg text-gray-700">{issue.delay}</p>
-                </div>
-              ))}
-
               <div className="flex items-center justify-between px-8 py-6">
-                <p className="text-lg text-gray-500">
+                <p className="text-gray-500">
                   Showing 4 of 1,284 entries
                 </p>
 
                 <div className="flex items-center gap-3">
-                  <button className="rounded-xl border border-orange-200 p-3">
+                  <button className="rounded-xl border border-orange-200 p-2">
                     <ChevronLeft />
                   </button>
 
-                  <button className="rounded-xl bg-orange-700 px-5 py-3 font-semibold text-white">
+                  <button className="rounded-xl bg-orange-700 w-10 h-10 font-semibold text-white">
                     1
                   </button>
 
-                  <button className="px-4 py-3 font-medium text-gray-500">
+                  <button className="w-10 h-10 font-medium text-gray-500 hover:bg-orange-100 rounded-xl">
                     2
                   </button>
 
-                  <button className="px-4 py-3 font-medium text-gray-500">
+                  <button className="w-10 h-10 font-medium text-gray-500 hover:bg-orange-100 rounded-xl">
                     3
                   </button>
 
-                  <button className="rounded-xl border border-orange-200 p-3">
+                  <button className="rounded-xl border border-orange-200 p-2">
                     <ChevronRight />
                   </button>
                 </div>
@@ -466,12 +474,35 @@ export default function ShippingIssuesPage() {
                 </div>
               </div>
             </div>
+            <div className="rounded-2xl bg-[#23272f] p-6 text-white">
+              <div className="flex">
+                <p className="flex items-center gap-3 font-semibold uppercase tracking-wide text-orange-200 bg-gray-600 px-2 rounded-md ">
+                  <Sparkles size={18} />
+                  Predictive Analytics
+                </p>
+              </div>
+
+              <h2 className="mt-4 text-3xl font-bold leading-tight">
+                Shipment Intelligence AI
+              </h2>
+
+              <p className="mt-2 leading-relaxed text-gray-300">
+                Anticipate delivery failures before they happen with our new
+                machine learning engine.
+              </p>
+
+              <div className="flex justify-end">
+                <button className="mt-10 rounded-2xl bg-orange-500 px-6 py-3 text-xl font-semibold text-white transition hover:bg-orange-600">
+                  Upgrade to Enterprise
+                </button>
+              </div>
+            </div>
           </div>
 
           {/* Desktop Sidebar */}
-          <div className="hidden space-y-6 xl:block">
-            <div className="rounded-[30px] border border-orange-200 bg-white p-7">
-              <h2 className="text-4xl font-bold text-gray-900">
+          <div className="hidden space-y-6 xl:block col-span-1">
+            <div className="rounded-2xl border border-orange-200 bg-white p-6">
+              <h2 className="text-xl font-bold text-gray-900">
                 Carrier Reliability
               </h2>
 
@@ -483,27 +514,27 @@ export default function ShippingIssuesPage() {
                 ].map((item) => (
                   <div key={item.name}>
                     <div className="flex items-center justify-between">
-                      <span className="text-2xl font-medium text-gray-800">
+                      <span className="font-medium text-gray-800">
                         {item.name}
                       </span>
 
-                      <span className="text-xl text-gray-500">
+                      <span className="text-gray-500">
                         {item.value} Success
                       </span>
                     </div>
 
-                    <div className="mt-3 h-3 overflow-hidden rounded-full bg-gray-100">
-                      <div className="h-full w-[88%] rounded-full bg-orange-700" />
+                    <div className="mt-1 h-2 overflow-hidden rounded-full bg-gray-200">
+                      <div style={{ width: item.value }} className="h-full rounded-full bg-orange-700" />
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="rounded-[30px] border border-orange-200 bg-white p-7">
-              <h2 className="text-4xl font-bold">Delay Heatmap</h2>
+            <div className="rounded-2xl border border-orange-200 bg-white p-6">
+              <h2 className="text-xl font-bold">Delay Heatmap</h2>
 
-              <p className="mt-2 text-xl text-gray-500">
+              <p className="mt-2 text-gray-500">
                 Peak congestion zones
               </p>
 
@@ -511,29 +542,9 @@ export default function ShippingIssuesPage() {
                 <img
                   src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a"
                   alt=""
-                  className="h-[300px] w-full object-cover"
+                  className="h-[200px] w-full object-cover"
                 />
               </div>
-            </div>
-
-            <div className="rounded-[32px] bg-[#23272f] p-8 text-white">
-              <p className="flex items-center gap-3 text-lg font-semibold uppercase tracking-wide text-orange-200">
-                <Sparkles size={18} />
-                Predictive Analytics
-              </p>
-
-              <h2 className="mt-8 text-5xl font-bold leading-tight">
-                Shipment Intelligence AI
-              </h2>
-
-              <p className="mt-6 text-xl leading-relaxed text-gray-300">
-                Anticipate delivery failures before they happen with our new
-                machine learning engine.
-              </p>
-
-              <button className="mt-10 w-full rounded-2xl bg-orange-500 px-6 py-5 text-xl font-semibold text-white transition hover:bg-orange-600">
-                Upgrade to Enterprise
-              </button>
             </div>
           </div>
         </div>
@@ -541,16 +552,14 @@ export default function ShippingIssuesPage() {
 
       {/* Drawer */}
       <div
-        className={`fixed inset-0 z-50 flex justify-end bg-black/30 transition-opacity duration-300 ${
-          selectedIssue
-            ? "pointer-events-auto opacity-100"
-            : "pointer-events-none opacity-0"
-        }`}
+        className={`fixed inset-0 z-50 flex justify-end bg-black/30 transition-opacity duration-300 ${selectedIssue
+          ? "pointer-events-auto opacity-100"
+          : "pointer-events-none opacity-0"
+          }`}
       >
         <div
-          className={`h-full w-full overflow-y-auto bg-[#fafafa] shadow-2xl transition-transform duration-300 ease-in-out md:max-w-[720px] ${
-            selectedIssue ? "translate-x-0" : "translate-x-full"
-          }`}
+          className={`h-full w-full overflow-y-auto bg-[#fafafa] shadow-2xl transition-transform duration-300 ease-in-out md:max-w-[720px] ${selectedIssue ? "translate-x-0" : "translate-x-full"
+            }`}
         >
           <div className="sticky top-0 z-10 flex items-center justify-between border-b bg-white px-8 py-6">
             <div>
