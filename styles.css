@@ -1,0 +1,210 @@
+/* ====================== */
+/* 1. GLOBAL RESET & VARIABLES */
+/* ====================== */
+
+:root {
+    --primary-color: #007bff; /* A professional blue */
+    --secondary-color: #28a745; /* Green for CTAs */
+    --text-dark: #333;
+    --background-light: #f9f9f9;
+    --font-main: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Crucial for layout calculation */
+}
+
+body {
+    font-family: var(--font-main);
+    line-height: 1.6;
+    color: var(--text-dark);
+}
+
+/* Utility Classes */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Padding on the sides for smaller screens */
+}
+.section-padding {
+    padding: 80px 0; /* Vertical spacing between sections */
+}
+.bg-light {
+    background-color: var(--background-light);
+}
+
+/* Buttons (Buttons are reusable components) */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    margin-right: 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth effect */
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+}
+.primary-btn:hover {
+    background-color: #0056b3; 
+    transform: translateY(-2px); /* Small lift effect */
+}
+
+/* ====================== */
+/* 2. NAVIGATION & HEADER (Flexbox) */
+/* ====================== */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Pushes logo left, nav right */
+    align-items: center;
+    padding: 20px 40px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+nav a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: var(--text-dark);
+}
+.cta-button {
+    background-color: var(--primary-color);
+    color: white !important; /* Overriding link color */
+    border-radius: 4px;
+}
+
+/* ====================== */
+/* 3. HERO SECTION */
+/* ====================== */
+#hero {
+    text-align: center;
+    padding: 100px 20px; /* Large padding for impact */
+}
+
+#hero h1 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    color: #222;
+}
+#hero h2 {
+    font-size: 1.8em;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+
+/* ====================== */
+/* 4. LAYOUT GRIDS (Project Grid) */
+/* ====================== */
+h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.5em;
+}
+
+.content-grid {
+    display: flex; /* Use Flexbox for the About Me layout */
+    gap: 40px;
+    align-items: center;
+    padding: 20px 0;
+}
+.profile-img {
+    width: 30%; 
+    max-width: 350px;
+    height: auto;
+    border-radius: 8px; /* Soft corners */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* The Project Grid uses CSS GRID */
+.project-grid {
+    display: grid;
+    /* Default for desktop: three equal columns */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px; /* Space between cards */
+}
+
+.project-card {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+    transition: transform 0.3s ease; /* Interactive feel */
+}
+/* Hover effect adds polish and interactivity */
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.project-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+.project-actions span {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* ====================== */
+/* 5. MEDIA QUERIES (Responsiveness!) */
+/* ====================== */
+
+@media (max-width: 1024px) {
+    /* Adjust grid for tablets */
+    .project-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns on tablet */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Stack everything vertically for mobile phones */
+    .project-grid {
+        grid-template-columns: 1fr; /* One column on mobile */
+    }
+    
+    /* Adjust the About Me section to stack items */
+     .content-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+    .profile-img {
+        width: 80%;
+        max-width: none;
+        margin-bottom: 20px;
+    }
+
+    /* Make the navigation stack for mobile */
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 20px;
+    }
+    nav ul {
+        flex-wrap: wrap; /* Allows links to wrap onto a second line */
+        justify-content: center;
+    }
+    nav li {
+        margin: 5px;
+    }
+
+    #hero h1 {
+        font-size: 2.5em;
+    }
+}

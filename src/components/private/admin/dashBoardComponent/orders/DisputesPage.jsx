@@ -86,16 +86,16 @@ export default function DisputesPage() {
 
         <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
           <div>
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
               Disputes Management
             </h1>
 
-            <p className="mt-2 max-w-xl text-lg text-gray-500">
+            <p className="mt-1 text-sm sm:text-[1em] text-gray-500">
               Resolve buyer-seller conflicts and investigate fraud alerts.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-3">
+          {/* <div className="flex flex-wrap gap-3">
             <button className="flex items-center gap-2 rounded-2xl border border-orange-200 bg-white px-6 py-4 text-lg font-semibold text-gray-900 transition hover:bg-orange-50">
               <RefreshCw className="h-5 w-5" />
               Refresh
@@ -110,12 +110,12 @@ export default function DisputesPage() {
               <Filter className="h-5 w-5" />
               Advanced Filter
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* STATS */}
 
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-6">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
           <StatCard
             icon={<Scale />}
             title="Total Disputes"
@@ -173,17 +173,17 @@ export default function DisputesPage() {
           <div>
             {/* FILTERS */}
 
-            <div className="rounded-[28px] border border-orange-200 bg-white p-5">
+            <div className="rounded-2xl border border-orange-200 bg-white p-4">
               <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                 <SelectBox label="Status: All Cases" />
                 <SelectBox label="Priority: All" />
 
-                <div className="rounded-2xl bg-gray-100 px-5 py-4 text-lg text-gray-500">
+                <div className="rounded-lg bg-gray-100 px-5 py-2 text-gray-500">
                   Seller Name
                 </div>
               </div>
 
-              <div className="mt-4 flex items-center justify-between rounded-2xl bg-gray-100 px-5 py-4 text-lg text-gray-500">
+              <div className="mt-4 flex items-center justify-between rounded-lg bg-gray-100 px-5 py-2 text-gray-500">
                 dd/mm/yyyy
                 <Calendar className="h-5 w-5 text-gray-600" />
               </div>
@@ -191,106 +191,104 @@ export default function DisputesPage() {
 
             {/* DESKTOP TABLE */}
 
-            <div className="mt-6 hidden overflow-hidden rounded-[30px] border border-orange-200 bg-white xl:block">
-              <div className="grid grid-cols-[120px_1.3fr_1fr_1fr_170px_170px_120px_80px] border-b border-orange-100 bg-[#f3f4f6] px-6 py-6 text-lg font-bold uppercase tracking-wide text-gray-800">
-                <p>Dispute ID</p>
-                <p>Buyer / Seller</p>
-                <p>Product</p>
-                <p>Type</p>
-                <p>Priority</p>
-                <p>Status</p>
-                <p>Last Act</p>
-                <p></p>
-              </div>
-
-              {disputes.map((dispute) => (
-                <div
-                  key={dispute.id}
-                  className="grid grid-cols-[120px_1.3fr_1fr_1fr_170px_170px_120px_80px] items-center border-b border-orange-100 px-6 py-7 transition hover:bg-orange-50/40"
-                >
-                  <p className="text-2xl font-bold text-[#b65400]">
-                    {dispute.id}
-                  </p>
-
-                  <div>
-                    <p className="text-2xl font-bold text-gray-900">
-                      {dispute.buyer}
-                    </p>
-
-                    <p className="mt-1 text-xl text-gray-500">
-                      vs. {dispute.seller}
-                    </p>
+            <div className="overflow-x-auto">
+              <div className="w-full min-w-7xl">
+                <div className="mt-6 hidden overflow-hidden rounded-[30px] border border-orange-200 bg-white xl:block">
+                  <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] border-b border-orange-100 bg-[#f3f4f6] px-6 py-6 font-semibold uppercase tracking-wide text-gray-500">
+                    <p>Dispute ID</p>
+                    <p>Buyer / Seller</p>
+                    <p>Product</p>
+                    <p>Type</p>
+                    <p>Priority</p>
+                    <p>Status</p>
+                    <p>Last Act</p>
                   </div>
 
-                  <p className="text-2xl text-gray-900">
-                    {dispute.product}
-                  </p>
-
-                  <p
-                    className={`text-2xl font-semibold ${
-                      dispute.type === "Fake Product"
-                        ? "text-red-700"
-                        : "text-gray-700"
-                    }`}
-                  >
-                    {dispute.type}
-                  </p>
-
-                  <div>
-                    <span
-                      className={`rounded-full px-5 py-2 text-lg font-bold ${priorityStyles[dispute.priority]}`}
+                  {disputes.map((dispute) => (
+                    <div
+                      key={dispute.id}
+                      onClick={() => setSelectedDispute(dispute)}
+                      className="cursor-pointer grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] items-center border-b border-orange-100 px-6 py-7 transition hover:bg-orange-50/40"
                     >
-                      {dispute.priority}
-                    </span>
+                      <p className="text-[#b65400]">
+                        {dispute.id}
+                      </p>
+
+                      <div>
+                        <p className="font-semibold text-gray-900">
+                          {dispute.buyer}
+                        </p>
+
+                        <p className="mt-1 text-gray-500">
+                          vs. {dispute.seller}
+                        </p>
+                      </div>
+
+                      <p className="text-gray-900">
+                        {dispute.product}
+                      </p>
+
+                      <p
+                        className={`font-semibold ${dispute.type === "Fake Product"
+                          ? "text-red-700"
+                          : "text-gray-700"
+                          }`}
+                      >
+                        {dispute.type}
+                      </p>
+
+                      <div>
+                        <span
+                          className={`rounded-full px-5 py-2 font-semibold text-sm ${priorityStyles[dispute.priority]}`}
+                        >
+                          {dispute.priority}
+                        </span>
+                      </div>
+
+                      <div
+                        className={`flex items-center gap-2 font-semibold ${statusStyles[dispute.status]}`}
+                      >
+                        <div className="h-2 w-2 rounded-full bg-current" />
+                        {dispute.status}
+                      </div>
+
+                      <p className="text-gray-500">
+                        {dispute.activity}
+                      </p>
+
+                      {/* <button
+                        onClick={() => setSelectedDispute(dispute)}
+                        className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-100 text-[#b65400] transition hover:bg-orange-200"
+                      >
+                        <Eye className="h-5 w-5" />
+                      </button> */}
+                    </div>
+                  ))}
+
+                  {/* PAGINATION */}
+
+                  <div className="flex items-center justify-between px-6 py-6">
+                    <p className="font-medium text-gray-500">
+                      Showing 1 to 10 of 1,284 results
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <button className="flex h-10 w-10 items-center justify-center rounded-xl border border-orange-200">
+                        <ChevronLeft />
+                      </button>
+                      <button className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#b65400] font-bold text-white">
+                        1
+                      </button>
+                      <button className="flex h-10 w-10 items-center justify-center rounded-xl font-bold">
+                        2
+                      </button>
+                      <button className="flex h-10 w-10 items-center justify-center rounded-xl font-bold">
+                        3
+                      </button>
+                      <button className="flex h-10 w-10 items-center justify-center rounded-xl border border-orange-200">
+                        <ChevronRight />
+                      </button>
+                    </div>
                   </div>
-
-                  <div
-                    className={`flex items-center gap-2 text-2xl font-semibold ${statusStyles[dispute.status]}`}
-                  >
-                    <div className="h-3 w-3 rounded-full bg-current" />
-                    {dispute.status}
-                  </div>
-
-                  <p className="text-2xl text-gray-500">
-                    {dispute.activity}
-                  </p>
-
-                  <button
-                    onClick={() => setSelectedDispute(dispute)}
-                    className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-100 text-[#b65400] transition hover:bg-orange-200"
-                  >
-                    <Eye className="h-5 w-5" />
-                  </button>
-                </div>
-              ))}
-
-              {/* PAGINATION */}
-
-              <div className="flex items-center justify-between px-6 py-6">
-                <p className="text-xl font-medium text-gray-500">
-                  Showing 1 to 10 of 1,284 results
-                </p>
-
-                <div className="flex items-center gap-3">
-                  <button className="flex h-14 w-14 items-center justify-center rounded-xl border border-orange-200">
-                    <ChevronLeft />
-                  </button>
-
-                  <button className="flex h-14 w-14 items-center justify-center rounded-xl bg-[#b65400] font-bold text-white">
-                    1
-                  </button>
-
-                  <button className="flex h-14 w-14 items-center justify-center rounded-xl font-bold">
-                    2
-                  </button>
-
-                  <button className="flex h-14 w-14 items-center justify-center rounded-xl font-bold">
-                    3
-                  </button>
-
-                  <button className="flex h-14 w-14 items-center justify-center rounded-xl border border-orange-200">
-                    <ChevronRight />
-                  </button>
                 </div>
               </div>
             </div>
@@ -449,16 +447,14 @@ export default function DisputesPage() {
       {/* DRAWER */}
 
       <div
-        className={`fixed inset-0 z-50 transition-all duration-300 ${
-          selectedDispute
-            ? "pointer-events-auto bg-black/30 opacity-100"
-            : "pointer-events-none opacity-0"
-        }`}
+        className={`fixed inset-0 z-50 transition-all duration-300 ${selectedDispute
+          ? "pointer-events-auto bg-black/30 opacity-100"
+          : "pointer-events-none opacity-0"
+          }`}
       >
         <div
-          className={`absolute right-0 top-0 h-full w-full max-w-[950px] overflow-y-auto bg-white transition-transform duration-300 ease-in-out ${
-            selectedDispute ? "translate-x-0" : "translate-x-full"
-          }`}
+          className={`absolute right-0 top-0 h-full w-full max-w-[950px] overflow-y-auto bg-white transition-transform duration-300 ease-in-out ${selectedDispute ? "translate-x-0" : "translate-x-full"
+            }`}
         >
           <div className="sticky top-0 z-20 border-b border-orange-100 bg-white px-6 py-5">
             <div className="flex items-start justify-between">
@@ -599,21 +595,25 @@ function StatCard({
 }) {
   return (
     <div
-      className={`rounded-[28px] border border-orange-200 bg-white p-6 ${className}`}
+      className={`rounded-2xl border border-orange-200 bg-white p-4 ${className}`}
     >
-      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gray-100 text-gray-500">
-        {icon}
+      <div className="flex justify-between items-center gap-4">
+        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-100 text-gray-500">
+          {icon}
+        </div>
+
+        <div className="text-end">
+          <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+            {title}
+          </p>
+
+          <h3 className={`mt-1 text-xl font-bold ${valueClass}`}>
+            {value}
+          </h3>
+        </div>
       </div>
 
-      <p className="mt-5 text-lg font-bold uppercase tracking-wide text-gray-500">
-        {title}
-      </p>
-
-      <h3 className={`mt-3 text-5xl font-bold ${valueClass}`}>
-        {value}
-      </h3>
-
-      <p className={`mt-4 text-xl ${descriptionColor}`}>
+      <p className={`mt-4 bg-linear-to-r from-blue-100 via-orange-50 bg-indigo-100 rounded text-center  ${descriptionColor || "text-gray-600"}`}>
         {description}
       </p>
     </div>
@@ -622,7 +622,7 @@ function StatCard({
 
 function SelectBox({ label }) {
   return (
-    <button className="flex items-center justify-between rounded-2xl bg-gray-100 px-5 py-4 text-lg text-gray-700">
+    <button className="flex items-center justify-between rounded-lg bg-gray-100 px-5 py-2 text-gray-700">
       {label}
       <ChevronDown className="h-5 w-5" />
     </button>
@@ -639,9 +639,8 @@ function ProgressRow({ label, value, width, light }) {
 
       <div className="mt-4 h-4 overflow-hidden rounded-full bg-gray-100">
         <div
-          className={`h-full rounded-full ${
-            light ? "bg-orange-200" : "bg-[#ff6a00]"
-          }`}
+          className={`h-full rounded-full ${light ? "bg-orange-200" : "bg-[#ff6a00]"
+            }`}
           style={{ width }}
         />
       </div>

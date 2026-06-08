@@ -100,24 +100,21 @@ export default function SuspendedAccountsPage() {
             {/* HEADER */}
             <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
                 <div>
-                    <h1 className="text-3xl md:text-5xl font-black text-[#1b1b1b]">
-                        Suspended Accounts
-                    </h1>
-
-                    <p className="mt-2 text-base md:text-xl text-[#674f42]">
+                    <h1 className="text-3xl font-bold text-[#1b1b1b]">Suspended Accounts</h1>
+                    <p className="mt-2 text-[#674f42]">
                         Monitor banned, restricted, and high-risk accounts across the
                         platform.
                     </p>
                 </div>
 
-                <div className="flex flex-wrap gap-3">
+                {/* <div className="flex flex-wrap gap-3">
                     <ActionButton icon={<Download size={18} />} text="Export Reports" />
                     <ActionButton icon={<Bot size={18} />} text="AI Scan" />
 
                     <button className="rounded-2xl bg-[#ff6b00] px-5 py-3 font-semibold text-white shadow-lg transition hover:scale-[1.02]">
                         Review Queue
                     </button>
-                </div>
+                </div> */}
             </div>
 
             {/* STATS */}
@@ -125,23 +122,24 @@ export default function SuspendedAccountsPage() {
                 {suspendedStats.map((card) => (
                     <div
                         key={card.title}
-                        className="rounded-[30px] border border-[#f0c9b7] bg-white p-6"
+                        className="rounded-2xl border border-[#f0c9b7] bg-white p-6"
                     >
                         <div className="flex items-start justify-between">
                             <div className="rounded-2xl bg-[#fff2ea] p-3 text-[#b14e00]">
                                 {card.icon}
                             </div>
 
-                            <span className="text-sm font-semibold text-[#d45500]">
-                                {card.change}
-                            </span>
+                            <div className="text-end">
+                                <span className="text-sm font-semibold text-[#d45500]">
+                                    {card.change}
+                                </span>
+                                <p className="mt-1 text-[#75584b]">{card.title}</p>
+
+                                <h3 className="text-xl font-bold text-[#1d1d1d]">
+                                    {card.value}
+                                </h3>
+                            </div>
                         </div>
-
-                        <p className="mt-6 text-lg text-[#75584b]">{card.title}</p>
-
-                        <h3 className="mt-2 text-5xl font-black text-[#1d1d1d]">
-                            {card.value}
-                        </h3>
 
                         <div className="mt-5 h-2 overflow-hidden rounded-full bg-[#ececec]">
                             <div
@@ -154,14 +152,14 @@ export default function SuspendedAccountsPage() {
             </div>
 
             {/* FILTERS */}
-            <div className="mt-8 rounded-[32px] border border-[#f0c9b7] bg-white p-5 md:p-7">
-                <div className="grid grid-cols-1 gap-4 xl:grid-cols-[1.8fr_180px_180px_180px_auto]">
+            <div className="mt-8 rounded-2xl border border-[#f0c9b7] bg-white p-4 md:p-7">
+                <div className="grid grid-cols-1 gap-4 xl:grid-cols-[1.5fr_1fr_1fr_1fr_1fr]">
                     <div>
-                        <label className="mb-2 block text-sm font-semibold">
+                        <label className="mb-2 block text-sm font-semibold text-nowrap">
                             Search Account
                         </label>
 
-                        <div className="flex items-center gap-3 rounded-2xl bg-[#f5f5f7] px-4 py-4">
+                        <div className="flex items-center gap-3 rounded-xl bg-[#f5f5f7] px-4 py-2">
                             <Search className="text-gray-400" size={20} />
 
                             <input
@@ -178,7 +176,7 @@ export default function SuspendedAccountsPage() {
                     <SelectBox title="Risk Level" />
                     <SelectBox title="Status" />
 
-                    <button className="mt-auto flex h-[58px] items-center justify-center gap-2 rounded-2xl border border-[#efc8b6] bg-white px-5 font-bold text-[#9a4d18] transition hover:bg-[#fff4ee]">
+                    <button className="mt-auto flex py-2 items-center justify-center gap-2 rounded-xl border border-[#efc8b6] bg-white px-5 font-bold text-[#9a4d18] transition hover:bg-[#fff4ee]">
                         <Filter size={18} />
                         Advanced
                     </button>
@@ -186,17 +184,17 @@ export default function SuspendedAccountsPage() {
             </div>
 
             {/* DESKTOP TABLE */}
-            <div className="mt-10 hidden overflow-hidden rounded-[32px] border border-[#f0c9b7] bg-white lg:block">
+            <div className="mt-10 hidden overflow-hidden rounded-2xl border border-[#f0c9b7] bg-white lg:block">
                 <div className="flex items-center justify-between border-b border-[#f3d8ca] px-7 py-6">
-                    <h2 className="text-3xl font-black">Investigation Queue</h2>
+                    <h2 className="text-xl font-bold">Investigation Queue</h2>
 
                     <div className="flex items-center gap-4">
                         <button className="rounded-xl p-2 transition hover:bg-[#f7f2ee]">
-                            <RefreshCw size={20} />
+                            <RefreshCw size={16} />
                         </button>
 
                         <button className="rounded-xl p-2 transition hover:bg-[#f7f2ee]">
-                            <MoreVertical size={20} />
+                            <MoreVertical size={16} />
                         </button>
                     </div>
                 </div>
@@ -227,7 +225,7 @@ export default function SuspendedAccountsPage() {
                                                 <img
                                                     src={user.avatar}
                                                     alt=""
-                                                    className="h-14 w-14 rounded-full object-cover"
+                                                    className="h-14 w-14 rounded-full object-cover object-top"
                                                 />
                                             ) : (
                                                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#ececec] font-bold">
@@ -236,15 +234,15 @@ export default function SuspendedAccountsPage() {
                                             )}
 
                                             <div>
-                                                <h4 className="text-xl font-bold">{user.name}</h4>
+                                                <h4 className=" font-semibold">{user.name}</h4>
 
-                                                <p className="text-[#6b5d55]">ID: {user.userId}</p>
+                                                <p className="text-[#6b5d55] text-sm">ID: {user.userId}</p>
                                             </div>
                                         </div>
                                     </td>
 
                                     <td>
-                                        <span className="rounded-full bg-[#edf1ff] px-4 py-2 text-sm font-bold text-[#5b6678]">
+                                        <span className="rounded-full bg-[#edf1ff] px-4 py-0.5 text-xs text-[#5b6678]">
                                             {user.type}
                                         </span>
                                     </td>
@@ -255,13 +253,13 @@ export default function SuspendedAccountsPage() {
                                                 size={18}
                                                 className="text-[#ff5a00]"
                                             />
-                                            {user.reason}
+                                            <span className="text-sm">{user.reason}</span>
                                         </div>
                                     </td>
 
                                     <td>
                                         <div className="flex items-center gap-3">
-                                            <div className="h-3 w-24 rounded-full bg-[#ececec]">
+                                            <div className="h-1.5 w-24 rounded-full bg-[#ececec]">
                                                 <div
                                                     className={`h-full rounded-full ${user.risk > 85
                                                         ? "bg-red-600"
@@ -271,29 +269,29 @@ export default function SuspendedAccountsPage() {
                                                 />
                                             </div>
 
-                                            <span className="font-bold text-red-600">
+                                            <span className="font-medium text-red-600">
                                                 {user.risk}%
                                             </span>
                                         </div>
                                     </td>
 
-                                    <td className="font-bold text-[#9f4f12]">{user.agent}</td>
+                                    <td className=" text-[#9f4f12]">{user.agent}</td>
 
                                     <td>
                                         {user.appealType === "pending" && (
-                                            <span className="rounded-full bg-[#ffe6e2] px-4 py-2 font-bold text-red-500">
+                                            <span className="rounded-full bg-[#ffe6e2] px-4 py-0.5 text-xs text-red-500">
                                                 PENDING
                                             </span>
                                         )}
 
                                         {user.appealType === "rejected" && (
-                                            <span className="rounded-full bg-[#efefef] px-4 py-2 font-bold text-[#72665e]">
+                                            <span className="rounded-full bg-[#efefef] px-4 py-0.5 text-xs text-[#72665e]">
                                                 REJECTED
                                             </span>
                                         )}
 
                                         {user.appealType === "none" && (
-                                            <span className="italic text-[#7f7268]">
+                                            <span className="italic text-sm font-light text-[#7f7268]">
                                                 No appeal submitted
                                             </span>
                                         )}
@@ -303,13 +301,13 @@ export default function SuspendedAccountsPage() {
                                         <div className="flex items-center gap-4">
                                             <button
                                                 onClick={() => setDrawerOpen(true)}
-                                                className="rounded-2xl bg-[#ff6b00] px-5 py-3 font-bold text-white transition hover:opacity-90"
+                                                className="rounded-xl bg-[#ff6b00] px-4 py-2 font-medium text-sm text-white transition hover:opacity-90"
                                             >
                                                 View Case
                                             </button>
 
                                             <button className="rounded-xl p-2 hover:bg-[#f5f5f5]">
-                                                <EllipsisVertical size={20} />
+                                                <EllipsisVertical size={16} />
                                             </button>
                                         </div>
                                     </td>
@@ -320,7 +318,7 @@ export default function SuspendedAccountsPage() {
                 </div>
 
                 <div className="flex items-center justify-between px-7 py-6">
-                    <p className="font-medium text-[#6e6058]">
+                    <p className="text-sm font-light text-[#6e6058]">
                         Showing 1-10 of 2,840 suspended accounts
                     </p>
 
@@ -354,37 +352,42 @@ export default function SuspendedAccountsPage() {
                 {mobileCards.map((item) => (
                     <div
                         key={item.id}
-                        className="rounded-[32px] border border-[#f0c9b7] bg-white p-5"
+                        className="rounded-2xl border border-[#f0c9b7] bg-white p-5"
                     >
                         <div className="flex items-start justify-between">
                             <div className="flex gap-4">
                                 <img
                                     src={item.avatar}
                                     alt=""
-                                    className="h-20 w-20 rounded-[24px] object-cover"
+                                    className="h-16 w-16 rounded-[24px] object-cover object-top"
                                 />
 
-                                <div>
-                                    <h3 className="text-3xl font-bold">{item.name}</h3>
-
-                                    <p className="mt-2 text-xl text-[#7b6658]">
+                                <div className="hidden sm:block">
+                                    <h3 className="text-xl font-bold">{item.name}</h3>
+                                    <p className="mt-2 text-[#7b6658]">
                                         ID: {item.id}
                                     </p>
                                 </div>
                             </div>
 
-                            <span className="rounded-full bg-[#eceff7] px-4 py-2 text-sm font-bold text-[#697487]">
+                            <span className="rounded-full bg-[#eceff7] px-4 py-1 text-xs text-[#697487]">
                                 {item.type}
                             </span>
                         </div>
+                        <div className="sm:hidden">
+                            <h3 className="text-lg font-bold mt-3">{item.name}</h3>
+                            <p className="text-sm text-[#7b6658]">
+                                ID: {item.id}
+                            </p>
+                        </div>
 
-                        <div className="mt-8 flex justify-between gap-6">
+                        <div className="mt-4 flex flex-col sm:flex-row justify-between gap-6">
                             <div>
                                 <p className="text-sm uppercase tracking-wide text-[#78584a]">
                                     Suspension Reason
                                 </p>
 
-                                <h4 className="mt-2 text-4xl font-semibold">
+                                <h4 className=" text-lg font-medium">
                                     {item.reason}
                                 </h4>
                             </div>
@@ -394,8 +397,8 @@ export default function SuspendedAccountsPage() {
                                     Risk Score
                                 </p>
 
-                                <div className="mt-4 flex items-center gap-3">
-                                    <div className="h-3 flex-1 rounded-full bg-[#ececec]">
+                                <div className=" flex items-center gap-3">
+                                    <div className="h-2 flex-1 rounded-full bg-[#ececec]">
                                         <div
                                             className={`h-full rounded-full ${item.risk > 80
                                                 ? "bg-red-600"
@@ -407,7 +410,7 @@ export default function SuspendedAccountsPage() {
                                         />
                                     </div>
 
-                                    <span className="text-3xl font-black text-red-600">
+                                    <span className="font-medium text-red-600">
                                         {item.risk}
                                     </span>
                                 </div>
@@ -419,7 +422,7 @@ export default function SuspendedAccountsPage() {
                         <div className="flex gap-3">
                             <button
                                 onClick={() => setDrawerOpen(true)}
-                                className={`flex-1 rounded-[24px] py-5 text-2xl font-bold ${item.risk > 50
+                                className={`flex-1 rounded-[24px] py-3 font-semibold ${item.risk > 50
                                     ? "bg-[#b65300] text-white"
                                     : "bg-[#f1f1f1]"
                                     }`}
@@ -428,7 +431,7 @@ export default function SuspendedAccountsPage() {
                             </button>
 
                             <button className="rounded-[24px] border border-[#e8c6b8] px-5">
-                                <MoreVertical size={26} />
+                                <MoreVertical size={20} />
                             </button>
                         </div>
                     </div>
@@ -441,16 +444,16 @@ export default function SuspendedAccountsPage() {
                     {/* HEADER */}
                     <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                         <div>
-                            <h3 className="text-2xl md:text-4xl font-black text-[#1f1f1f]">
+                            <h3 className="text-xl font-bold text-[#1f1f1f]">
                                 Suspension Velocity
                             </h3>
 
-                            <p className="mt-2 text-sm md:text-lg text-[#7a6355]">
+                            <p className="mt-2 text-[#7a6355]">
                                 Comparison between AI and Manual suspensions (30d)
                             </p>
                         </div>
 
-                        <button className="flex items-center gap-2 rounded-full bg-[#f4f4f5] px-5 py-3 text-sm md:text-base font-semibold text-[#333]">
+                        <button className="flex items-center gap-2 rounded-full bg-[#f4f4f5] px-5 py-3 text-sm text-[#333]">
                             Last 30 Days
                             <ChevronDown size={18} />
                         </button>
@@ -518,17 +521,17 @@ export default function SuspendedAccountsPage() {
                     {/* LEGEND */}
                     <div className="mt-6 flex flex-wrap items-center gap-8">
                         <div className="flex items-center gap-3">
-                            <div className="h-5 w-5 rounded-full bg-[#ff8539]" />
+                            <div className="h-3 w-3 rounded-full bg-[#ff8539]" />
 
-                            <span className="text-lg font-bold text-[#1f1f1f]">
+                            <span className="font-medium text-[#1f1f1f]">
                                 AI Flagged
                             </span>
                         </div>
 
                         <div className="flex items-center gap-3">
-                            <div className="h-5 w-5 rounded-full bg-[#f3d7c8]" />
+                            <div className="h-3 w-3 rounded-full bg-[#f3d7c8]" />
 
-                            <span className="text-lg font-bold text-[#1f1f1f]">
+                            <span className="font-medium text-[#1f1f1f]">
                                 Manual Mod
                             </span>
                         </div>
@@ -538,7 +541,7 @@ export default function SuspendedAccountsPage() {
                 <div className="rounded-[32px] border border-[#f0c9b7] bg-white p-7">
                     <div className="flex items-start justify-between">
                         <div>
-                            <h3 className="text-3xl font-black">
+                            <h3 className="text-xl font-bold">
                                 Regional Abuse Nodes
                             </h3>
 
@@ -960,7 +963,7 @@ function SelectBox({ title }) {
                 {title}
             </label>
 
-            <select className="h-[58px] w-full rounded-2xl bg-[#f5f5f7] px-4 outline-none">
+            <select className="py-2 w-full rounded-xl bg-[#f5f5f7] px-4 outline-none">
                 <option>All Types</option>
             </select>
         </div>
@@ -970,7 +973,7 @@ function SelectBox({ title }) {
 function PaginationButton({ children, active }) {
     return (
         <button
-            className={`flex h-12 w-12 items-center justify-center rounded-2xl border text-lg font-bold transition ${active
+            className={`flex h-10 w-10 items-center justify-center rounded-2xl border text-lg font-bold transition ${active
                 ? "border-[#ff6b00] bg-[#ff6b00] text-white"
                 : "border-[#ebc9b7] bg-white hover:bg-[#fff5ef]"
                 }`}

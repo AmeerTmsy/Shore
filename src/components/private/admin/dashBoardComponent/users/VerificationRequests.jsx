@@ -85,16 +85,16 @@ export default function VerificationRequests() {
       {/* HEADER */}
       <div className="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-5">
         <div>
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight text-neutral-900">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-neutral-900">
             Verification Requests
           </h1>
 
-          <p className="text-neutral-500 mt-2 text-lg">
+          <p className="text-neutral-500 mt-2">
             Reviewing 142 pending identities today.
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        {/* <div className="flex flex-wrap gap-3">
           <button className="h-14 px-6 rounded-2xl border border-orange-200 bg-white font-semibold text-neutral-800 flex items-center gap-2">
             <FileText size={20} />
             Export Reports
@@ -114,82 +114,75 @@ export default function VerificationRequests() {
             <ChevronRight size={20} />
             Review Queue
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* STATS */}
-      <div className="mt-8 overflow-x-auto scrollbar-hide">
+      <div className="mt-8 overflow-x-auto scrollbar-hide block md:hidden">
         <div className="flex gap-5 min-w-max pb-2">
-          {[
-            {
-              title: "Pending",
-              value: "142",
-              icon: <Clock3 className="text-orange-500" />,
-              trend: "+12%",
-            },
-            {
-              title: "Approved",
-              value: "2,840",
-              icon: <ShieldCheck className="text-green-500" />,
-              trend: "-3%",
-            },
-            {
-              title: "Rejected",
-              value: "312",
-              icon: <ShieldX className="text-red-500" />,
-              trend: "+5%",
-            },
-            {
-              title: "High Risk",
-              value: "18",
-              icon: <ShieldAlert className="text-orange-500" />,
-              trend: "+2%",
-            },
-            {
-              title: "Avg Review",
-              value: "4.2m",
-              icon: <Clock3 className="text-blue-500" />,
-              trend: "-10%",
-            },
-            {
-              title: "KYC Rate",
-              value: "98.2%",
-              icon: <TrendingUp className="text-violet-500" />,
-              trend: "+0.5%",
-            },
-          ].map((item, i) => (
+          {statusCards.map((item, i) => (
             <div
               key={i}
-              className="w-[270px] rounded-[32px] border border-orange-200 bg-white p-7 flex-shrink-0"
+              className="min-w-[200px] rounded-2xl border border-orange-200 bg-white p-4 flex-shrink-0"
             >
               <div className="flex items-center justify-between">
-                <h3 className="uppercase tracking-wide text-neutral-700 font-semibold">
+                <h3 className="uppercase tracking-wide text-neutral-700 font-semibold text-sm">
                   {item.title}
                 </h3>
 
                 {item.icon}
               </div>
 
-              <h2 className="text-5xl font-black mt-7 text-neutral-900">
-                {item.value}
-              </h2>
+              <div className="flex justify-between items-center">
+                <h2 className=" font-black mt-7 text-neutral-900">
+                  {item.value}
+                </h2>
 
-              <p className="mt-5 text-green-600 font-semibold">
-                ↗ {item.trend}
-              </p>
+                <p className="mt-5 text-green-600 font-semibold text-sm">
+                  ↗ {item.trend}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="mt-8 hidden md:block">
+        <div className="grid grid-cols-3 gap-3">
+          {statusCards.map((item, i) => (
+            <div
+              key={i}
+              className="min-w-[200px] rounded-2xl border border-orange-200 bg-white p-4 flex-shrink-0"
+            >
+              <div className="flex items-center justify-between">
+                <h3 className="uppercase tracking-wide text-neutral-700 font-semibold text-sm">
+                  {item.title}
+                </h3>
+
+                {item.icon}
+              </div>
+
+              <div className="flex justify-between items-center">
+                <h2 className=" font-black mt-7 text-neutral-900">
+                  {item.value}
+                </h2>
+
+                <p className="mt-5 text-green-600 font-semibold text-sm">
+                  ↗ {item.trend}
+                </p>
+              </div>
             </div>
           ))}
         </div>
       </div>
 
       {/* FILTERS */}
-      <div className="mt-8 rounded-[36px] border border-orange-200 bg-white p-5">
+      <div className="mt-8 rounded-2xl xl:rounded-full border border-orange-200 bg-white p-3">
         <div className="flex flex-col xl:flex-row gap-4">
-          <div className="flex-1 h-16 rounded-2xl bg-neutral-100 px-5 flex items-center gap-4">
+          <div className="flex-1 h-10 rounded-xl xl:rounded-full bg-neutral-100 px-5 flex items-center gap-4">
             <Search className="text-neutral-500" />
             <input
               placeholder="Search by name, email or ID..."
-              className="bg-transparent outline-none w-full text-lg"
+              className="bg-transparent outline-none w-full text-sm py-1.5"
             />
           </div>
 
@@ -198,15 +191,15 @@ export default function VerificationRequests() {
               (item, i) => (
                 <button
                   key={i}
-                  className="h-16 px-6 rounded-2xl bg-neutral-100 font-semibold whitespace-nowrap"
+                  className="h-10 px-6 rounded-xl xl:rounded-full bg-neutral-100 whitespace-nowrap text-sm"
                 >
                   {item}
                 </button>
               )
             )}
 
-            <button className="w-16 h-16 rounded-2xl bg-neutral-100 flex items-center justify-center">
-              <Filter />
+            <button className="w-10 h-10 rounded-xl xl:rounded-full bg-neutral-100 flex items-center justify-center">
+              <Filter size={20} />
             </button>
           </div>
         </div>
@@ -214,135 +207,128 @@ export default function VerificationRequests() {
 
       {/* TABLE */}
       <div className="hidden lg:block mt-10 overflow-hidden rounded-[36px] border border-orange-200 bg-white">
-        <table className="w-full">
-          <thead className="border-b border-orange-200 text-left">
-            <tr className="text-neutral-700 uppercase tracking-wide text-sm">
-              {[
-                "User",
-                "Type",
-                "Docs",
-                "AI Conf.",
-                "Risk Level",
-                "Time",
-                "Status",
-                "Actions",
-              ].map((item) => (
-                <th key={item} className="px-8 py-7">
-                  {item}
-                </th>
-              ))}
-            </tr>
-          </thead>
-
-          <tbody>
-            {verificationRequests.map((user) => (
-              <tr
-                key={user.id}
-                className="border-b border-orange-100 hover:bg-orange-50/30 transition"
-              >
-                <td className="px-8 py-7">
-                  <div className="flex items-center gap-4">
-                    <img
-                      src={user.avatar}
-                      alt=""
-                      className="w-14 h-14 rounded-full object-cover"
-                    />
-
-                    <div>
-                      <h3 className="font-bold text-2xl text-neutral-900">
-                        {user.name}
-                      </h3>
-
-                      <p className="text-neutral-500">{user.email}</p>
+        <div className="overflow-x-auto ">
+          <table className="w-full min-w-7xl">
+            <thead className="border-b border-orange-200 text-left">
+              <tr className="text-neutral-700 uppercase tracking-wide text-sm">
+                {verificationTableHeaders.map((item, index) => (
+                  <th key={item} className={`px-4 py-7 ${index === 0 && 'ps-6'} ${index === verificationTableHeaders.length - 1 && 'pe-6'} `}>
+                    <div className={`w-full ${index === verificationTableHeaders.length - 1 && 'text-end'} `}>
+                      <span>{item}</span>
                     </div>
-                  </div>
-                </td>
+                  </th>
+                ))}
+              </tr>
+            </thead>
 
-                <td className="px-8 py-7">
-                  <span className="px-4 py-2 rounded-xl bg-neutral-100 font-semibold">
-                    {user.type}
-                  </span>
-                </td>
+            <tbody>
+              {verificationRequests.map((user) => (
+                <tr
+                  key={user.id}
+                  onClick={() => openDrawer(user)}
+                  className="border-b border-orange-100 hover:bg-orange-50/30 transition cursor-pointer"
+                >
+                  <td className="px-4 ps-6 py-7">
+                    <div className="flex items-center gap-4">
+                      <img
+                        src={user.avatar}
+                        alt=""
+                        className="w-14 h-14 rounded-full object-cover object-top"
+                      />
 
-                <td className="px-8 py-7">
-                  <div className="flex gap-3 text-neutral-500">
-                    <IdCard />
-                    <User />
-                    <Building2 />
-                  </div>
-                </td>
+                      <div>
+                        <h3 className="font-medium text-neutral-900">
+                          {user.name}
+                        </h3>
 
-                <td className="px-8 py-7">
-                  <div className="flex items-center gap-4">
-                    <div className="w-24 h-3 rounded-full bg-neutral-200 overflow-hidden">
-                      <div
-                        className={`h-full ${
-                          user.ai > 80
+                        <p className="text-neutral-500 text-sm">{user.email}</p>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td className="px-4 py-7">
+                    <span className="px-4 py-1 rounded-xl bg-neutral-100 text-sm">
+                      {user.type}
+                    </span>
+                  </td>
+
+                  <td className="px-4 py-7">
+                    <div className="flex gap-3 text-neutral-500">
+                      <IdCard />
+                      <User />
+                      <Building2 />
+                    </div>
+                  </td>
+
+                  <td className="px-4 py-7">
+                    <div className="flex items-center gap-4">
+                      <div className="w-24 h-1.5 rounded-full bg-neutral-200 overflow-hidden">
+                        <div
+                          className={`h-full ${user.ai > 80
                             ? "bg-green-500"
                             : user.ai > 50
-                            ? "bg-yellow-500"
-                            : "bg-orange-500"
-                        }`}
-                        style={{ width: `${user.ai}%` }}
-                      />
+                              ? "bg-yellow-500"
+                              : "bg-orange-500"
+                            }`}
+                          style={{ width: `${user.ai}%` }}
+                        />
+                      </div>
+
+                      <span className="font-semibold">{user.ai}%</span>
                     </div>
+                  </td>
 
-                    <span className="font-bold text-xl">{user.ai}%</span>
-                  </div>
-                </td>
-
-                <td className="px-8 py-7">
-                  <span
-                    className={`px-4 py-2 rounded-full font-semibold ${
-                      user.risk === "Low Risk"
+                  <td className="px-4 py-7">
+                    <span
+                      className={`px-4 py-0.5 rounded-full text-sm text-nowrap ${user.risk === "Low Risk"
                         ? "bg-green-100 text-green-700"
                         : user.risk === "Medium Risk"
-                        ? "bg-yellow-100 text-yellow-700"
-                        : "bg-red-100 text-red-700"
-                    }`}
-                  >
-                    {user.risk}
-                  </span>
-                </td>
+                          ? "bg-yellow-100 text-yellow-700"
+                          : "bg-red-100 text-red-700"
+                        }`}
+                    >
+                      {user.risk}
+                    </span>
+                  </td>
 
-                <td className="px-8 py-7 text-neutral-700 font-medium">
-                  {user.time}
-                </td>
+                  <td className="px-4 py-7 text-neutral-700 font-medium">
+                    {user.time}
+                  </td>
 
-                <td className="px-8 py-7">
-                  <span
-                    className={`px-4 py-2 rounded-full font-semibold ${
-                      user.status === "Pending"
+                  <td className="px-4 py-7">
+                    <span
+                      className={`px-2.5 py-0.5 rounded-full text-sm ${user.status === "Pending"
                         ? "bg-orange-100 text-orange-700"
                         : "bg-red-100 text-red-700"
-                    }`}
-                  >
-                    {user.status}
-                  </span>
-                </td>
-
-                <td className="px-8 py-7">
-                  <div className="flex items-center gap-4">
-                    <button
-                      onClick={() => openDrawer(user)}
-                      className="font-bold text-neutral-800"
+                        }`}
                     >
-                      Review
-                    </button>
+                      {user.status}
+                    </span>
+                  </td>
 
-                    <button className="text-green-600">
-                      <CheckCircle2 size={30} />
-                    </button>
+                  <td className="px-4 pe-6 py-7">
+                    <div className="flex items-center gap-4">
+                      {/* <button
+                        onClick={() => openDrawer(user)}
+                        className="font-bold text-neutral-800"
+                      >
+                        Review
+                      </button> */}
 
-                    <button className="text-red-600">
-                      <XCircle size={30} />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                      <button className="text-green-600">
+                        <CheckCircle2 size={24} />
+                      </button>
+
+                      <button className="text-red-600">
+                        <XCircle size={24} />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
         <div className="p-8 flex items-center justify-between">
           <p className="text-neutral-600 font-medium">
@@ -376,9 +362,9 @@ export default function VerificationRequests() {
       {/* MOBILE */}
       <div className="lg:hidden mt-8">
         <div className="flex items-center justify-between mb-5">
-          <h2 className="text-3xl font-black">Recent Requests</h2>
+          <h2 className="text-xl font-bold">Recent Requests</h2>
 
-          <button className="text-orange-700 font-bold text-2xl">
+          <button className="text-orange-700 hover:underline cursor-pointer">
             View All
           </button>
         </div>
@@ -387,65 +373,73 @@ export default function VerificationRequests() {
           {verificationRequests.map((user) => (
             <div
               key={user.id}
-              className="rounded-[32px] border border-orange-200 bg-white p-5"
+              className="rounded-2xl border border-orange-200 bg-white p-5"
             >
               <div className="flex items-start justify-between">
                 <div className="flex gap-4">
                   <img
                     src={user.avatar}
-                    className="w-20 h-20 rounded-full object-cover"
+                    className="w-20 h-20 rounded-full object-cover object-top"
                     alt=""
                   />
 
-                  <div>
-                    <h3 className="text-4xl font-black text-neutral-900">
+                  <div className="hidden sm:block">
+                    <h3 className="font-bold text-lg text-neutral-900">
                       {user.name}
                     </h3>
 
                     <p className="text-neutral-600 mt-1">
-                      Submitted 2h ago • #VR-8821
+                      Submitted 2h ago • #VR-8821143 Items Auto-processed
                     </p>
                   </div>
                 </div>
-
                 <span
-                  className={`px-4 py-2 rounded-full font-bold ${
-                    user.status === "Pending"
-                      ? "bg-neutral-100 text-neutral-600"
-                      : "bg-red-100 text-red-700"
-                  }`}
+                  className={`px-3 py-0.5 rounded-full text-sm ${user.status === "Pending"
+                    ? "bg-neutral-100 text-neutral-600"
+                    : "bg-red-100 text-red-700"
+                    }`}
                 >
                   {user.status}
                 </span>
               </div>
+              <div className=" sm:hidden">
+                <h3 className="font-bold text-lg text-neutral-900">
+                  {user.name}
+                </h3>
 
-              <div className="border-t border-orange-100 mt-6 pt-6 grid grid-cols-3 gap-4">
-                <div>
-                  <p className="text-neutral-600 font-semibold">RISK SCORE</p>
+                <p className="text-neutral-600 mt-1">
+                  Submitted 2h ago • #VR-8821143 Items Auto-processed
+                </p>
+              </div>
 
-                  <span
-                    className={`mt-3 inline-block px-4 py-2 rounded-xl font-bold ${
-                      user.risk === "Low Risk"
+              <div className="border-t border-orange-100 mt-6 pt-4 grid sm:grid-cols-2 gap-4">
+                <div className="flex justify-between gap-3">
+                  <div>
+                    <p className="text-neutral-600 font-semibold">RISK SCORE</p>
+  
+                    <span
+                      className={`mt-3 inline-block px-4 py-2 rounded-lg ${user.risk === "Low Risk"
                         ? "bg-green-100 text-green-700"
                         : user.risk === "Medium Risk"
-                        ? "bg-yellow-100 text-yellow-700"
-                        : "bg-red-100 text-red-700"
-                    }`}
-                  >
-                    {user.risk}
-                  </span>
+                          ? "bg-yellow-100 text-yellow-700"
+                          : "bg-red-100 text-red-700"
+                        }`}
+                    >
+                      {user.risk}
+                    </span>
+                  </div>
+  
+                  <div>
+                    <p className="text-neutral-600 font-semibold">TYPE</p>
+  
+                    <h4 className="text-lg font-semibold mt-3">{user.type}</h4>
+                  </div>
                 </div>
 
-                <div>
-                  <p className="text-neutral-600 font-semibold">TYPE</p>
-
-                  <h4 className="text-2xl font-black mt-3">{user.type}</h4>
-                </div>
-
-                <div className="flex items-end justify-end">
+                <div className="flex items-start justify-end">
                   <button
                     onClick={() => openDrawer(user)}
-                    className="h-14 px-7 rounded-2xl bg-orange-700 text-white font-bold text-xl"
+                    className="py-2 px-7 rounded-2xl bg-orange-700 text-white font-semibold"
                   >
                     Review
                   </button>
@@ -458,25 +452,24 @@ export default function VerificationRequests() {
         {/* AUTOMATION */}
         <div className="mt-8 rounded-[36px] bg-[#23272f] text-white p-7">
           <p className="text-neutral-300">Automation Status</p>
-
-          <h2 className="text-4xl font-black mt-2">
+          <h2 className="text-xl font-semibold mt-2">
             143 Items Auto-processed
           </h2>
-
-          <button className="mt-6 h-16 px-8 rounded-2xl bg-orange-600 text-white font-bold text-2xl">
-            Pause System
-          </button>
+          <div className="w-full text-center sm:text-end">
+            <button className="mt-6 h-16 px-8 rounded-2xl bg-orange-600 text-white font-bold text-xl">
+              Pause System
+            </button>
+          </div>
         </div>
       </div>
 
       {/* BACKDROP */}
       <div
         onClick={closeDrawer}
-        className={`fixed inset-0 bg-black/30 backdrop-blur-sm z-40 transition-all duration-300 ${
-          drawerOpen
-            ? "opacity-100 visible"
-            : "opacity-0 invisible pointer-events-none"
-        }`}
+        className={`fixed inset-0 bg-black/30 backdrop-blur-sm z-40 transition-all duration-300 ${drawerOpen
+          ? "opacity-100 visible"
+          : "opacity-0 invisible pointer-events-none"
+          }`}
       />
 
       {/* DRAWER */}
@@ -704,3 +697,55 @@ export default function VerificationRequests() {
     </div>
   );
 }
+
+
+const statusCards = [
+  {
+    title: "Pending",
+    value: "142",
+    icon: <Clock3 size={16} className="text-orange-500" />,
+    trend: "+12%",
+  },
+  {
+    title: "Approved",
+    value: "2,840",
+    icon: <ShieldCheck size={16} className="text-green-500" />,
+    trend: "-3%",
+  },
+  {
+    title: "Rejected",
+    value: "312",
+    icon: <ShieldX size={16} className="text-red-500" />,
+    trend: "+5%",
+  },
+  {
+    title: "High Risk",
+    value: "18",
+    icon: <ShieldAlert size={16} className="text-orange-500" />,
+    trend: "+2%",
+  },
+  {
+    title: "Avg Review",
+    value: "4.2m",
+    icon: <Clock3 size={16} className="text-blue-500" />,
+    trend: "-10%",
+  },
+  {
+    title: "KYC Rate",
+    value: "98.2%",
+    icon: <TrendingUp size={16} className="text-violet-500" />,
+    trend: "+0.5%",
+  },
+]
+
+
+const verificationTableHeaders = [
+  "User",
+  "Type",
+  "Docs",
+  "AI Conf.",
+  "Risk Level",
+  "Time",
+  "Status",
+  "Actions",
+]

@@ -31,17 +31,17 @@ export default function AllOrders() {
             {/* ================================================= */}
             <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
                 <div>
-                    <h1 className="text-4xl font-bold tracking-tight text-gray-900">All Orders</h1>
-                    <p className="mt-2 text-base text-gray-500">Monitor and manage platform-wide commerce transactions</p>
+                    <h1 className="text-2xl font-bold tracking-tight text-gray-900">All Orders</h1>
+                    <p className="mt-1 text-sm sm:text-[1em] text-gray-500">Monitor and manage platform-wide commerce transactions</p>
                 </div>
-                <div className="flex flex-col gap-3 sm:flex-row">
+                {/* <div className="flex flex-col gap-3 sm:flex-row">
                     <button className="flex items-center justify-center gap-2 rounded-2xl border-2 border-orange-500 bg-white px-6 py-4 text-sm font-semibold text-orange-600 transition hover:bg-orange-50">
                         <Download size={18} />Export CSV
                     </button>
                     <button className="flex items-center justify-center gap-2 rounded-2xl bg-orange-500 px-6 py-4 text-sm font-semibold text-white transition hover:bg-orange-600">
                         <Plus size={18} />Manual Order
                     </button>
-                </div>
+                </div> */}
             </div>
             {/* ================================================= */}
             {/* STATS */}
@@ -253,29 +253,29 @@ export default function AllOrders() {
                 {/* ================================================= */}
                 {/* PAGINATION */}
                 {/* ================================================= */}
-                <div className="border-t border-orange-100 p-5">
+                <div className="border-t border-orange-100 py-4 px-5">
                     <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                        <button className="flex items-center justify-center gap-2 rounded-2xl border border-orange-200 bg-white px-6 py-4 text-sm font-semibold text-gray-700 transition hover:bg-gray-50">
+                        <button className="flex items-center justify-center gap-2 rounded-lg border border-orange-200 bg-white px-6 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-50">
                             <ChevronLeft size={18} />Previous
                         </button>
                         <div className="flex items-center justify-center gap-2">
-                            <button className="flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-700 text-sm font-bold text-white">
+                            <button className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-700 text-sm font-bold text-white">
                                 1
                             </button>
                             {[2, 3].map((page) => (
                                 <button
                                     key={page}
-                                    className="flex h-12 w-12 items-center justify-center rounded-2xl text-sm font-semibold text-gray-600 transition hover:bg-gray-100"
+                                    className="flex h-10 w-10 items-center justify-center rounded-lg text-sm font-semibold text-gray-600 transition hover:bg-gray-100"
                                 >
                                     {page}
                                 </button>
                             ))}
                             <span className="px-2 text-gray-400">...</span>
-                            <button className="flex h-12 w-12 items-center justify-center rounded-2xl text-sm font-semibold text-gray-600 transition hover:bg-gray-100">
+                            <button className="flex h-10 w-10 items-center justify-center rounded-lg text-sm font-semibold text-gray-600 transition hover:bg-gray-100">
                                 86
                             </button>
                         </div>
-                        <button className="flex items-center justify-center gap-2 rounded-2xl border border-orange-200 bg-white px-6 py-4 text-sm font-semibold text-gray-700 transition hover:bg-gray-50">
+                        <button className="flex items-center justify-center gap-2 rounded-lg border border-orange-200 bg-white px-6 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-50">
                             Next<ChevronRight size={18} />
                         </button>
                     </div>

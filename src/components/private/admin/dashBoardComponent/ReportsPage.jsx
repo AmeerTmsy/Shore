@@ -63,58 +63,58 @@ export default function ReportsPage() {
                 <section className="grid grid-cols-2 gap-4 lg:grid-cols-3 2xl:grid-cols-6">
                     {KPI_CARDS.map((item) => {
                         const gradientId = `gradient-${item.title.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "")}`;
-                            return (
-                                <div
-                                    key={item.title}
-                                    className="rounded-2xl border border-[#ece0d8] bg-white p-5 shadow-sm"
-                                >
-                                    <div className="flex items-start justify-between">
-                                        <p className="text-sm font-bold uppercase tracking-wide text-[#6f5848]">
-                                            {item.title}
-                                        </p>
+                        return (
+                            <div
+                                key={item.title}
+                                className="rounded-2xl border border-[#ece0d8] bg-white p-5 shadow-sm"
+                            >
+                                <div className="flex items-start justify-between">
+                                    <p className="text-sm font-bold uppercase tracking-wide text-[#6f5848]">
+                                        {item.title}
+                                    </p>
 
-                                        <span
-                                            className={`rounded-full px-3 py-1 text-xs font-black ${item.growthColor}`}
-                                        >
-                                            {item.growth}
-                                        </span>
-                                    </div>
-
-                                    <h2 className="mt-1 text-lg font-bold text-[#171717]">
-                                        {item.value}
-                                    </h2>
-
-                                    <div className="mt-5 h-14  rounded-md" style={{ borderColor: item.lineColor }} >
-                                        <ResponsiveContainer width="100%" height="100%">
-                                            <AreaChart data={item.data}>
-                                                <defs>
-                                                    <linearGradient
-                                                        id={gradientId}
-                                                        x1="0"
-                                                        y1="0"
-                                                        x2="0"
-                                                        y2="1"
-                                                    >
-                                                        <stop offset="0%" stopColor={item.fillColor} stopOpacity={0.7} />
-                                                        <stop offset="100%" stopColor={item.fillColor} stopOpacity={0.2} />
-                                                    </linearGradient>
-                                                </defs>
-
-                                                <Tooltip contentStyle={{ display: "none" }} />
-
-                                                <Area
-                                                    type="monotone"
-                                                    dataKey="value"
-                                                    stroke={item.lineColor}
-                                                    strokeWidth={1.5}
-                                                    fill={`url(#${gradientId})`}
-                                                    isAnimationActive={false}
-                                                />
-                                            </AreaChart>
-                                        </ResponsiveContainer>
-                                    </div>
+                                    <span
+                                        className={`rounded-full px-3 py-1 text-xs font-black ${item.growthColor}`}
+                                    >
+                                        {item.growth}
+                                    </span>
                                 </div>
-                            )
+
+                                <h2 className="mt-1 text-lg font-bold text-[#171717]">
+                                    {item.value}
+                                </h2>
+
+                                <div className="mt-5 h-14  rounded-md" style={{ borderColor: item.lineColor }} >
+                                    <ResponsiveContainer width="100%" height="100%">
+                                        <AreaChart data={item.data}>
+                                            <defs>
+                                                <linearGradient
+                                                    id={gradientId}
+                                                    x1="0"
+                                                    y1="0"
+                                                    x2="0"
+                                                    y2="1"
+                                                >
+                                                    <stop offset="0%" stopColor={item.fillColor} stopOpacity={0.7} />
+                                                    <stop offset="100%" stopColor={item.fillColor} stopOpacity={0.2} />
+                                                </linearGradient>
+                                            </defs>
+
+                                            <Tooltip contentStyle={{ display: "none" }} />
+
+                                            <Area
+                                                type="monotone"
+                                                dataKey="value"
+                                                stroke={item.lineColor}
+                                                strokeWidth={1.5}
+                                                fill={`url(#${gradientId})`}
+                                                isAnimationActive={false}
+                                            />
+                                        </AreaChart>
+                                    </ResponsiveContainer>
+                                </div>
+                            </div>
+                        )
                     })}
                 </section>
 
@@ -244,9 +244,9 @@ export default function ReportsPage() {
                     {/* TOP PRODUCTS */}
                     <div className="rounded-[36px] border border-[#ecd8cc] bg-white p-5 shadow-sm md:p-8">
                         <div className="flex items-center justify-between">
-                            <h2 className="text-3xl font-black">Top Selling Products</h2>
+                            <h2 className="text-xl font-bold tracking-tight text-gray-900">Top Selling Products</h2>
 
-                            <button className="font-black text-[#a65312]">
+                            <button className="text-xs text-blue-500">
                                 View All
                             </button>
                         </div>
@@ -255,9 +255,9 @@ export default function ReportsPage() {
                             {TOP_PRODUCTS.map((item) => (
                                 <div
                                     key={item.name}
-                                    className="flex flex-col gap-5 border-b border-[#f2e6dd] p-5 last:border-none md:flex-row md:items-center md:justify-between"
+                                    className="flex flex-col md:grid md:grid-cols-5 gap-5 border-b border-[#f2e6dd] p-5 last:border-none md:items-center md:justify-between"
                                 >
-                                    <div className="flex items-center gap-4">
+                                    <div className="flex items-center gap-4 md:col-span-2">
                                         <img
                                             src={item.image}
                                             alt=""
@@ -265,7 +265,7 @@ export default function ReportsPage() {
                                         />
 
                                         <div>
-                                            <h3 className="text-xl font-black text-[#1d1d1d]">
+                                            <h3 className="text-sm text-[#1d1d1d]">
                                                 {item.name}
                                             </h3>
 
@@ -273,13 +273,13 @@ export default function ReportsPage() {
                                         </div>
                                     </div>
 
-                                    <div className="grid grid-cols-2 gap-4 md:flex md:items-center md:gap-10">
+                                    <div className="grid grid-cols-2 gap-4 md:flex md:items-center md:justify-between md:gap-6 md:col-span-3">
                                         <div>
                                             <p className="text-xs font-bold uppercase text-[#8e7a70]">
                                                 Sold
                                             </p>
 
-                                            <p className="mt-1 text-lg font-black">{item.sold}</p>
+                                            <p className="mt-1">{item.sold}</p>
                                         </div>
 
                                         <div>
@@ -287,7 +287,7 @@ export default function ReportsPage() {
                                                 Revenue
                                             </p>
 
-                                            <p className="mt-1 text-lg font-black">
+                                            <p className="mt-1">
                                                 {item.revenue}
                                             </p>
                                         </div>
@@ -319,42 +319,36 @@ export default function ReportsPage() {
 
                     {/* RETURNS */}
                     <div className="rounded-[36px] border border-[#ecd8cc] bg-white p-5 shadow-sm md:p-8">
-                        <h2 className="text-3xl font-black">Returns & Refunds</h2>
+                        <h2 className="text-xl font-black">Returns & Refunds</h2>
 
-                        <div className="mt-10 flex flex-col items-center justify-center gap-8 md:flex-row">
-                            <div className="relative flex h-52 w-52 items-center justify-center rounded-full border-[18px] border-[#ff6a00] border-r-[#555c6b] border-b-[#e4e4e4] border-l-[#e4e4e4]">
+                        <div className="mt-10 flex flex-col items-center justify-center gap-8 ">
+                            <div className="relative flex h-35 w-35 items-center justify-center rounded-full border-[8px] border-[#ff6a00] border-r-[#555c6b] border-b-[#e4e4e4] border-l-[#e4e4e4]">
                                 <div className="text-center">
-                                    <h3 className="text-5xl font-black">$142k</h3>
-
+                                    <h3 className="text-xl font-black">$142k</h3>
                                     <p className="mt-1 text-[#7d6658]">Total Value</p>
                                 </div>
                             </div>
 
-                            <div className="space-y-5 text-lg font-bold">
+                            <div className="space-y-5 ">
                                 <div className="flex items-center justify-between gap-12">
                                     <div className="flex items-center gap-3">
                                         <div className="h-4 w-4 rounded-full bg-[#a94f00]" />
                                         Size Mismatch
                                     </div>
-
                                     <span>65%</span>
                                 </div>
 
                                 <div className="flex items-center justify-between gap-12">
                                     <div className="flex items-center gap-3">
-                                        <div className="h-4 w-4 rounded-full bg-[#555c6b]" />
-                                        Damaged
+                                        <div className="h-4 w-4 rounded-full bg-[#555c6b]" />Damaged
                                     </div>
-
                                     <span>20%</span>
                                 </div>
 
                                 <div className="flex items-center justify-between gap-12">
                                     <div className="flex items-center gap-3">
-                                        <div className="h-4 w-4 rounded-full bg-[#e3e3e3]" />
-                                        Changed Mind
+                                        <div className="h-4 w-4 rounded-full bg-[#e3e3e3]" />Changed Mind
                                     </div>
-
                                     <span>15%</span>
                                 </div>
                             </div>
@@ -367,7 +361,7 @@ export default function ReportsPage() {
                     <div className="overflow-hidden rounded-[40px] bg-[#111418] p-5 shadow-2xl md:p-8">
                         <div className="flex items-start justify-between">
                             <div>
-                                <h2 className="text-3xl font-black text-white">
+                                <h2 className="text-xl font-bold tracking-tight text-white">
                                     Regional Sales Analytics
                                 </h2>
 
@@ -376,53 +370,42 @@ export default function ReportsPage() {
                                 </p>
                             </div>
 
-                            <button className="rounded-full border border-white/20 bg-white/10 px-5 py-2 text-sm font-black tracking-wide text-white backdrop-blur-lg">
+                            <button className="rounded-full border border-white/20 bg-white/10 px-5 py-2 text-sm font-bold tracking-wide text-white backdrop-blur-lg">
                                 LIVE ACTIVITY
                             </button>
                         </div>
 
-                        <div className="relative mt-10 h-[400px] overflow-hidden rounded-[30px] bg-[#0d1014]">
+                        <div className="relative mt-6 h-[350px] overflow-hidden rounded-[30px] bg-[#0d1014]">
                             <div className="absolute left-[15%] top-[28%] h-4 w-4 rounded-full bg-[#ff6b00] shadow-[0_0_40px_20px_rgba(255,107,0,0.3)]" />
-
                             <div className="absolute left-[42%] top-[58%] h-3 w-3 rounded-full bg-[#ff6b00] shadow-[0_0_35px_16px_rgba(255,107,0,0.3)]" />
-
                             <div className="absolute right-[28%] top-[40%] h-5 w-5 rounded-full bg-[#ff6b00] shadow-[0_0_45px_24px_rgba(255,107,0,0.3)]" />
-
                             <div className="absolute bottom-8 left-8 flex items-end gap-8 text-white">
                                 <div>
-                                    <p className="text-xs font-bold uppercase text-[#8d8d8f]">
-                                        North America
-                                    </p>
-
-                                    <h3 className="text-4xl font-black">$1.8M</h3>
+                                    <p className="text-xs font-bold uppercase text-[#8d8d8f]">North America</p>
+                                    <h3 className="text-3xl font-black">$1.8M</h3>
                                 </div>
-
                                 <div className="h-12 w-px bg-white/10" />
-
                                 <div>
-                                    <p className="text-xs font-bold uppercase text-[#8d8d8f]">
-                                        Europe
-                                    </p>
-
-                                    <h3 className="text-4xl font-black">$1.2M</h3>
+                                    <p className="text-xs font-bold uppercase text-[#8d8d8f]">Europe</p>
+                                    <h3 className="text-3xl font-black">$1.2M</h3>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div className="rounded-[36px] border border-[#ecd8cc] bg-white p-5 shadow-sm md:p-8">
-                        <h2 className="text-3xl font-black">Inventory Status</h2>
+                        <h2 className="text-2xl font-bold tracking-tight text-gray-900">Inventory Status</h2>
 
                         <div className="mt-10 space-y-10">
                             {INVENTORY_DATA.map((item) => (
                                 <div key={item.title}>
-                                    <div className="flex items-center justify-between font-black">
+                                    <div className="flex items-center justify-between font-semibold">
                                         <span>{item.title}</span>
 
                                         <span className="text-[#6f584b]">{item.value}</span>
                                     </div>
 
-                                    <div className="mt-4 h-3 overflow-hidden rounded-full bg-[#ededed]">
+                                    <div className="mt-4 h-2 overflow-hidden rounded-full bg-[#ededed]">
                                         <div
                                             className={`h-full rounded-full ${item.color}`}
                                             style={{ width: item.width }}
@@ -432,18 +415,14 @@ export default function ReportsPage() {
                             ))}
 
                             <div className="flex items-center gap-4 rounded-[26px] bg-[#f5f5f5] p-5">
-                                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-2xl">
-                                    ↻
+                                <div className="rounded-full bg-white text-2xl">
+                                    <span className=" h-16 w-16 flex items-center justify-center pb-1.5">
+                                        ↻
+                                    </span>
                                 </div>
-
                                 <div>
-                                    <h3 className="text-lg font-black">
-                                        Auto-restock triggered
-                                    </h3>
-
-                                    <p className="text-[#766358]">
-                                        240 items ordered from Warehouse B
-                                    </p>
+                                    <h3 className="font-semibold">Auto-restock triggered</h3>
+                                    <p className="text-[#766358] text-light font-light">240 items ordered from Warehouse B</p>
                                 </div>
                             </div>
                         </div>
@@ -456,7 +435,7 @@ export default function ReportsPage() {
                         <div className="mb-6 flex items-center gap-3">
                             <span className="text-2xl text-[#a65312]">✦</span>
 
-                            <h2 className="text-3xl font-black">
+                            <h2 className="text-xl font-bold">
                                 AI Business Insights
                             </h2>
                         </div>
@@ -468,18 +447,12 @@ export default function ReportsPage() {
                                     className="rounded-[32px] border border-[#f0cdc0] bg-white p-6 shadow-sm"
                                 >
                                     <div className="flex items-start gap-4">
-                                        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#ffe6d8] text-xl text-[#a65312]">
-                                            ✦
+                                        <div className="rounded-full bg-[#ffe6d8] text-xl text-[#a65312]">
+                                            <span className=" h-14 w-14  flex items-center justify-center">✦</span>
                                         </div>
-
                                         <div>
-                                            <h3 className="text-2xl font-black">
-                                                {item.title}
-                                            </h3>
-
-                                            <p className="mt-3 leading-relaxed text-[#735f54]">
-                                                {item.description}
-                                            </p>
+                                            <h3 className="text-lg font-semibold">{item.title}</h3>
+                                            <p className="mt-1 leading-relaxed text-[#735f54]  font-light ">{item.description}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -488,33 +461,28 @@ export default function ReportsPage() {
                     </div>
 
                     <div className="rounded-[36px] border border-[#ecd8cc] bg-white p-5 shadow-sm md:p-8">
-                        <h2 className="text-3xl font-black">Report Activity</h2>
+                        <h2 className="text-xl font-bold">Report Activity</h2>
 
-                        <div className="mt-10 space-y-10">
+                        <div className="mt-10 space-y-5">
                             {REPORT_ACTIVITY.map((item) => (
                                 <div key={item.title} className="flex gap-4">
                                     <div className="flex flex-col items-center">
-                                        <div
-                                            className={`h-4 w-4 rounded-full ${item.color}`}
-                                        />
-
+                                        <div className="flex mt-1.5">
+                                            <div
+                                                className={`h-4 w-4 rounded-full ${item.color}`}
+                                            />
+                                        </div>
                                         <div className="mt-2 h-full w-px bg-[#ececec]" />
                                     </div>
-
                                     <div>
-                                        <h3 className="text-xl font-black">
-                                            {item.title}
-                                        </h3>
-
-                                        <p className="mt-1 text-[#746256]">
-                                            {item.description}
-                                        </p>
+                                        <h3 className="font-semibold">{item.title}</h3>
+                                        <p className="mt-1 text-[#746256] font-light ">{item.description}</p>
                                     </div>
                                 </div>
                             ))}
                         </div>
 
-                        <button className="mt-10 w-full rounded-2xl border border-[#ececec] py-4 font-black transition-all hover:bg-[#f7f7f7]">
+                        <button className="mt-10 w-full rounded-2xl border border-[#d2d2d2] py-4 font-semibold transition-all hover:bg-[#f7f7f7]">
                             View Full History
                         </button>
                     </div>

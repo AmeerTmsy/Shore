@@ -4,6 +4,8 @@ import {
     Sparkles, Trash2, User, Users, X, Check, Minus, Eye, MoreVertical, UserCog, Building2, Wallet, KeyRound, LineChart,
     ClipboardList, Settings, ShieldCheck, UserRound, BriefcaseBusiness, Plus, CheckCircle2, ChevronUp, Store, BarChart3, XCircle, ArrowUp
 } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion"
+
 
 export default function RolePermissionPage() {
     const [roles, setRoles] = useState(initialRoles);
@@ -77,15 +79,15 @@ export default function RolePermissionPage() {
             {/* HEADER */}
             <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
                 <div>
-                    <h1 className="text-4xl font-black tracking-tight text-neutral-900 md:text-5xl">
+                    <h1 className="text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl">
                         Roles & Permissions
                     </h1>
-                    <p className="mt-2 text-lg text-neutral-500">
+                    <p className="mt-2 text-neutral-500">
                         Manage admin access, operational authority, and platform security.
                     </p>
                 </div>
 
-                <div className="flex flex-wrap gap-3">
+                {/* <div className="flex flex-wrap gap-3">
                     <button className="rounded-2xl border border-orange-200 bg-white px-5 py-3 font-semibold text-neutral-700 transition hover:bg-orange-50">
                         <ShieldCheck className="mr-2 inline-block h-5 w-5" />
                         Security Scan
@@ -100,11 +102,11 @@ export default function RolePermissionPage() {
                         <PlusIcon />
                         Create Role
                     </button>
-                </div>
+                </div> */}
             </div>
 
             {/* STATS */}
-            <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-3 2xl:grid-cols-6">
+            <div className="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-3">
                 {[
                     { title: "Total Roles", value: "14", icon: Shield },
                     { title: "Active Admins", value: "42", icon: Users },
@@ -115,21 +117,21 @@ export default function RolePermissionPage() {
                 ].map((item, index) => (
                     <div
                         key={index}
-                        className="rounded-[28px] border border-orange-200 bg-white p-5"
+                        className="rounded-2xl border border-orange-200 bg-white p-5"
                     >
                         <div className="flex items-start justify-between">
                             <div className="rounded-2xl bg-orange-50 p-3">
                                 <item.icon className="size-6 text-orange-600" />
                             </div>
 
-                            <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-bold text-green-700">
+                            <span className="rounded-full bg-green-100 px-3 py-0.5 text-xs font-bold text-green-700">
                                 +2
                             </span>
                         </div>
 
-                        <div className="mt-6">
+                        <div className="mt-2 flex justify-between items-center">
                             <p className="text-sm font-medium text-neutral-500">{item.title}</p>
-                            <h3 className="mt-2 text-5xl font-black text-neutral-900">
+                            <h3 className="mt-2 font-bold text-neutral-900">
                                 {item.value}
                             </h3>
                         </div>
@@ -141,8 +143,8 @@ export default function RolePermissionPage() {
             <div className="mt-8 grid gap-6 xl:grid-cols-[320px_1fr]">
                 {/* LEFT SIDEBAR */}
                 <div className="space-y-6">
-                    <div className="rounded-[30px] border border-orange-200 bg-white p-6">
-                        <h3 className="text-2xl font-bold text-neutral-900">
+                    <div className="rounded-2xl border border-orange-200 bg-white p-6">
+                        <h3 className="text-xl font-bold text-neutral-900">
                             Directory Filters
                         </h3>
 
@@ -172,11 +174,11 @@ export default function RolePermissionPage() {
 
                                 <button
                                     onClick={() => setCriticalOnly(!criticalOnly)}
-                                    className={`relative h-8 w-14 rounded-full transition ${criticalOnly ? "bg-orange-500" : "bg-neutral-300"
+                                    className={`relative h-6 w-12 rounded-full transition ${criticalOnly ? "bg-orange-500" : "bg-neutral-300"
                                         }`}
                                 >
                                     <div
-                                        className={`absolute top-1 size-6 rounded-full bg-white transition ${criticalOnly ? "left-7" : "left-1"
+                                        className={`absolute top-0.5 size-5 rounded-full bg-white transition ${criticalOnly ? "left-6.5" : "left-0.5"
                                             }`}
                                     />
                                 </button>
@@ -233,9 +235,9 @@ export default function RolePermissionPage() {
 
                 {/* RIGHT CONTENT */}
                 <div className="space-y-6">
-                    <div className="overflow-hidden rounded-[30px] border border-orange-200 bg-white">
+                    <div className="overflow-hidden rounded-2xl border border-orange-200 bg-white">
                         <div className="flex flex-col gap-5 border-b border-orange-100 p-6 lg:flex-row lg:items-center lg:justify-between">
-                            <h2 className="text-3xl font-bold">Roles Directory</h2>
+                            <h2 className="text-xl font-bold text-neutral-900">Roles Directory</h2>
 
                             <div className="flex flex-wrap gap-3">
                                 <div className="flex items-center rounded-2xl bg-neutral-100 px-4">
@@ -244,26 +246,26 @@ export default function RolePermissionPage() {
                                         value={search}
                                         onChange={(e) => setSearch(e.target.value)}
                                         placeholder="Search roles..."
-                                        className="bg-transparent px-3 py-3 outline-none"
+                                        className="bg-transparent px-3 py-1 outline-none"
                                     />
                                 </div>
 
-                                <button className="rounded-2xl border border-orange-200 p-4">
-                                    <Filter className="h-5 w-5" />
+                                <button className="rounded-2xl border border-orange-200 p-3">
+                                    <Filter className="h-4 w-5" />
                                 </button>
                             </div>
                         </div>
 
                         {/* TABLE DESKTOP */}
-                        <div className="hidden xl:block">
+                        <div className="hidden 2xl:block">
                             <table className="w-full">
                                 <thead className="border-b border-orange-100 text-left text-sm text-neutral-500">
                                     <tr>
                                         <th className="px-8 py-5">ROLE NAME</th>
-                                        <th>DEPARTMENT</th>
-                                        <th>ACCESS</th>
-                                        <th>ASSIGNED</th>
-                                        <th>STATUS</th>
+                                        <th className="px-2">DEPARTMENT</th>
+                                        <th className="px-2">ACCESS</th>
+                                        <th className="px-2">ASSIGNED</th>
+                                        <th className="px-2">STATUS</th>
                                         <th className="pr-8 text-right">ACTIONS</th>
                                     </tr>
                                 </thead>
@@ -281,8 +283,8 @@ export default function RolePermissionPage() {
                                                     </div>
 
                                                     <div>
-                                                        <h4 className="text-xl font-bold">{role.name}</h4>
-                                                        <p className="text-neutral-500">
+                                                        <h4 className="font-medium">{role.name}</h4>
+                                                        <p className="text-neutral-500 text-sm">
                                                             {role.description}
                                                         </p>
                                                     </div>
@@ -293,8 +295,8 @@ export default function RolePermissionPage() {
                                                 {role.department}
                                             </td>
 
-                                            <td>
-                                                <span className="rounded-full bg-orange-100 px-4 py-2 text-sm font-bold text-orange-700">
+                                            <td className="px-2">
+                                                <span className="rounded-full bg-orange-100 px-4 py-2 text-xs text-nowrap font-bold text-orange-700">
                                                     {role.access}
                                                 </span>
                                             </td>
@@ -302,8 +304,8 @@ export default function RolePermissionPage() {
                                             <td>
                                                 <div className="flex items-center gap-2">
                                                     <div className="flex -space-x-3">
-                                                        <div className="size-10 rounded-full border-2 border-white bg-neutral-300" />
-                                                        <div className="size-10 rounded-full border-2 border-white bg-neutral-400" />
+                                                        <div className="size-6 rounded-full border-2 border-white bg-neutral-300" />
+                                                        <div className="size-6 rounded-full border-2 border-white bg-neutral-400" />
                                                     </div>
                                                     <span className="font-semibold text-neutral-500">
                                                         +{role.assigned}
@@ -361,22 +363,22 @@ export default function RolePermissionPage() {
                         </div>
 
                         {/* MOBILE CARDS */}
-                        <div className="space-y-4 p-4 xl:hidden">
+                        <div className="space-y-4 p-4 2xl:hidden">
                             {filteredRoles.map((role) => (
                                 <div
                                     key={role.id}
-                                    className="rounded-[28px] border border-orange-100 p-5"
+                                    className="rounded-xl border border-orange-100 p-5"
                                 >
                                     <div className="flex items-start justify-between gap-4">
                                         <div>
-                                            <h3 className="text-2xl font-bold">{role.name}</h3>
+                                            <h3 className="text-lg font-semibold">{role.name}</h3>
                                             <p className="mt-1 text-neutral-500">
                                                 ID: {role.roleId} • Created {role.created}
                                             </p>
                                         </div>
 
                                         <span
-                                            className={`rounded-full px-4 py-2 text-sm font-bold ${role.access === "Full Access"
+                                            className={`rounded-full px-4 py-0.5 text-sm ${role.access === "Full Access"
                                                 ? "bg-red-100 text-red-700"
                                                 : role.access === "Restricted"
                                                     ? "bg-slate-100 text-slate-600"
@@ -390,18 +392,18 @@ export default function RolePermissionPage() {
                                     <div className="mt-6 flex items-center justify-between">
                                         <div className="flex items-center gap-3">
                                             <div className="flex -space-x-3">
-                                                <div className="size-12 rounded-full bg-neutral-300 border-2 border-white" />
-                                                <div className="size-12 rounded-full bg-neutral-400 border-2 border-white" />
+                                                <div className="size-8 rounded-full bg-neutral-300 border-2 border-white" />
+                                                <div className="size-8 rounded-full bg-neutral-400 border-2 border-white" />
                                             </div>
 
-                                            <span className="font-bold text-neutral-700">
+                                            <span className="text-neutral-700">
                                                 {role.assigned} Assigned
                                             </span>
                                         </div>
 
                                         <button
                                             onClick={() => openDrawer(role)}
-                                            className="rounded-2xl bg-neutral-100 px-5 py-3 font-semibold"
+                                            className="rounded-xl bg-neutral-100 px-5 py-2 font-medium cursor-pointer"
                                         >
                                             Review
                                         </button>
@@ -414,8 +416,8 @@ export default function RolePermissionPage() {
                     {/* AUDIT FEED */}
                     <div className="rounded-[30px] border border-orange-200 bg-white p-6">
                         <div className="flex items-center justify-between">
-                            <h2 className="text-3xl font-bold">Audit Feed</h2>
-                            <button className="font-bold text-orange-700">
+                            <h2 className="text-xl font-bold">Audit Feed</h2>
+                            <button className="text-orange-700 hover:underline cursor-pointer">
                                 View Full Audit Trail
                             </button>
                         </div>
@@ -448,7 +450,7 @@ export default function RolePermissionPage() {
                                     key={index}
                                     className="flex items-start justify-between gap-4 border-b border-orange-100 pb-6"
                                 >
-                                    <div className="flex gap-4">
+                                    <div className="flex items-center gap-4">
                                         <div
                                             className={`mt-1 flex size-14 items-center justify-center rounded-full ${item.color === "blue"
                                                 ? "bg-blue-100"
@@ -467,16 +469,18 @@ export default function RolePermissionPage() {
                                         </div>
 
                                         <div>
-                                            <h4 className="text-2xl font-bold">{item.title}</h4>
-                                            <p className="mt-2 text-neutral-500">
+                                            <h4 className="font-semibold">{item.title}</h4>
+                                            <p className=" text-neutral-500">
                                                 {item.description}
                                             </p>
                                         </div>
                                     </div>
 
-                                    <span className="whitespace-nowrap text-neutral-500">
-                                        {item.time}
-                                    </span>
+                                    <div className="h-full">
+                                        <div className="whitespace-nowrap text-neutral-500">
+                                            {item.time}
+                                        </div>
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -485,24 +489,24 @@ export default function RolePermissionPage() {
             </div>
 
             <div className="my-10">
-                <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between mb-5">
+                {/* <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between mb-5">
                     <div>
-                        <h1 className="text-4xl font-black tracking-tight text-neutral-900 md:text-3xl">
+                        <h1 className="text-xl font-black tracking-tight text-neutral-900 md:text-3xl">
                             Roles & Permissions
                         </h1>
-                        <p className="mt-2 text-lg text-neutral-500">
+                        <p className="mt-2 text-neutral-500">
                             Manage admin access, operational authority, and platform security.
                         </p>
                     </div>
 
-                </div>
+                </div> */}
                 <PermissionMatrix />
             </div>
             {/* bottom last section */}
             <section className="mt-10">
                 {/* HEADER */}
                 <div className="mb-6">
-                    <h2 className="text-3xl font-black text-neutral-900 sm:text-4xl">
+                    <h2 className=" text-neutral-900 text-2xl font-bold ps-2">
                         Role Distribution
                     </h2>
                 </div>
@@ -510,22 +514,22 @@ export default function RolePermissionPage() {
                 {/* GRID */}
                 <div className="grid grid-cols-1 gap-5 xl:grid-cols-[1.4fr_.65fr_.65fr]">
                     {/* SECURITY INSIGHT */}
-                    <div className="relative overflow-hidden rounded-[32px] border border-orange-100 bg-white p-7 sm:p-10">
+                    <div className="relative overflow-hidden rounded-2xl border border-orange-100 bg-white p-7 sm:p-10">
                         {/* WATERMARK ICON */}
                         <div className="absolute bottom-[-40px] right-[-40px] opacity-5">
                             <Shield className="h-72 w-72 text-black" />
                         </div>
 
                         <div className="relative z-10">
-                            <p className="text-sm font-black uppercase tracking-[0.15em] text-orange-700 sm:text-base">
+                            <p className="text-sm font-semibold uppercase tracking-[0.15em] text-orange-700 sm:text-base">
                                 Security Insight
                             </p>
 
-                            <h3 className="mt-4 text-4xl font-black text-neutral-900 sm:text-5xl">
+                            <h3 className="mt-4 text-xl font-black text-neutral-900">
                                 Active Privileges
                             </h3>
 
-                            <p className="mt-5 max-w-2xl text-xl leading-relaxed text-neutral-600 sm:text-2xl">
+                            <p className="mt-5 max-w-2xl leading-relaxed text-neutral-600">
                                 84% of your organization operates under the
                                 {" "}
                                 <span className="font-bold">'Support'</span>
@@ -534,33 +538,28 @@ export default function RolePermissionPage() {
                                 accounts.
                             </p>
 
-                            <button className="mt-8 rounded-2xl border border-orange-200 bg-white px-7 py-4 text-xl font-bold text-neutral-900 transition-all hover:bg-orange-50">
+                            <button className="mt-8 rounded-xl border border-orange-200 bg-white px-6 py-2.5 font-bold text-neutral-900 transition-all hover:bg-orange-50">
                                 Review Logs
                             </button>
                         </div>
                     </div>
 
                     {/* SUPER ADMINS */}
-                    <div className="rounded-[32px] border border-orange-100 bg-white p-7 sm:p-10">
-                        <div className="flex items-start justify-between">
-                            <p className="text-sm font-black uppercase tracking-[0.15em] text-neutral-500 sm:text-base">
-                                Super Admins
-                            </p>
-
-                            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-orange-50">
-                                <ShieldCheck className="h-8 w-8 text-orange-700" />
-                            </div>
+                    <div className="rounded-2xl border border-orange-100 bg-white p-7 sm:p-10">
+                        <div className="space-y-2">
+                            <div className="flex h-12 w-16 items-center justify-center rounded-2xl bg-orange-50"><ShieldCheck className="h-6 w-6 text-orange-700" /></div>
+                            <p className="text-sm font-bold uppercase text-neutral-500">Super Admins</p>
                         </div>
 
-                        <div className="mt-10">
-                            <h3 className="text-6xl font-black text-neutral-900">
+                        <div className="mt-5">
+                            <h3 className="text-2xl font-black text-neutral-900">
                                 04
                             </h3>
 
                             <div className="mt-5 flex items-center gap-2 text-green-500">
                                 <ArrowUp className="h-5 w-5" />
 
-                                <span className="text-2xl font-bold">
+                                <span className=" font-medium">
                                     Stable
                                 </span>
                             </div>
@@ -568,23 +567,18 @@ export default function RolePermissionPage() {
                     </div>
 
                     {/* POLICY VIOLATIONS */}
-                    <div className="rounded-[32px] border border-orange-100 bg-white p-7 sm:p-10">
-                        <div className="flex items-start justify-between">
-                            <p className="text-sm font-black uppercase tracking-[0.15em] text-neutral-500 sm:text-base">
-                                Policy Violations
-                            </p>
-
-                            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-red-50">
-                                <ShieldAlert className="h-8 w-8 text-red-600" />
-                            </div>
+                    <div className="rounded-2xl border border-orange-100 bg-white p-7 sm:p-10">
+                        <div className="space-y-2">
+                            <div className="flex h-12 w-16 items-center justify-center rounded-2xl bg-orange-50"><ShieldAlert className="h-6 w-6 text-red-600" /></div>
+                            <p className="text-sm font-bold uppercase text-neutral-500">Policy Violations</p>
                         </div>
 
-                        <div className="mt-10">
-                            <h3 className="text-6xl font-black text-neutral-900">
+                        <div className="mt-5">
+                            <h3 className="text-2xl font-black text-neutral-900">
                                 00
                             </h3>
 
-                            <p className="mt-5 text-2xl font-semibold text-neutral-500">
+                            <p className="mt-5 font-medium text-neutral-500">
                                 Last 30 days
                             </p>
                         </div>
@@ -799,14 +793,14 @@ function PermissionMatrix() {
             case "allowed":
                 return (
                     <div className="flex justify-center">
-                        <CheckCircle2 className="h-7 w-7 text-green-500" />
+                        <CheckCircle2 className="h-6 w-6 text-green-500" />
                     </div>
                 );
 
             case "restricted":
                 return (
                     <div className="flex justify-center">
-                        <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-red-500">
+                        <div className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-red-500">
                             <span className="text-sm font-black text-red-500">×</span>
                         </div>
                     </div>
@@ -815,14 +809,14 @@ function PermissionMatrix() {
             case "full":
                 return (
                     <div className="flex justify-center">
-                        <BadgeCheck className="h-7 w-7 text-green-500" />
+                        <BadgeCheck className="h-6 w-6 text-green-500" />
                     </div>
                 );
 
             default:
                 return (
                     <div className="flex justify-center">
-                        <Minus className="h-7 w-7 text-neutral-300" />
+                        <Minus className="h-6 w-6 text-neutral-300" />
                     </div>
                 );
         }
@@ -832,32 +826,32 @@ function PermissionMatrix() {
         switch (status) {
             case "allowed":
                 return (
-                    <CheckCircle2 className="h-9 w-9 rounded-full bg-green-500 p-1 text-white" />
+                    <CheckCircle2 className="h-7 w-7 rounded-full bg-green-500 p-0.5 text-white" />
                 );
 
             case "restricted":
                 return (
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-red-500 bg-red-50">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-red-500 bg-red-50">
                         <span className="text-lg font-black text-red-500">×</span>
                     </div>
                 );
 
             case "full":
                 return (
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-orange-600">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-orange-600">
                         <BadgeCheck className="h-5 w-5 text-white" />
                     </div>
                 );
 
             default:
-                return <Minus className="h-8 w-8 text-neutral-300" />;
+                return <Minus className="h-7 w-7 text-neutral-300" />;
         }
     };
 
     return (
         <div className="w-full">
             {/* DESKTOP */}
-            <div className="hidden overflow-hidden rounded-[32px] border border-orange-200 bg-white lg:block">
+            <div className="hidden overflow-hidden rounded-2xl border border-orange-200 bg-white lg:block">
                 <div className="overflow-x-auto">
                     <table className="w-full min-w-[1200px] border-collapse">
                         <thead>
@@ -877,7 +871,7 @@ function PermissionMatrix() {
                                             }`}
                                     >
                                         <h3
-                                            className={`text-4xl font-black ${role.name === "Super Admin"
+                                            className={`text-xl font-semibold ${role.name === "Super Admin"
                                                 ? "text-orange-700"
                                                 : "text-neutral-900"
                                                 }`}
@@ -906,9 +900,9 @@ function PermissionMatrix() {
                                 >
                                     <td className="border-r border-orange-100 px-8 py-10">
                                         <div className="flex items-center gap-5">
-                                            <module.icon className="h-8 w-8 text-neutral-500" />
+                                            <module.icon className="h-6 w-6 text-neutral-500" />
 
-                                            <h3 className="text-3xl font-bold text-neutral-900">
+                                            <h3 className="text-xl font-bold text-neutral-900">
                                                 {module.title}
                                             </h3>
                                         </div>
@@ -938,11 +932,11 @@ function PermissionMatrix() {
             <div className="space-y-5 lg:hidden">
                 {/* HEADER CARD */}
                 <div className="rounded-[32px] border border-orange-100 bg-white p-7">
-                    <h2 className="text-4xl font-black text-neutral-900">
+                    <h2 className="text-xl font-black text-neutral-900">
                         Role Management
                     </h2>
 
-                    <p className="mt-4 text-2xl leading-relaxed text-neutral-700">
+                    <p className="mt-4 text-lg leading-relaxed text-neutral-700">
                         Review and manage granular access controls across
                         all system modules for administrative roles.
                     </p>
@@ -966,7 +960,7 @@ function PermissionMatrix() {
                                 <div className="flex items-center gap-4">
                                     <module.icon className="h-10 w-10 text-orange-500" />
 
-                                    <h3 className="text-3xl font-black text-neutral-900">
+                                    <h3 className="text-lg font-medium text-neutral-900">
                                         {module.title}
                                     </h3>
                                 </div>
@@ -977,44 +971,53 @@ function PermissionMatrix() {
                                     <ChevronDown className="h-8 w-8 text-neutral-900" />
                                 )}
                             </button>
+                            <AnimatePresence>
+                                {isOpen && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -20 }}
+                                        transition={{
+                                            duration: 0.25,
+                                            ease: "easeInOut",
+                                        }}
+                                        className="border-t border-orange-100 px-5 py-5">
+                                        <div className="space-y-4">
+                                            {roles.map((role, index) => {
+                                                const status =
+                                                    module.permissions[role.name];
 
-                            {isOpen && (
-                                <div className="border-t border-orange-100 px-5 py-5">
-                                    <div className="space-y-4">
-                                        {roles.map((role, index) => {
-                                            const status =
-                                                module.permissions[role.name];
+                                                return (
+                                                    <div
+                                                        key={index}
+                                                        className={`flex items-center justify-between rounded-2xl px-5 py-5 ${role.name === "Super Admin"
+                                                            ? "bg-orange-50"
+                                                            : "bg-neutral-50"
+                                                            }`}
+                                                    >
+                                                        <div>
+                                                            <h4
+                                                                className={`font-bold ${role.name === "Super Admin"
+                                                                    ? "text-orange-700"
+                                                                    : "text-neutral-900"
+                                                                    }`}
+                                                            >
+                                                                {role.name}
+                                                            </h4>
 
-                                            return (
-                                                <div
-                                                    key={index}
-                                                    className={`flex items-center justify-between rounded-2xl px-5 py-5 ${role.name === "Super Admin"
-                                                        ? "bg-orange-50"
-                                                        : "bg-neutral-50"
-                                                        }`}
-                                                >
-                                                    <div>
-                                                        <h4
-                                                            className={`text-2xl font-bold ${role.name === "Super Admin"
-                                                                ? "text-orange-700"
-                                                                : "text-neutral-900"
-                                                                }`}
-                                                        >
-                                                            {role.name}
-                                                        </h4>
+                                                            <p className="mt-1 text-neutral-500">
+                                                                {role.subtitle}
+                                                            </p>
+                                                        </div>
 
-                                                        <p className="mt-1 text-lg text-neutral-500">
-                                                            {role.subtitle}
-                                                        </p>
+                                                        {renderMobileStatus(status)}
                                                     </div>
-
-                                                    {renderMobileStatus(status)}
-                                                </div>
-                                            );
-                                        })}
-                                    </div>
-                                </div>
-                            )}
+                                                );
+                                            })}
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
                     );
                 })}
@@ -1027,11 +1030,11 @@ function PermissionMatrix() {
                         </div>
 
                         <div>
-                            <h3 className="text-2xl font-black text-neutral-700">
+                            <h3 className="text-xl font-black text-neutral-700">
                                 Secured by SoleAdmin
                             </h3>
 
-                            <p className="mt-2 text-lg text-neutral-600">
+                            <p className="mt-2 text-neutral-600">
                                 Last updated: Oct 24, 2023 • 14:32 UTC
                             </p>
                         </div>
@@ -1056,11 +1059,11 @@ function PermissionMatrix() {
 
                             {/* CONTENT */}
                             <div>
-                                <h3 className="text-2xl font-black text-neutral-900 sm:text-3xl">
+                                <h3 className="text-xl font-bold text-neutral-900">
                                     {item.title}
                                 </h3>
 
-                                <p className="mt-1 text-lg text-neutral-500 sm:text-xl">
+                                <p className="mt-1 text-neutral-500">
                                     {item.description}
                                 </p>
                             </div>

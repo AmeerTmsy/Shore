@@ -1,97 +1,6 @@
-import {
-  AlertTriangle,
-  ArrowUpRight,
-  Check,
-  ChevronLeft,
-  ChevronRight,
-  CircleAlert,
-  Clock3,
-  Eye,
-  Filter,
-  MoreVertical,
-  Search,
-  ShieldAlert,
-  Sparkles,
-  Upload,
-  X,
+import { AlertTriangle, ArrowUpRight, Check, ChevronLeft, ChevronRight, CircleAlert, Clock3, Eye, Filter, MoreVertical, Search, ShieldAlert, Sparkles, Upload, X,
 } from "lucide-react";
 import { useState } from "react";
-
-const pendingProducts = [
-  {
-    id: "#SKU-99210",
-    name: "Air Jordan 1 Retro",
-    sku: "555088-105",
-    seller: "SoleTrader NY",
-    reputation: "98%",
-    category: "Footwear",
-    submitted: "2 mins ago",
-    risk: "Low",
-    status: "Awaiting Review",
-    price: "$420.00",
-    image:
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    id: "#SKU-88129",
-    name: "Nike Dunk Panda",
-    sku: "DD1391-100",
-    seller: "KicksOutlet",
-    reputation: "82%",
-    category: "Footwear",
-    submitted: "15 mins ago",
-    risk: "Critical",
-    status: "AI Flagged",
-    price: "$110.00",
-    image:
-      "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    id: "#SKU-77451",
-    name: "Yeezy Slide Onyx",
-    sku: "CP9652",
-    seller: "GrailHunter",
-    reputation: "95%",
-    category: "Footwear",
-    submitted: "1 hour ago",
-    risk: "Medium",
-    status: "Duplicate Match",
-    price: "$350.00",
-    image:
-      "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=1200&auto=format&fit=crop",
-  },
-];
-
-const stats = [
-  {
-    title: "Total Pending",
-    value: "1,284",
-    sub: "+12% vs LW",
-    color: "text-green-600",
-  },
-  {
-    title: "Awaiting Review",
-    value: "432",
-  },
-  {
-    title: "High Risk",
-    value: "42",
-    sub: "Priority Action",
-    color: "text-red-500",
-  },
-  {
-    title: "Duplicates",
-    value: "18",
-  },
-  {
-    title: "Revisions",
-    value: "156",
-  },
-  {
-    title: "Avg Approval",
-    value: "4.2h",
-  },
-];
 
 export default function PendingProductsPage() {
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -632,3 +541,80 @@ export default function PendingProductsPage() {
     </div>
   );
 }
+
+
+const pendingProducts = [
+  {
+    id: "#SKU-99210",
+    name: "Air Jordan 1 Retro",
+    sku: "555088-105",
+    seller: "SoleTrader NY",
+    reputation: "98%",
+    category: "Footwear",
+    submitted: "2 mins ago",
+    risk: "Low",
+    status: "Awaiting Review",
+    price: "$420.00",
+    image:
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    id: "#SKU-88129",
+    name: "Nike Dunk Panda",
+    sku: "DD1391-100",
+    seller: "KicksOutlet",
+    reputation: "82%",
+    category: "Footwear",
+    submitted: "15 mins ago",
+    risk: "Critical",
+    status: "AI Flagged",
+    price: "$110.00",
+    image:
+      "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    id: "#SKU-77451",
+    name: "Yeezy Slide Onyx",
+    sku: "CP9652",
+    seller: "GrailHunter",
+    reputation: "95%",
+    category: "Footwear",
+    submitted: "1 hour ago",
+    risk: "Medium",
+    status: "Duplicate Match",
+    price: "$350.00",
+    image:
+      "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=1200&auto=format&fit=crop",
+  },
+];
+
+const stats = [
+  {
+    title: "Total Pending",
+    value: "1,284",
+    sub: "+12% vs LW",
+    color: "text-green-600",
+  },
+  {
+    title: "Awaiting Review",
+    value: "432",
+  },
+  {
+    title: "High Risk",
+    value: "42",
+    sub: "Priority Action",
+    color: "text-red-500",
+  },
+  {
+    title: "Duplicates",
+    value: "18",
+  },
+  {
+    title: "Revisions",
+    value: "156",
+  },
+  {
+    title: "Avg Approval",
+    value: "4.2h",
+  },
+];

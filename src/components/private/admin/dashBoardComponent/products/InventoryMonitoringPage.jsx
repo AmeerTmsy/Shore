@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Search, Filter, Plus, Download, RefreshCw, MoreVertical, PackageCheck, AlertTriangle, Warehouse, Gauge, ChevronRight, ChevronLeft, X, ArrowUpRight, ArrowDownRight, Bell, Database, } from "lucide-react";
-
 import { ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, BarChart, Bar, XAxis, Tooltip, } from "recharts";
 
 export default function InventoryMonitoringPage() {
@@ -11,16 +10,16 @@ export default function InventoryMonitoringPage() {
             {/* HEADER */}
             <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-5">
                 <div>
-                    <h1 className="text-3xl md:text-5xl font-bold tracking-tight">
+                    <h1 className="text-3xl font-bold tracking-tight text-gray-900">
                         Inventory Monitoring
                     </h1>
-                    <p className="text-zinc-500 mt-2 text-sm md:text-lg">
+                    <p className="mt-1 text-sm sm:text-[1em] text-gray-500">
                         Track stock movement, warehouse health, and fulfillment inventory
                         across all sellers.
                     </p>
                 </div>
 
-                <div className="flex flex-wrap gap-3">
+                {/* <div className="flex flex-wrap gap-3">
                     <button className="dashboard-btn">
                         <Download size={18} />
                         Export CSV
@@ -40,7 +39,7 @@ export default function InventoryMonitoringPage() {
                         <Plus size={18} />
                         Add Inventory
                     </button>
-                </div>
+                </div> */}
             </div>
 
             {/* STATS */}
@@ -52,25 +51,27 @@ export default function InventoryMonitoringPage() {
                         return (
                             <div
                                 key={index}
-                                className="bg-white min-w-[280px] xl:min-w-0 rounded-[32px] border border-orange-100 p-6 shadow-sm"
+                                className="bg-white min-w-[280px] xl:min-w-0 rounded-2xl border border-orange-100 p-4 shadow-sm"
                             >
-                                <div className="w-14 h-14 rounded-2xl bg-zinc-100 flex items-center justify-center">
-                                    <Icon className={`${card.color}`} />
-                                </div>
+                                <div className="flex items-top justify-between">
+                                    <div className="w-14 h-14 rounded-2xl bg-zinc-100 flex items-center justify-center">
+                                        <Icon className={`${card.color}`} />
+                                    </div>
 
-                                <div className="mt-6">
-                                    <p className="text-zinc-500 font-semibold text-sm tracking-wide">
-                                        {card.title}
-                                    </p>
+                                    <div className="text-end">
+                                        <p className="text-zinc-500 font-semibold text-xs tracking-wide">
+                                            {card.title}
+                                        </p>
 
-                                    <div className="flex items-end gap-2 mt-2">
-                                        <h2 className={`text-5xl font-bold ${card.color}`}>
-                                            {card.value}
-                                        </h2>
+                                        <div className="gap-2 mt-2">
+                                            <h2 className={`text-lg font-bold ${card.color}`}>
+                                                {card.value}
+                                            </h2>
 
-                                        <span className={`text-sm font-medium ${card.color}`}>
-                                            {card.sub}
-                                        </span>
+                                            <span className={`text-sm font-medium ${card.color}`}>
+                                                {card.sub}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -80,12 +81,12 @@ export default function InventoryMonitoringPage() {
             </div>
 
             {/* SEARCH */}
-            <div className="bg-white border border-orange-100 rounded-[34px] p-4 mt-8">
+            <div className="bg-white border border-orange-100 rounded-2xl p-2.5 mt-8">
                 <div className="flex flex-col xl:flex-row gap-4">
-                    <div className="flex-1 flex items-center gap-3 bg-white rounded-2xl border border-orange-100 px-5 h-16">
+                    <div className="flex-1 flex items-center gap-3 bg-white rounded-xl border border-orange-100 px-5 py-2">
                         <Search className="text-zinc-400" />
                         <input
-                            className="bg-transparent outline-none w-full text-lg"
+                            className="bg-transparent outline-none w-full text-sm"
                             placeholder="Search by SKU, Product Name, or Seller..."
                         />
                     </div>
@@ -97,7 +98,7 @@ export default function InventoryMonitoringPage() {
                             "Seller: All",
                             "Status: Healthy",
                         ].map((item) => (
-                            <button key={item} className="dashboard-btn h-16 px-6">
+                            <button key={item} className="dashboard-btn px-6 py-2 text-sm border border-gray-200 rounded-xl">
                                 {item}
                             </button>
                         ))}
@@ -118,8 +119,8 @@ export default function InventoryMonitoringPage() {
                                 "STATUS",
                                 "MOVEMENT",
                                 "ACTIONS",
-                            ].map((head) => (
-                                <th key={head} className="p-6 font-semibold tracking-wider">
+                            ].map((head, index) => (
+                                <th key={index} className={'p-4 font-semibold tracking-wider ' + (index === 0 ? 'pl-6' : '') + (index === 6 ? 'pr-6' : '')}>
                                     {head}
                                 </th>
                             ))}
@@ -133,29 +134,29 @@ export default function InventoryMonitoringPage() {
                                 className="border-t border-orange-100 cursor-pointer hover:bg-orange-50/40 transition"
                                 onClick={() => setSelectedItem(item)}
                             >
-                                <td className="p-6 text-zinc-500 font-medium">{item.id}</td>
+                                <td className="p-4 ps-6 text-zinc-500">{item.id}</td>
 
-                                <td className="p-6">
+                                <td className="p-4">
                                     <div className="flex items-center gap-5">
                                         <img
                                             src={item.image}
                                             alt=""
-                                            className="w-16 h-16 rounded-2xl object-cover"
+                                            className="w-12 h-12 rounded-2xl object-cover"
                                         />
 
-                                        <h3 className="text-2xl font-bold">{item.name}</h3>
+                                        <h3 className="font-semibold">{item.name}</h3>
                                     </div>
                                 </td>
 
-                                <td className="p-6">
-                                    <h4 className="font-bold text-xl">{item.seller}</h4>
-                                    <p className="text-zinc-500">{item.warehouse}</p>
+                                <td className="p-4">
+                                    <h4 className="font-medium">{item.seller}</h4>
+                                    <p className="text-zinc-500 text-sm">{item.warehouse}</p>
                                 </td>
 
-                                <td className="p-6">
+                                <td className="p-4">
                                     <div className="space-y-3">
                                         <div className="flex justify-between text-sm">
-                                            <span className="font-bold">
+                                            <span className="font-medium">
                                                 {item.stock} units
                                             </span>
                                             <span className="text-zinc-500">
@@ -163,7 +164,7 @@ export default function InventoryMonitoringPage() {
                                             </span>
                                         </div>
 
-                                        <div className="h-3 rounded-full bg-zinc-100 overflow-hidden">
+                                        <div className="h-1.5 rounded-full bg-zinc-100 overflow-hidden">
                                             <div
                                                 className={`h-full rounded-full ${item.status === "Healthy"
                                                     ? "bg-green-500"
@@ -177,9 +178,9 @@ export default function InventoryMonitoringPage() {
                                     </div>
                                 </td>
 
-                                <td className="p-6">
+                                <td className="p-4">
                                     <span
-                                        className={`px-5 py-2 rounded-full text-sm font-semibold ${item.status === "Healthy"
+                                        className={`px-5 py-0.5 rounded-full text-xs font-medium text-nowrap ${item.status === "Healthy"
                                             ? "bg-green-100 text-green-700"
                                             : item.status === "Low Stock"
                                                 ? "bg-orange-100 text-orange-700"
@@ -190,9 +191,9 @@ export default function InventoryMonitoringPage() {
                                     </span>
                                 </td>
 
-                                <td className="p-6">
+                                <td className="p-4">
                                     <div
-                                        className={`flex items-center gap-2 text-2xl font-bold ${item.movementType === "up"
+                                        className={`flex items-center gap-2 font-semibold ${item.movementType === "up"
                                             ? "text-green-500"
                                             : item.movementType === "down"
                                                 ? "text-red-500"
@@ -211,16 +212,16 @@ export default function InventoryMonitoringPage() {
                                     </div>
                                 </td>
 
-                                <td className="p-6">
-                                    <MoreVertical />
+                                <td className="p-4 pr-6 flex justify-center">
+                                    <MoreVertical size={16} />
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
 
-                <div className="flex items-center justify-between p-6 border-t border-orange-100">
-                    <p className="text-zinc-500 font-medium">
+                <div className="flex items-center justify-between p-4 border-t border-orange-100">
+                    <p className="text-zinc-500 font-medium text-sm">
                         Showing 1-10 of 12,450 SKUs
                     </p>
 
@@ -228,8 +229,8 @@ export default function InventoryMonitoringPage() {
                         {[1, 2, 3].map((page) => (
                             <button
                                 key={page}
-                                className={`w-14 h-14 rounded-2xl border ${page === 1
-                                    ? "bg-orange-700 text-white"
+                                className={`w-10 h-10 rounded-xl border border-gray-300 ${page === 1
+                                    ? "bg-orange-400 text-white"
                                     : "bg-white text-black"
                                     }`}
                             >
@@ -245,58 +246,80 @@ export default function InventoryMonitoringPage() {
                 {inventoryItems.map((item, index) => (
                     <div
                         key={index}
-                        className="bg-white rounded-[32px] border border-orange-100 p-5"
+                        className="bg-white rounded-2xl border border-orange-100 p-5"
                     >
                         <div className="flex gap-4">
                             <img
                                 src={item.image}
                                 alt=""
-                                className="w-28 h-28 rounded-3xl object-cover"
+                                className="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl object-cover"
                             />
 
                             <div className="flex-1">
-                                <div className="flex justify-between gap-2">
-                                    <h3 className="text-2xl font-bold leading-tight">
-                                        {item.name}
-                                    </h3>
+                                <div className="flex justify-end sm:justify-between gap-2">
+                                    <div className=' hidden sm:block'>
+                                        <h3 className="font-semibold leading-tight">
+                                            {item.name}
+                                        </h3>
+                                        <p className="text-zinc-400 text-sm mt-2">
+                                            SKU: {item.id}
+                                        </p>
 
-                                    <span
-                                        className={`px-3 py-1 rounded-full text-xs font-bold ${item.status === "Healthy"
-                                            ? "bg-zinc-200 text-zinc-700"
-                                            : "bg-red-100 text-red-700"
-                                            }`}
-                                    >
-                                        {item.status}
-                                    </span>
+                                        <h2
+                                            className={`font-bold mt-4 ${item.status === "Critical"
+                                                ? "text-red-500"
+                                                : "text-orange-600"
+                                                }`}
+                                        >
+                                            {item.stock}
+                                            <span className="text-zinc-500 text-sm ml-2">
+                                                Units in Stock
+                                            </span>
+                                        </h2>
+                                    </div>
+                                    <div>
+                                        <span
+                                            className={`px-3 py-0.5 rounded-full text-xs font-medium ${item.status === "Healthy"
+                                                ? "bg-zinc-200 text-zinc-700"
+                                                : "bg-red-100 text-red-700"
+                                                }`}
+                                        >
+                                            {item.status}
+                                        </span>
+                                    </div>
                                 </div>
-
-                                <p className="text-zinc-400 text-lg mt-2">
-                                    SKU: {item.id}
-                                </p>
-
-                                <h2
-                                    className={`text-4xl font-bold mt-4 ${item.status === "Critical"
-                                        ? "text-red-500"
-                                        : "text-orange-600"
-                                        }`}
-                                >
-                                    {item.stock}
-                                    <span className="text-zinc-500 text-2xl ml-2">
-                                        Units in Stock
-                                    </span>
-                                </h2>
                             </div>
                         </div>
+                        <div className='mt-4 block sm:hidden'>
+                            <h3 className="font-semibold leading-tight">
+                                {item.name}
+                            </h3>
+                            <p className="text-zinc-400 text-sm">
+                                SKU: {item.id}
+                            </p>
 
-                        <div className="border-t border-orange-100 mt-5 pt-5 flex gap-4">
+                            <h2
+                                className={`font-bold mt-2 ${item.status === "Critical"
+                                    ? "text-red-500"
+                                    : "text-orange-600"
+                                    }`}
+                            >
+                                {item.stock}
+                                <span className="text-zinc-500 text-sm ml-2">
+                                    Units in Stock
+                                </span>
+                            </h2>
+                        </div>
+
+                        <div className="border-t border-orange-100 mt-4 sm:mt-5pt-5 flex gap-4">
                             <button
                                 onClick={() => setSelectedItem(item)}
-                                className="flex-1 bg-zinc-100 rounded-2xl h-16 text-2xl font-semibold"
+                                className="flex-1 bg-zinc-100 rounded-2xl h-10 font-medium"
                             >
                                 View Details
                             </button>
 
-                            <button className="flex-1 bg-orange-500 text-white rounded-2xl h-16 text-2xl font-semibold">
+                            <button className="flex-1 bg-orange-500 text-white rounded-2xl h-10 font-medium">
                                 Restock
                             </button>
                         </div>
@@ -305,65 +328,70 @@ export default function InventoryMonitoringPage() {
             </div>
 
             {/* INSIGHTS */}
-            <div className="grid xl:grid-cols-4 gap-6 mt-10">
+            <div className="mt-10">
                 {/* HEALTH */}
-                <div className="bg-white rounded-[34px] border border-orange-100 p-6">
+                <div className="bg-white rounded-2xl border border-orange-100 p-6">
                     <div className="flex items-center justify-between">
-                        <h3 className="text-3xl font-bold">Health Overview</h3>
-                        <Database />
+                        <h3 className="text-xl font-bold">Health Overview</h3>
+                        <Database size={20} />
                     </div>
 
-                    <div className="h-64 mt-4">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <PieChart>
-                                <Pie
-                                    data={pieData}
-                                    dataKey="value"
-                                    innerRadius={70}
-                                    outerRadius={90}
-                                >
-                                    <Cell fill="#b45309" />
-                                    <Cell fill="#f97316" />
-                                    <Cell fill="#ef4444" />
-                                </Pie>
-                            </PieChart>
-                        </ResponsiveContainer>
-                    </div>
-
-                    <div className="space-y-4">
-                        <div className="flex justify-between">
-                            <span>Healthy</span>
-                            <span className="font-bold">1.2M</span>
+                    <div className="grid md:grid-cols-2 gap-6 mt-2 ">
+                        <div className="h-64 w-64 mx-auto md:mx-0">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <PieChart>
+                                    <Pie
+                                        data={pieData}
+                                        dataKey="value"
+                                        cx="50%"
+                                        cy="50%"
+                                        innerRadius={70}
+                                        outerRadius={90}
+                                    >
+                                        <Cell fill="#b45309" />
+                                        <Cell fill="#f97316" />
+                                        <Cell fill="#ef4444" />
+                                    </Pie>
+                                </PieChart>
+                            </ResponsiveContainer>
                         </div>
 
-                        <div className="flex justify-between">
-                            <span>Low Stock</span>
-                            <span className="font-bold">42k</span>
-                        </div>
+                        <div className="space-y-4 flex flex-col justify-center">
+                            <div className="flex justify-between">
+                                <span>Healthy</span>
+                                <span className="font-bold">1.2M</span>
+                            </div>
 
-                        <div className="flex justify-between">
-                            <span>Critical</span>
-                            <span className="font-bold">8.5k</span>
+                            <div className="flex justify-between">
+                                <span>Low Stock</span>
+                                <span className="font-bold">42k</span>
+                            </div>
+
+                            <div className="flex justify-between">
+                                <span>Critical</span>
+                                <span className="font-bold">8.5k</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <div className="grid xl:grid-cols-3 gap-6 mt-10">
                 {/* AI */}
-                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-[34px] p-8 text-white">
-                    <h3 className="text-4xl font-bold">Velocity AI</h3>
+                <div className="bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-2xl p-8 text-white">
+                    <h3 className="text-xl font-bold">Velocity AI</h3>
 
-                    <p className="text-zinc-300 mt-5 text-lg leading-relaxed">
+                    <p className="text-zinc-300 mt-5 leading-relaxed">
                         Predicted stockouts for 14 SKUs in the next 48 hours.
                     </p>
 
-                    <button className="w-full mt-10 bg-white/10 border border-white/10 rounded-3xl h-16 font-semibold text-xl">
+                    <button className="w-full mt-10 bg-white/10 border border-white/10 rounded-3xl font-medium text-sm py-2">
                         View Forecast
                     </button>
                 </div>
 
                 {/* ACTIVITY */}
-                <div className="bg-white rounded-[34px] border border-orange-100 p-6">
-                    <h3 className="text-3xl font-bold">Recent Activity</h3>
+                <div className="bg-white rounded-2xl border border-orange-100 p-6">
+                    <h3 className="text-xl font-bold">Recent Activity</h3>
 
                     <div className="space-y-6 mt-6">
                         {[
@@ -377,8 +405,8 @@ export default function InventoryMonitoringPage() {
                                 </div>
 
                                 <div>
-                                    <h4 className="font-semibold text-lg">{item}</h4>
-                                    <p className="text-zinc-500">2h ago</p>
+                                    <h4 className="font-medium">{item}</h4>
+                                    <p className="text-zinc-500 text-sm">2h ago</p>
                                 </div>
                             </div>
                         ))}
@@ -386,10 +414,10 @@ export default function InventoryMonitoringPage() {
                 </div>
 
                 {/* ALERTS */}
-                <div className="bg-red-50 rounded-[34px] border border-red-100 p-6">
+                <div className="bg-red-50 rounded-2xl border border-red-100 p-6">
                     <div className="flex items-center gap-3">
                         <AlertTriangle className="text-red-600" />
-                        <h3 className="text-3xl font-bold text-red-700">
+                        <h3 className="text-xl font-bold text-red-700">
                             Seller Risk Alerts
                         </h3>
                     </div>
@@ -400,8 +428,8 @@ export default function InventoryMonitoringPage() {
                                 key={seller}
                                 className="bg-white rounded-3xl border border-red-100 p-5"
                             >
-                                <h4 className="font-bold text-xl">{seller}</h4>
-                                <p className="text-red-500 mt-2">
+                                <h4 className="font-medium">{seller}</h4>
+                                <p className="text-red-500 mt-2 text-sm">
                                     Late shipments detected
                                 </p>
                             </div>

@@ -49,7 +49,7 @@ export default function Profile() {
           >
             {/* PROFILE CARD */}
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5">
-              <p className="text-xs text-gray-500">Welcome back,</p>
+              {/* <p className="text-xs text-gray-500">Welcome back,</p> */}
               <h2 className="text-lg font-semibold text-gray-900 mt-1">{user?.name || "Admin"}</h2>
               <p className="text-sm text-orange-500 mt-1 font-medium">Platform Administrator</p>
             </div>
