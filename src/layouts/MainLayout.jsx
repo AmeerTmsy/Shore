@@ -15,9 +15,9 @@ export default function MainLayout() {
   return (
     <div className={`flex flex-col min-h-screen ${isSellerDashboard ? 'bg-linear-to-br from-purple-50 via-blue-50 to-blue-200': ''} `}>
       <Header />
-      <div className={` flex flex-col ${(location.pathname === '/offers' || location.pathname === '/gifts') ? 'absolute w-full' : ''} `}>
-        <div className="flex-1">
-          <main className="flex-1 z- flex flex-col">
+      <div className={` flex flex-1 flex-col ${(location.pathname === '/offers' || location.pathname === '/gifts') ? 'absolute w-full' : ''} `}>
+        <div className="flex-1 flex flex-col">
+          <main className="flex-1 flex flex-col">
             <Outlet />
           </main>
         </div>

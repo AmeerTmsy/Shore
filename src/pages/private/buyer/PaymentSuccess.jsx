@@ -40,11 +40,11 @@ export default function PaymentSuccess() {
 
 
     return (
-        <div className="h-full flex items-center justify-center bg-green-50 p-4">
+        <div className="flex-1 flex items-center justify-center bg-green-50 p-4">
             <div className="rounded-2xl max-w-xl w-full p-6 text-center space-y-6">
 
                 <div className="flex justify-center">
-                    <div className="bg-green-200 rounded-full p-4">
+                    <div className="bg-linear-to-br from-green-200 to-green-600 rounded-full p-4">
                         <img
                             src={orderImage}
                             alt="Order success illustration"
