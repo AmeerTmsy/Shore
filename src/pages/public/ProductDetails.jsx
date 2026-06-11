@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Toast } from "../../utils/alert";
+import { Toast } from "../../utils/Alert.jsx";
 // import { Alert, Toast } from "../../utils/Alert";
 
 export default function ProductDetails() {
